@@ -47,7 +47,7 @@ header p{color:var(--p2);max-width:48ch;margin:12px auto 0}
 .route li small+small::before{content:" · "}
 .route li.f i{background:var(--p3);box-shadow:0 0 0 2px var(--p3)}
 .route li.f b{color:var(--p2)}
-@media (min-width:700px){
+@media (min-width:700px) and (max-width:1099px),(min-width:1500px){
 .route{flex-direction:row;gap:4px}
 .route::before{left:7%;right:7%;top:12px;bottom:auto;width:auto;height:2px}
 .route li{flex:1 1 0;flex-direction:column;text-align:center;gap:6px;padding:0;min-width:0}
@@ -113,6 +113,26 @@ tr.tot td{border:0;font-weight:600;font-size:1rem;padding-top:14px}
 .cmp th{text-align:left;font-family:var(--serif);font-weight:400;font-size:1.1rem;padding:6px 6px 6px 0;vertical-align:bottom}
 .cmp td b{font-family:var(--mono);font-size:.95rem;font-weight:500}
 footer{text-align:center;color:var(--p3);font-size:.8rem;padding-block:0 40px;max-width:60ch;margin:0 auto}
+@media (min-width:1100px){
+main.wrap{max-width:1560px;display:grid;grid-template-columns:1fr 1fr;column-gap:40px;align-items:start;grid-template-areas:"topa topb" "shared shared" "seca secb" "cardsa cardsb" "twoa twob" "buda budb" "cmp cmp"}
+.pane-top[data-opt="a"]{grid-area:topa}.pane-top[data-opt="b"]{grid-area:topb}
+.shared{grid-area:shared;margin-top:30px}
+.shared .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+.shared .city{margin-bottom:0}
+.pane-bot{display:contents}
+[data-opt="a"]>.lead{grid-area:seca}[data-opt="b"]>.lead{grid-area:secb}
+[data-opt="a"]>.cards{grid-area:cardsa}[data-opt="b"]>.cards{grid-area:cardsb}
+[data-opt="a"]>.two{grid-area:twoa}[data-opt="b"]>.two{grid-area:twob}
+[data-opt="a"]>.budget{grid-area:buda}[data-opt="b"]>.budget{grid-area:budb}
+.budget .sec{margin-top:10px}
+.cmp{grid-area:cmp;max-width:960px;width:100%;justify-self:center;margin-top:20px}
+.hero{margin:0;border-radius:18px;height:400px}
+.pick .in{max-width:1560px;column-gap:40px}
+.pick button{cursor:default}
+.pick button b{font-size:1.5rem}
+header p{max-width:60ch}
+.city li[data-day-row] [data-day]{display:block;margin-top:4px}
+}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 
@@ -126,7 +146,7 @@ footer{text-align:center;color:var(--p3);font-size:.8rem;padding-block:0 40px;ma
 <main class="wrap">
 
 <!-- ===== OPTION A: top ===== -->
-<div data-opt="a" style="--c:var(--a)">
+<div class="pane-top" data-opt="a" style="--c:var(--a)">
 <div class="hero"><img src="data:image/jpeg;base64,@@0bfe23ed@@" alt="The Great Wall at Jinshanling under snow at sunset"><div class="ov"><div class="mono">Option A · HK in, Beijing out</div><h2>The <em>Wall</em></h2><p>The Great Wall in snow, the Forbidden City, pandas properly. <span id="a-hero-over">$1,394 over the cap.</span></p></div></div>
 <ol class="route">
 <li style="--c:var(--ist)"><i></i><div><b>Istanbul</b><span><small>20h layover</small><small>Dec 2</small></span></div></li>
@@ -141,7 +161,7 @@ footer{text-align:center;color:var(--p3);font-size:.8rem;padding-block:0 40px;ma
 </div>
 
 <!-- ===== OPTION B: top ===== -->
-<div data-opt="b" style="--c:var(--b)" hidden>
+<div class="pane-top" data-opt="b" style="--c:var(--b)" hidden>
 <div class="hero"><img src="data:image/jpeg;base64,@@b3fe4d79@@" alt="Heaven's Gate at Tianmen Mountain, 999 steps up to the arch"><div class="ov"><div class="mono">Option B · HK round trip</div><h2>The <em>Circle</em></h2><p>No flights inside China, two places almost no Americans reach, both splurges. $2 under the cap.</p></div></div>
 <ol class="route">
 <li style="--c:var(--ist)"><i></i><div><b>Istanbul</b><span><small>20h layover</small><small>Dec 2</small></span></div></li>
@@ -159,7 +179,7 @@ footer{text-align:center;color:var(--p3);font-size:.8rem;padding-block:0 40px;ma
 <!-- ===== SHARED DAYS 1–10 (rendered once) ===== -->
 <section class="shared">
 <div class="sec"><div class="mono">Days 1–10 · Dec 2–13 · same on both</div><h2>Read this part once.</h2><p>Istanbul, Hong Kong, the birthday on Avatar Mountain and the spa night in Chongqing are identical in A and B. Only Dec 11 changes, and it's marked.</p></div>
-
+<div class="cards">
 <article class="city" style="--c:var(--ist)"><div class="ph g" style="--g1:#12303a;--g2:#1f6a74">
 <svg viewBox="0 0 400 150" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><g fill="#4fb3bf" opacity=".22"><rect x="120" y="40" width="7" height="110"/><polygon points="116,42 131,42 123.5,26"/><rect x="268" y="40" width="7" height="110"/><polygon points="264,42 279,42 271.5,26"/><rect x="150" y="96" width="95" height="54"/><ellipse cx="197.5" cy="98" rx="52" ry="34"/><rect x="60" y="120" width="28" height="30"/><rect x="310" y="112" width="34" height="38"/><rect x="0" y="140" width="400" height="10"/></g><g fill="#4fb3bf" opacity=".35"><circle cx="340" cy="34" r="11"/><circle cx="345" cy="31" r="10" fill="#12303a"/></g></svg>
 <div class="grad"></div><div class="t"><h3>Istanbul</h3><span class="mono">Dec 2 · 20h layover</span></div></div>
@@ -190,15 +210,16 @@ footer{text-align:center;color:var(--p3);font-size:.8rem;padding-block:0 40px;ma
 <article class="city" style="--c:var(--cq)"><div class="ph"><img src="data:image/jpeg;base64,@@d4f2f701@@" alt="Hongya Cave lit up at night in Chongqing"><div class="grad"></div><div class="t"><h3>Chongqing</h3><span class="mono">Dec 9–13 · 4 nights</span></div></div>
 <div class="bd"><ul>
 <li>Hotpot night one. Then the cliff city with a driver: Ciqikou early, the Liziba monorail through an apartment tower, the Yangtze cableway, Hongya Cave at lights-on then leave, Sichuan opera.</li>
-<li id="cq11"><span class="chip" id="cq11-chip">Option A</span><b>Dec 11</b> — <span data-day="a">Dazu Rock Carvings: 50,000 Buddhas cut into cliffs a thousand years ago, UNESCO, empty in winter. Pandas come in Chengdu.</span><span data-day="b" hidden>Pandas: the 90-minute train to Chengdu, Panda Base at the 8:30 feeding, Heming Teahouse, back by 7.</span></li>
+<li id="cq11" data-day-row><b>Dec 11</b> — <span data-day="a"><span class="chip" style="--c:var(--a)">Option A</span>Dazu Rock Carvings: 50,000 Buddhas cut into cliffs a thousand years ago, UNESCO, empty in winter. Pandas come in Chengdu.</span> <span data-day="b" hidden><span class="chip" style="--c:var(--b)">Option B</span>Pandas: the 90-minute train to Chengdu, Panda Base at the 8:30 feeding, Heming Teahouse, back by 7.</span></li>
 <li><b>Dec 12, spa day.</b> Banyan Tree Chongqing Beibei hot springs: private pool, couples treatment, the works. Then sleep there.</li>
 </ul><div class="hot"><img src="data:image/jpeg;base64,@@t:aa5ed2ea@@" alt="Raffles City Chongqing towers at night"><div><b>InterContinental Raffles City · ~$190 × 3, then Banyan Tree Beibei · ~$380 on Dec 12<span class="tagx">Spa night</span></b><span id="cq-hot-note">The horizontal skyscraper, 250 m up. Verify Banyan Tree's name, price and availability.</span></div></div></div></article>
+</div>
 </section>
 
 <!-- ===== OPTION A: days 11–18 ===== -->
-<div data-opt="a" style="--c:var(--a)">
-<div class="sec"><div class="mono">Days 11–18 · Dec 13–21 · Option A</div><h2>North to the Wall.</h2></div>
-
+<div class="pane-bot" data-opt="a" style="--c:var(--a)">
+<div class="sec lead"><div class="mono">Days 11–18 · Dec 13–21 · Option A</div><h2>North to the Wall.</h2></div>
+<div class="cards">
 <article class="city" style="--c:var(--cd)"><div class="ph"><img src="data:image/jpeg;base64,@@1d47c029@@" alt="Panda cubs at the Chengdu breeding base"><div class="grad"></div><div class="t"><h3>Chengdu</h3><span class="mono">Dec 13–16 · 3 nights</span></div></div>
 <div class="bd"><ul>
 <li>1.5h train from Chongqing. The slowest city in China: bamboo chairs and jasmine tea in People's Park, the vegetarian lunch at Wenshu Monastery.</li>
@@ -214,18 +235,19 @@ footer{text-align:center;color:var(--p3);font-size:.8rem;padding-block:0 40px;ma
 <li>Forbidden City at 8:30 with a guide (the other day a guide earns it), Jingshan Hill at sunset, Peking opera at Liyuan Theatre.</li>
 <li>Hutongs, Temple of Heaven tai chi at 8am, a hutong tea house, Peking duck at Siji Minfu, imperial-court farewell dinner at Bai Jia Da Yuan. 25–40°F: the real coat.</li>
 </ul><div class="hot"><img src="data:image/jpeg;base64,@@t:342d67a3@@" alt="The Orchid hotel rooftop in Baochao Hutong"><div><b>The Orchid, Baochao Hutong · ~$190 × 5</b>Courtyard hotel in a grey-brick lane, rooftop terrace. Fly home PEK 8:40am Dec 21, land Miami 8:35pm the same day.</div></div></div></article>
-
+</div>
 <div class="two"><div class="lose"><b>You give up</b>The Guizhou villages and the Li River karst. One internal flight. And the number: <span id="a-lose-over">$1,394 over the cap</span>.</div><div class="get"><b>You get</b>The Great Wall in snow. The largest palace on earth. Pandas without a day trip. Beijing in its empty month. Home a day earlier.</div></div>
 
-<div class="sec"><div class="mono">Budget · Option A · two travelers</div><h2>Where the money goes.</h2></div>
+<div class="budget"><div class="sec"><div class="mono">Budget · Option A · two travelers</div><h2>Where the money goes.</h2></div>
 <div class="tog"><div><b>Banyan Tree overnight</b><span>Spa day either way. On: sleep at Banyan Tree Dec 12. Off: day pass, and a fourth night at the InterCon gets added back in.</span></div><label class="sw"><input type="checkbox" id="bt" checked><i></i></label></div>
 <table class="bud" id="ta"></table><div class="verd" id="va"></div>
 </div>
+</div>
 
 <!-- ===== OPTION B: days 11–18 ===== -->
-<div data-opt="b" style="--c:var(--b)" hidden>
-<div class="sec"><div class="mono">Days 11–18 · Dec 13–21 · Option B</div><h2>South through the villages.</h2></div>
-
+<div class="pane-bot" data-opt="b" style="--c:var(--b)" hidden>
+<div class="sec lead"><div class="mono">Days 11–18 · Dec 13–21 · Option B</div><h2>South through the villages.</h2></div>
+<div class="cards">
 <article class="city" style="--c:var(--zx)"><div class="ph g" style="--g1:#2a1d10;--g2:#5a3c1e">
 <svg viewBox="0 0 400 150" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><g fill="#c9944a" opacity=".22"><polygon points="200,14 190,30 210,30"/><rect x="196" y="30" width="8" height="10"/><polygon points="170,52 230,52 220,40 180,40"/><polygon points="160,74 240,74 228,62 172,62"/><polygon points="148,96 252,96 238,84 162,84"/><polygon points="136,118 264,118 248,106 152,106"/><polygon points="122,140 278,140 258,128 142,128"/><rect x="176" y="140" width="48" height="10"/><rect x="0" y="146" width="400" height="4"/><polygon points="20,146 30,120 60,120 70,146"/><polygon points="320,146 330,116 362,116 372,146"/></g></svg>
 <div class="grad"></div><div class="t"><h3>Zhaoxing</h3><span class="mono">Dec 13–16 · 3 nights</span></div></div>
@@ -254,11 +276,12 @@ footer{text-align:center;color:var(--p3);font-size:.8rem;padding-block:0 40px;ma
 <li>Tai O, the fishing village on stilts. The Dragon's Back walk. Last dim sum.</li>
 <li>Fly HKG 9:45am Dec 21 → Istanbul, a 9h layover (Bosphorus at sunset, dinner), land Miami 7:10am Dec 22.</li>
 </ul><div class="hot"><div><b>Tuve, Tin Hau · ~$140 × 2</b>Same room, same neighborhood, no relearning the city.</div></div></div></article>
-
+</div>
 <div class="two"><div class="lose"><b>You give up</b>The Great Wall. The Forbidden City. Beijing. Two more hotel changes than A.</div><div class="get"><b>You get</b>No flights inside China. Two places almost no Americans reach. Both splurges, at the number.</div></div>
 
-<div class="sec"><div class="mono">Budget · Option B · two travelers</div><h2>Where the money goes.</h2></div>
+<div class="budget"><div class="sec"><div class="mono">Budget · Option B · two travelers</div><h2>Where the money goes.</h2></div>
 <table class="bud" id="tb"></table><div class="verd" id="vb"></div>
+</div>
 </div>
 
 <!-- ===== SIDE BY SIDE ===== -->
@@ -341,20 +364,32 @@ function calcA(){
   $('a-allin-note').textContent=over+(bt?'':' (spa as a day pass)');
   $('a-hero-over').textContent=over.charAt(0).toUpperCase()+over.slice(1)+'.';
   $('a-lose-over').textContent=over;
-  if(current==='a'){$('cq-hot-note').textContent=bt?'The horizontal skyscraper, 250 m up. Verify Banyan Tree\'s name, price and availability.':'Option A with the spa as a day pass: four nights at the InterCon, no Banyan Tree night.';}
+  hotNote();
 }
+const desk=window.matchMedia('(min-width:1100px)');
 let current='a';
+function hotNote(){
+  const bt=$('bt').checked, d=desk.matches;
+  let t='The horizontal skyscraper, 250 m up. Verify Banyan Tree\'s name, price and availability.';
+  if(!bt&&d)t='With A\'s spa as a day pass: four InterCon nights on A, no Banyan Tree night. B keeps the night.';
+  else if(!bt&&current==='a')t='Option A with the spa as a day pass: four nights at the InterCon, no Banyan Tree night.';
+  $('cq-hot-note').textContent=t;
+}
+function apply(){
+  const d=desk.matches;
+  document.querySelectorAll('[data-opt]').forEach(el=>{el.hidden=!d&&el.dataset.opt!==current;});
+  document.querySelectorAll('.pick button').forEach(b=>b.classList.toggle('on',d||b.dataset.p===current));
+  document.querySelectorAll('[data-day]').forEach(s=>{s.hidden=!d&&s.dataset.day!==current;});
+  hotNote();
+}
 function pick(o,scroll){
   current=o;
-  document.querySelectorAll('[data-opt]').forEach(el=>{el.hidden=el.dataset.opt!==o;});
-  document.querySelectorAll('.pick button').forEach(b=>b.classList.toggle('on',b.dataset.p===o));
-  document.querySelectorAll('[data-day]').forEach(s=>{s.hidden=s.dataset.day!==o;});
-  const chip=$('cq11-chip');chip.textContent='Option '+o.toUpperCase();chip.style.setProperty('--c',o==='a'?'var(--a)':'var(--b)');
-  $('cq-hot-note').textContent=(o==='a'&&!$('bt').checked)?'Option A with the spa as a day pass: four nights at the InterCon, no Banyan Tree night.':'The horizontal skyscraper, 250 m up. Verify Banyan Tree\'s name, price and availability.';
+  apply();
   try{localStorage.setItem('trip-opt',o);}catch(e){}
-  if(scroll){const rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;window.scrollTo({top:0,behavior:rm?'auto':'smooth'});}
+  if(scroll&&!desk.matches){const rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;window.scrollTo({top:0,behavior:rm?'auto':'smooth'});}
 }
 $('bt').addEventListener('change',calcA);
+desk.addEventListener('change',apply);
 document.querySelectorAll('.pick button').forEach(b=>b.addEventListener('click',()=>pick(b.dataset.p,true)));
 render(B0,'tb','vb','b');
 calcA();
