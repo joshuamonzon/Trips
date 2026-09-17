@@ -1,0 +1,364 @@
+<title>The Wall or The Circle</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:opsz,wght@9..40,300..700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0b0d12;--ink2:#12151d;--ink3:#1b1f2a;--line:#262b38;--paper:#f3eee4;--p2:#b9b4a8;--p3:#7d7a72;--gold:#e8c25a;--a:#c8102e;--b:#3fbf8e;--ok:#3fbf8e;--warn:#ffb74a;
+--ist:#4fb3bf;--hk:#5aa9e6;--zjj:#6fae7c;--cq:#ff7a3d;--cd:#b8c85a;--bj:#c8102e;--zx:#c9944a;--ys:#3fbf8e;
+--serif:"Fraunces",Georgia,"Times New Roman",serif;--sans:"DM Sans",system-ui,-apple-system,sans-serif;--mono:"DM Mono",ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#0b0d12;--paper:#f3eee4}}
+:root[data-theme="dark"]{--ink:#0b0d12;--paper:#f3eee4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+p{margin:0 0 .7em}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+button:focus-visible,input:focus-visible+i{outline:2px solid var(--gold);outline-offset:2px}
+img{max-width:100%}
+.mono{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+.wrap{max-width:760px;margin:0 auto;padding-inline:18px}
+header{padding-block:40px 18px;text-align:center}
+header .mono{color:var(--gold)}
+header h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:300}
+header h1 em{font-style:italic;color:var(--gold)}
+header p{color:var(--p2);max-width:48ch;margin:12px auto 0}
+.pick{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--ink);padding-block:12px;border-bottom:1px solid var(--line)}
+.pick .in{max-width:760px;margin:0 auto;padding-inline:18px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pick button{border:1px solid var(--line);border-radius:16px;padding:11px 14px;text-align:left;background:var(--ink2);transition:border-color .2s}
+.pick button b{display:block;font-family:var(--serif);font-size:1.25rem;font-weight:400}
+.pick button span{display:block;color:var(--p2);font-size:.8rem;line-height:1.35}
+.pick button span i{font-style:normal;font-family:var(--mono);color:var(--paper)}
+.pick button.on{border-color:var(--c);box-shadow:inset 0 0 0 1px var(--c)}
+.pick button.on b{color:var(--c)}
+[data-opt]{animation:f .3s}
+@keyframes f{from{opacity:0}to{opacity:1}}
+.hero{position:relative;height:clamp(240px,62vw,340px);margin:0 -18px;overflow:hidden;background:var(--ink2)}
+.hero img{width:100%;height:100%;object-fit:cover;display:block}
+.hero .ov{position:absolute;inset:auto 0 0 0;padding:120px 18px 18px;background:linear-gradient(180deg,rgba(11,13,18,0),rgba(11,13,18,.6) 40%,rgba(11,13,18,.97));text-shadow:0 1px 10px rgba(11,13,18,.9)}
+.hero h2{font-size:clamp(2.4rem,9vw,3.8rem);font-weight:300}
+.hero h2 em{font-style:italic;color:var(--c)}
+.hero .mono{color:var(--c)}
+.hero p{color:var(--p2);margin:6px 0 0;font-size:.95rem;max-width:52ch}
+.route{list-style:none;margin:22px 0 8px;padding:0;position:relative;display:flex;flex-direction:column;gap:0}
+.route::before{content:"";position:absolute;left:12px;top:16px;bottom:16px;width:2px;background:var(--line)}
+.route li{display:flex;align-items:center;gap:14px;padding:6px 0;position:relative}
+.route li i{flex:none;display:block;width:26px;height:26px;border-radius:50%;background:var(--c);border:4px solid var(--ink);box-shadow:0 0 0 2px var(--c)}
+.route li b{display:block;font-family:var(--serif);font-weight:400;font-size:1.05rem;line-height:1.1}
+.route li span{font-family:var(--mono);font-size:.62rem;color:var(--p2);letter-spacing:.06em;text-transform:uppercase}
+.route li small{font:inherit}
+.route li small+small::before{content:" · "}
+.route li.f i{background:var(--p3);box-shadow:0 0 0 2px var(--p3)}
+.route li.f b{color:var(--p2)}
+@media (min-width:700px){
+.route{flex-direction:row;gap:4px}
+.route::before{left:7%;right:7%;top:12px;bottom:auto;width:auto;height:2px}
+.route li{flex:1 1 0;flex-direction:column;text-align:center;gap:6px;padding:0;min-width:0}
+.route li b{font-size:.95rem}
+.route li span{font-size:.58rem;display:block}
+.route li small{display:block;white-space:nowrap}
+.route li small+small::before{content:none}
+}
+.legs{color:var(--p3);font-size:.8rem;text-align:center;margin:8px 0 26px;text-wrap:balance}
+.sec{margin:34px 0 14px}
+.sec .mono{color:var(--gold)}
+.sec h2{font-size:1.9rem;margin-top:4px}
+.sec p{color:var(--p2);font-size:.92rem;margin:8px 0 0;max-width:60ch}
+.shared{border-top:1px solid var(--gold);margin-top:8px}
+.shared .sec{margin-top:26px}
+.city{border:1px solid var(--line);border-radius:18px;background:var(--ink2);overflow:hidden;margin-bottom:12px}
+.city .ph{height:150px;position:relative;overflow:hidden}
+.city .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.city .ph svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.city .ph .grad{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,var(--ink2))}
+.city .ph.g{background:linear-gradient(135deg,var(--g1),var(--g2))}
+.city .ph .t{position:absolute;left:16px;bottom:10px;right:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap}
+.city .ph h3{font-size:1.7rem}
+.city .ph .mono{color:var(--c)}
+.city .bd{padding:6px 16px 16px}
+.city ul{margin:0;padding:0 0 0 18px;color:var(--p2);font-size:.92rem}
+.city li{margin:5px 0}
+.city li b{color:var(--paper);font-weight:600}
+.city .hot{display:flex;gap:12px;align-items:center;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);font-size:.86rem;color:var(--p2)}
+.city .hot img{width:56px;height:56px;border-radius:10px;object-fit:cover;flex:none}
+.city .hot b{display:block;color:var(--paper);font-weight:600}
+.tagx{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;background:var(--gold);color:var(--ink);padding:2px 6px;border-radius:4px;margin-left:6px;vertical-align:middle;font-weight:500}
+.chip{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--c);color:var(--c);padding:1px 6px;border-radius:4px;margin-right:6px;vertical-align:middle}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}
+.two div{border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:.88rem;color:var(--p2)}
+.two b{display:block;color:var(--paper);font-family:var(--serif);font-weight:400;font-size:1.1rem;margin-bottom:4px}
+.two .lose b{color:var(--warn)}.two .get b{color:var(--ok)}
+@media (max-width:420px){.two{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:6px;color:var(--paper);table-layout:fixed}
+td{padding:8px 0;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}
+.bud td:last-child{text-align:right;font-family:var(--mono);font-size:.82rem;width:22%;font-variant-numeric:tabular-nums;white-space:nowrap}
+td small{display:block;color:var(--p3);font-size:.75rem;line-height:1.4}
+tr.tot td{border:0;font-weight:600;font-size:1rem;padding-top:14px}
+.verd{border-radius:14px;padding:14px 16px;margin:14px 0 40px;border:1px solid var(--line)}
+.verd .big{font-family:var(--serif);font-size:2.2rem;line-height:1;font-variant-numeric:tabular-nums}
+.verd .cap{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--p3);margin-top:6px}
+.verd p{color:var(--p2);font-size:.88rem;margin:8px 0 0}
+.verd.ok{border-color:var(--ok)}.verd.ok .big{color:var(--ok)}
+.verd.warn{border-color:var(--warn)}.verd.warn .big{color:var(--warn)}
+.tog{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:12px 0}
+.tog span{color:var(--p2);font-size:.84rem}.tog b{display:block;font-weight:600}
+.sw{position:relative;width:46px;height:26px;flex:none;cursor:pointer}
+.sw input{opacity:0;position:absolute;width:0;height:0}
+.sw i{position:absolute;inset:0;border-radius:99px;background:var(--ink3);border:1px solid var(--line)}
+.sw i::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:var(--p2);transition:.2s}
+.sw input:checked+i{background:var(--gold);border-color:var(--gold)}
+.sw input:checked+i::after{transform:translateX(20px);background:var(--ink)}
+.cmp{padding-block:30px 40px;border-top:1px solid var(--line)}
+.cmp h2{font-size:1.9rem;margin-bottom:12px}
+.cmp table{font-family:var(--sans)}
+.cmp td{font-size:.86rem;padding:9px 6px 9px 0}
+.cmp td:first-child{color:var(--p3);width:26%}
+.cmp th{text-align:left;font-family:var(--serif);font-weight:400;font-size:1.1rem;padding:6px 6px 6px 0;vertical-align:bottom}
+.cmp td b{font-family:var(--mono);font-size:.95rem;font-weight:500}
+footer{text-align:center;color:var(--p3);font-size:.8rem;padding-block:0 40px;max-width:60ch;margin:0 auto}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<header class="wrap"><div class="mono">Mom &amp; Dad · The Fiftieth · Dec 1–22, 2026</div><h1>Two trips.<br><em>Pick one.</em></h1><p>Both fly Turkish business via Istanbul, with a full day there on Dec 2. Same first ten days, same birthday on Avatar Mountain, same spa night. They split on Dec 13: north to the Great Wall and home from Beijing, or south through the villages and home from Hong Kong.</p></header>
+
+<div class="pick"><div class="in">
+<button type="button" class="on" id="btn-a" data-p="a" style="--c:var(--a)"><b>A · The Wall</b><span>HK in, Beijing out · one flight inside China · <i id="pa-tot">$21,394</i></span></button>
+<button type="button" id="btn-b" data-p="b" style="--c:var(--b)"><b>B · The Circle</b><span>HK round trip · all rail · <i>$19,998</i></span></button>
+</div></div>
+
+<main class="wrap">
+
+<!-- ===== OPTION A: top ===== -->
+<div data-opt="a" style="--c:var(--a)">
+<div class="hero"><img src="data:image/jpeg;base64,@@0bfe23ed@@" alt="The Great Wall at Jinshanling under snow at sunset"><div class="ov"><div class="mono">Option A · HK in, Beijing out</div><h2>The <em>Wall</em></h2><p>The Great Wall in snow, the Forbidden City, pandas properly. <span id="a-hero-over">$1,394 over the cap.</span></p></div></div>
+<ol class="route">
+<li style="--c:var(--ist)"><i></i><div><b>Istanbul</b><span><small>20h layover</small><small>Dec 2</small></span></div></li>
+<li style="--c:var(--hk)"><i></i><div><b>Hong Kong</b><span><small>3 nights</small><small>Dec 3–6</small></span></div></li>
+<li style="--c:var(--zjj)"><i></i><div><b>Zhangjiajie</b><span><small>3 nights</small><small>Dec 6–9</small><small>birthday Dec 8</small></span></div></li>
+<li style="--c:var(--cq)"><i></i><div><b>Chongqing</b><span><small>4 nights</small><small>Dec 9–13</small><small>spa Dec 12</small></span></div></li>
+<li style="--c:var(--cd)"><i></i><div><b>Chengdu</b><span><small>3 nights</small><small>Dec 13–16</small></span></div></li>
+<li style="--c:var(--bj)"><i></i><div><b>Beijing</b><span><small>5 nights</small><small>Dec 16–21</small></span></div></li>
+<li class="f"><i></i><div><b>Miami</b><span><small>Land 8:35pm</small><small>Dec 21</small></span></div></li>
+</ol>
+<p class="legs">Rail HK → Changsha 3h, lunch, Changsha → Zhangjiajie 2.5h · Zhangjiajie → Chongqing 3h20 · Chongqing → Chengdu 1.5h · fly Chengdu → Beijing 2.5h · fly home from Beijing via Istanbul</p>
+</div>
+
+<!-- ===== OPTION B: top ===== -->
+<div data-opt="b" style="--c:var(--b)" hidden>
+<div class="hero"><img src="data:image/jpeg;base64,@@b3fe4d79@@" alt="Heaven's Gate at Tianmen Mountain, 999 steps up to the arch"><div class="ov"><div class="mono">Option B · HK round trip</div><h2>The <em>Circle</em></h2><p>No flights inside China, two places almost no Americans reach, both splurges. $2 under the cap.</p></div></div>
+<ol class="route">
+<li style="--c:var(--ist)"><i></i><div><b>Istanbul</b><span><small>20h layover</small><small>Dec 2</small></span></div></li>
+<li style="--c:var(--hk)"><i></i><div><b>Hong Kong</b><span><small>3 nights</small><small>Dec 3–6</small></span></div></li>
+<li style="--c:var(--zjj)"><i></i><div><b>Zhangjiajie</b><span><small>3 nights</small><small>Dec 6–9</small><small>birthday Dec 8</small></span></div></li>
+<li style="--c:var(--cq)"><i></i><div><b>Chongqing</b><span><small>4 nights</small><small>Dec 9–13</small><small>spa Dec 12</small></span></div></li>
+<li style="--c:var(--zx)"><i></i><div><b>Zhaoxing</b><span><small>3 nights</small><small>Dec 13–16</small></span></div></li>
+<li style="--c:var(--ys)"><i></i><div><b>Yangshuo</b><span><small>3 nights</small><small>Dec 16–19</small></span></div></li>
+<li style="--c:var(--hk)"><i></i><div><b>Hong Kong</b><span><small>2 nights</small><small>Dec 19–21</small></span></div></li>
+<li class="f"><i></i><div><b>Miami</b><span><small>Land 7:10am</small><small>Dec 22</small></span></div></li>
+</ol>
+<p class="legs">All rail inside China, longest leg 3h20 · Chongqing → Guiyang 2h → Congjiang 1.5h · Congjiang → Guilin 1h · Guilin → HK 3h direct · fly home from HK via Istanbul</p>
+</div>
+
+<!-- ===== SHARED DAYS 1–10 (rendered once) ===== -->
+<section class="shared">
+<div class="sec"><div class="mono">Days 1–10 · Dec 2–13 · same on both</div><h2>Read this part once.</h2><p>Istanbul, Hong Kong, the birthday on Avatar Mountain and the spa night in Chongqing are identical in A and B. Only Dec 11 changes, and it's marked.</p></div>
+
+<article class="city" style="--c:var(--ist)"><div class="ph g" style="--g1:#12303a;--g2:#1f6a74">
+<svg viewBox="0 0 400 150" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><g fill="#4fb3bf" opacity=".22"><rect x="120" y="40" width="7" height="110"/><polygon points="116,42 131,42 123.5,26"/><rect x="268" y="40" width="7" height="110"/><polygon points="264,42 279,42 271.5,26"/><rect x="150" y="96" width="95" height="54"/><ellipse cx="197.5" cy="98" rx="52" ry="34"/><rect x="60" y="120" width="28" height="30"/><rect x="310" y="112" width="34" height="38"/><rect x="0" y="140" width="400" height="10"/></g><g fill="#4fb3bf" opacity=".35"><circle cx="340" cy="34" r="11"/><circle cx="345" cy="31" r="10" fill="#12303a"/></g></svg>
+<div class="grad"></div><div class="t"><h3>Istanbul</h3><span class="mono">Dec 2 · 20h layover</span></div></div>
+<div class="bd"><ul>
+<li>Land 5:45am, fly out 1:45am. A whole day in a city they wanted to see, for free.</li>
+<li>Hagia Sophia and the Blue Mosque at opening, the Grand Bazaar before the crowds, a long lunch.</li>
+<li>Bosphorus at sunset, dinner in Karaköy, then the Turkish business lounge, which has a hammam.</li>
+<li>They pass through again on the way home, both options.</li>
+</ul><div class="hot"><div><b>No hotel night</b>Turkish's stopover program may give a free day room at exactly 20h. Check eligibility when booking. Turkey entry for US passports is visa-free or a ~$50 e-visa.</div></div></div></article>
+
+<article class="city" style="--c:var(--hk)"><div class="ph g" style="--g1:#0f2a3a;--g2:#1a4a5a">
+<svg viewBox="0 0 400 150" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><g fill="#5aa9e6" opacity=".2"><rect x="20" y="70" width="22" height="80"/><rect x="50" y="40" width="18" height="110"/><rect x="76" y="86" width="30" height="64"/><rect x="114" y="22" width="16" height="128"/><rect x="138" y="58" width="26" height="92"/><rect x="172" y="34" width="20" height="116"/><rect x="200" y="78" width="34" height="72"/><rect x="242" y="48" width="14" height="102"/><rect x="264" y="14" width="22" height="136"/><rect x="294" y="66" width="28" height="84"/><rect x="330" y="92" width="20" height="58"/><rect x="358" y="50" width="24" height="100"/></g><g fill="#5aa9e6" opacity=".12"><rect x="0" y="132" width="400" height="18"/></g></svg>
+<div class="grad"></div><div class="t"><h3>Hong Kong</h3><span class="mono">Dec 3–6 · 3 nights</span></div></div>
+<div class="bd"><ul>
+<li>Land 5pm Dec 3. Soft landing: English everywhere, dim sum at 8am, the Peak at dusk, Star Ferry, Lock Cha tea house in Hong Kong Park.</li>
+<li><b>Dec 4, Shenzhen tech day</b>, 15 minutes by train: Huaqiangbei electronics market, the DJI flagship, a robotaxi ride, the drone show. This is why the China visa must be multiple-entry.</li>
+<li>No guide. MTR and taxis.</li>
+</ul><div class="hot"><div><b>Tuve, Tin Hau · ~$140 × 3</b>Quiet design hotel, no tourist markup. Hotel ICON is the backup.</div></div></div></article>
+
+<article class="city" style="--c:var(--zjj)"><div class="ph"><img src="data:image/jpeg;base64,@@80017a26@@" alt="The sandstone pillars of Zhangjiajie in mist"><div class="grad"></div><div class="t"><h3>Zhangjiajie</h3><span class="mono">Dec 6–9 · 3 nights</span></div></div>
+<div class="bd"><ul>
+<li>Dec 6: rail HK West Kowloon → Changsha 3h, lunch, Changsha → Zhangjiajie West 2.5h, driver an hour to Wulingyuan.</li>
+<li>Dec 7: Tianmen Mountain. Longest cableway on earth, the glass skywalk, 999 steps to Heaven's Gate (there's an escalator).</li>
+<li><b>Dec 8, her 50th: Avatar Mountain.</b> Bailong Elevator, the tallest outdoor lift in the world, up to the Hallelujah pillar. Tianzi Mountain, Golden Whip Stream, then a private Tujia feast and cake.</li>
+<li>Dec 9: the Glass Bridge at 8:30, then the 3h20 train to Chongqing. A guide both park days, the one place it earns its keep.</li>
+</ul><div class="hot"><img src="data:image/jpeg;base64,@@t:258500d8@@" alt="Pullman Zhangjiajie at dusk"><div><b>Pullman · ~$160 × 2, then Homeward Mountain Resort · ~$450 on Dec 8<span class="tagx">Birthday</span></b>Glass wall facing the pillars. Verify the name, the price and Dec 8 availability now.</div></div></div></article>
+
+<article class="city" style="--c:var(--cq)"><div class="ph"><img src="data:image/jpeg;base64,@@d4f2f701@@" alt="Hongya Cave lit up at night in Chongqing"><div class="grad"></div><div class="t"><h3>Chongqing</h3><span class="mono">Dec 9–13 · 4 nights</span></div></div>
+<div class="bd"><ul>
+<li>Hotpot night one. Then the cliff city with a driver: Ciqikou early, the Liziba monorail through an apartment tower, the Yangtze cableway, Hongya Cave at lights-on then leave, Sichuan opera.</li>
+<li id="cq11"><span class="chip" id="cq11-chip">Option A</span><b>Dec 11</b> — <span data-day="a">Dazu Rock Carvings: 50,000 Buddhas cut into cliffs a thousand years ago, UNESCO, empty in winter. Pandas come in Chengdu.</span><span data-day="b" hidden>Pandas: the 90-minute train to Chengdu, Panda Base at the 8:30 feeding, Heming Teahouse, back by 7.</span></li>
+<li><b>Dec 12, spa day.</b> Banyan Tree Chongqing Beibei hot springs: private pool, couples treatment, the works. Then sleep there.</li>
+</ul><div class="hot"><img src="data:image/jpeg;base64,@@t:aa5ed2ea@@" alt="Raffles City Chongqing towers at night"><div><b>InterContinental Raffles City · ~$190 × 3, then Banyan Tree Beibei · ~$380 on Dec 12<span class="tagx">Spa night</span></b><span id="cq-hot-note">The horizontal skyscraper, 250 m up. Verify Banyan Tree's name, price and availability.</span></div></div></div></article>
+</section>
+
+<!-- ===== OPTION A: days 11–18 ===== -->
+<div data-opt="a" style="--c:var(--a)">
+<div class="sec"><div class="mono">Days 11–18 · Dec 13–21 · Option A</div><h2>North to the Wall.</h2></div>
+
+<article class="city" style="--c:var(--cd)"><div class="ph"><img src="data:image/jpeg;base64,@@1d47c029@@" alt="Panda cubs at the Chengdu breeding base"><div class="grad"></div><div class="t"><h3>Chengdu</h3><span class="mono">Dec 13–16 · 3 nights</span></div></div>
+<div class="bd"><ul>
+<li>1.5h train from Chongqing. The slowest city in China: bamboo chairs and jasmine tea in People's Park, the vegetarian lunch at Wenshu Monastery.</li>
+<li><b>Pandas at the 8:30 feeding</b>, no day trip, no rush. You sleep here.</li>
+<li><b>Leshan Giant Buddha</b>, the largest stone Buddha on earth, 233 ft, by boat at his feet.</li>
+<li>Shufeng Yayun, the best Sichuan opera in the country. Mapo tofu at Chen Mapo, the original.</li>
+</ul><div class="hot"><div><b>Buddhazen ~$120 or Niccolo ~$180 · budgeted at $160 × 3</b>A courtyard inn by the monastery, or the tower.</div></div></div></article>
+
+<article class="city" style="--c:var(--bj)"><div class="ph"><img src="data:image/jpeg;base64,@@609aae36@@" alt="The Forbidden City from Jingshan Hill at sunset"><div class="grad"></div><div class="t"><h3>Beijing</h3><span class="mono">Dec 16–21 · 5 nights</span></div></div>
+<div class="bd"><ul>
+<li>Fly Chengdu → Beijing on Dec 16, 2.5h. The only flight inside China.</li>
+<li><b>The Great Wall at Jinshanling</b>, the wild half-restored stretch. Snow likely, almost no one there in December.</li>
+<li>Forbidden City at 8:30 with a guide (the other day a guide earns it), Jingshan Hill at sunset, Peking opera at Liyuan Theatre.</li>
+<li>Hutongs, Temple of Heaven tai chi at 8am, a hutong tea house, Peking duck at Siji Minfu, imperial-court farewell dinner at Bai Jia Da Yuan. 25–40°F: the real coat.</li>
+</ul><div class="hot"><img src="data:image/jpeg;base64,@@t:342d67a3@@" alt="The Orchid hotel rooftop in Baochao Hutong"><div><b>The Orchid, Baochao Hutong · ~$190 × 5</b>Courtyard hotel in a grey-brick lane, rooftop terrace. Fly home PEK 8:40am Dec 21, land Miami 8:35pm the same day.</div></div></div></article>
+
+<div class="two"><div class="lose"><b>You give up</b>The Guizhou villages and the Li River karst. One internal flight. And the number: <span id="a-lose-over">$1,394 over the cap</span>.</div><div class="get"><b>You get</b>The Great Wall in snow. The largest palace on earth. Pandas without a day trip. Beijing in its empty month. Home a day earlier.</div></div>
+
+<div class="sec"><div class="mono">Budget · Option A · two travelers</div><h2>Where the money goes.</h2></div>
+<div class="tog"><div><b>Banyan Tree overnight</b><span>Spa day either way. On: sleep at Banyan Tree Dec 12. Off: day pass, and a fourth night at the InterCon gets added back in.</span></div><label class="sw"><input type="checkbox" id="bt" checked><i></i></label></div>
+<table class="bud" id="ta"></table><div class="verd" id="va"></div>
+</div>
+
+<!-- ===== OPTION B: days 11–18 ===== -->
+<div data-opt="b" style="--c:var(--b)" hidden>
+<div class="sec"><div class="mono">Days 11–18 · Dec 13–21 · Option B</div><h2>South through the villages.</h2></div>
+
+<article class="city" style="--c:var(--zx)"><div class="ph g" style="--g1:#2a1d10;--g2:#5a3c1e">
+<svg viewBox="0 0 400 150" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><g fill="#c9944a" opacity=".22"><polygon points="200,14 190,30 210,30"/><rect x="196" y="30" width="8" height="10"/><polygon points="170,52 230,52 220,40 180,40"/><polygon points="160,74 240,74 228,62 172,62"/><polygon points="148,96 252,96 238,84 162,84"/><polygon points="136,118 264,118 248,106 152,106"/><polygon points="122,140 278,140 258,128 142,128"/><rect x="176" y="140" width="48" height="10"/><rect x="0" y="146" width="400" height="4"/><polygon points="20,146 30,120 60,120 70,146"/><polygon points="320,146 330,116 362,116 372,146"/></g></svg>
+<div class="grad"></div><div class="t"><h3>Zhaoxing</h3><span class="mono">Dec 13–16 · 3 nights</span></div></div>
+<div class="bd"><ul>
+<li>Rail Chongqing → Guiyang 2h, Guiyang → Congjiang 1.5h, then the drive in. A 1,000-year-old Dong village in the Guizhou mountains: five drum towers, wind-and-rain bridges, rice terraces, wooden houses, no cars. Empty in December.</li>
+<li><b>The Dong Grand Choir</b>, UNESCO-listed polyphonic singing, performed in the village at night. That's the opera night, and it's real.</li>
+<li>Day trips: Basha, the last Miao village where the men still carry muskets, and the Tang'an terraces. A local Dong guide for two days, cheap and essential.</li>
+<li>Nobody they know has heard of it. That's the point.</li>
+</ul><div class="hot"><div><b>Timber inn in the village · ~$100 × 3</b>Best room in Zhaoxing. Wood, not marble.</div></div></div></article>
+
+<article class="city" style="--c:var(--ys)"><div class="ph g" style="--g1:#0f2f2a;--g2:#1f5a4a">
+<svg viewBox="0 0 400 150" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><g fill="#3fbf8e" opacity=".16"><ellipse cx="40" cy="150" rx="46" ry="90"/><ellipse cx="120" cy="150" rx="38" ry="70"/><ellipse cx="330" cy="150" rx="50" ry="110"/><ellipse cx="250" cy="150" rx="36" ry="62"/></g><g fill="#3fbf8e" opacity=".26"><ellipse cx="190" cy="150" rx="44" ry="96"/><ellipse cx="300" cy="150" rx="30" ry="58"/><ellipse cx="80" cy="150" rx="28" ry="52"/></g><g fill="#3fbf8e" opacity=".14"><rect x="0" y="136" width="400" height="14"/></g></svg>
+<div class="grad"></div><div class="t"><h3>Yangshuo</h3><span class="mono">Dec 16–19 · 3 nights</span></div></div>
+<div class="bd"><ul>
+<li>Rail Congjiang → Guilin 1h, then an hour by car. The karst on the ¥20 note.</li>
+<li>Bamboo raft down the Li River, cycling through paddies and villages, a tea plantation with a proper tasting.</li>
+<li><b>Impression Liu Sanjie</b>, Zhang Yimou's show staged on the actual river, 600 local fishermen, the mountains as the set.</li>
+<li>45–60°F, misty, quiet. A driver for two days.</li>
+</ul><div class="hot"><div><b>Yangshuo Mountain Retreat · ~$130 × 3</b>Riverside. Upgrade: Alila Yangshuo, a design hotel in a 1960s sugar mill, ~$250.</div></div></div></article>
+
+<article class="city" style="--c:var(--hk)"><div class="ph g" style="--g1:#0f2a3a;--g2:#1a4a5a">
+<svg viewBox="0 0 400 150" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><g fill="#5aa9e6" opacity=".2"><rect x="20" y="70" width="22" height="80"/><rect x="50" y="40" width="18" height="110"/><rect x="76" y="86" width="30" height="64"/><rect x="114" y="22" width="16" height="128"/><rect x="138" y="58" width="26" height="92"/><rect x="172" y="34" width="20" height="116"/><rect x="200" y="78" width="34" height="72"/><rect x="242" y="48" width="14" height="102"/><rect x="264" y="14" width="22" height="136"/><rect x="294" y="66" width="28" height="84"/><rect x="330" y="92" width="20" height="58"/><rect x="358" y="50" width="24" height="100"/></g><g fill="#5aa9e6" opacity=".12"><rect x="0" y="132" width="400" height="18"/></g></svg>
+<div class="grad"></div><div class="t"><h3>Hong Kong, again</h3><span class="mono">Dec 19–21 · 2 nights</span></div></div>
+<div class="bd"><ul>
+<li>Direct 3h train Guilin → HK West Kowloon.</li>
+<li>Tai O, the fishing village on stilts. The Dragon's Back walk. Last dim sum.</li>
+<li>Fly HKG 9:45am Dec 21 → Istanbul, a 9h layover (Bosphorus at sunset, dinner), land Miami 7:10am Dec 22.</li>
+</ul><div class="hot"><div><b>Tuve, Tin Hau · ~$140 × 2</b>Same room, same neighborhood, no relearning the city.</div></div></div></article>
+
+<div class="two"><div class="lose"><b>You give up</b>The Great Wall. The Forbidden City. Beijing. Two more hotel changes than A.</div><div class="get"><b>You get</b>No flights inside China. Two places almost no Americans reach. Both splurges, at the number.</div></div>
+
+<div class="sec"><div class="mono">Budget · Option B · two travelers</div><h2>Where the money goes.</h2></div>
+<table class="bud" id="tb"></table><div class="verd" id="vb"></div>
+</div>
+
+<!-- ===== SIDE BY SIDE ===== -->
+<section class="cmp">
+<h2>Side by side</h2>
+<table>
+<tr><th></th><th style="color:var(--a)">A · The Wall</th><th style="color:var(--b)">B · The Circle</th></tr>
+<tr><td>Flights</td><td>Miami → Hong Kong, Beijing → Miami · $11,094</td><td>Miami ⇄ Hong Kong · $10,538</td></tr>
+<tr><td>Stops</td><td>Istanbul · HK · Zhangjiajie · Chongqing · Chengdu · Beijing</td><td>Istanbul · HK · Zhangjiajie · Chongqing · Zhaoxing · Yangshuo · HK</td></tr>
+<tr><td>Flights inside China</td><td>One (Chengdu → Beijing, 2.5h)</td><td>None</td></tr>
+<tr><td>Longest train</td><td>3h20 (Zhangjiajie → Chongqing)</td><td>3h20 (same leg)</td></tr>
+<tr><td>Birthday</td><td>Avatar Mountain, glass-wall resort, Dec 8</td><td>Same</td></tr>
+<tr><td>Spa</td><td>Banyan Tree Beibei hot springs, Dec 12</td><td>Same</td></tr>
+<tr><td>Opera night</td><td>Peking opera at Liyuan Theatre, plus Sichuan opera twice</td><td>Dong Grand Choir in the village, plus Impression Liu Sanjie on the river</td></tr>
+<tr><td>Pandas</td><td>Three nights in Chengdu, 8:30 feeding, no day trip</td><td>Day trip from Chongqing, Dec 11</td></tr>
+<tr><td>Crowds</td><td>Low. Beijing in December</td><td>Near zero</td></tr>
+<tr><td>Weather</td><td>Beijing 25–40°F, dry, bright</td><td>45–60°F, misty</td></tr>
+<tr><td>Bragging rights</td><td>"We walked the Great Wall in snow."</td><td>"We stayed in a Dong village. You've never heard of it."</td></tr>
+<tr><td>Home</td><td>Land Miami 8:35pm Dec 21</td><td>Land Miami 7:10am Dec 22</td></tr>
+<tr><td>All-in, two people</td><td><b id="a-allin">$21,394</b><small id="a-allin-note">$1,394 over the cap</small></td><td><b>$19,998</b><small>$2 under the cap</small></td></tr>
+</table>
+</section>
+</main>
+<footer>Estimates in USD for two, nothing rounded down. Turkish fares found Sep 17 via Skylux; the Beijing open-jaw was seen on a second agency and needs re-pricing before booking. Flights must be booked by Oct 15.</footer>
+
+<script>
+(function(){
+const CAP=20000;
+const $=id=>document.getElementById(id);
+const fmt=n=>'$'+n.toLocaleString('en-US');
+const A0=[
+['Flights, Turkish business, MIA → HKG / PEK → MIA × 2',11094,'$5,547 each, open-jaw via Istanbul. Re-price on Skylux before booking.'],
+['Chengdu → Beijing × 2',320,'One 2.5h flight, ~$160 a seat'],
+['Hotels, 18 nights',3570,'HK $140 × 3 · Pullman $160 × 2 + Homeward $450 · InterCon $190 × 3 + Banyan Tree $380 · Chengdu $160 × 3 · Orchid $190 × 5'],
+['Drivers, 3 guide days, transfers',2360,'Guides only in the park (2 days) and the Forbidden City'],
+['Rail, first class × 2',400,'HK → Changsha → Zhangjiajie · Zhangjiajie → Chongqing · Chongqing → Chengdu'],
+['Spa day, the works',350,''],
+['Food',1450,''],
+['Tickets',550,'Parks, Bailong Elevator, Glass Bridge, Leshan boat, the Wall, Forbidden City, Temple of Heaven'],
+['Shows',200,'Sichuan opera × 2, Peking opera'],
+['Visas, insurance, eSIMs',1100,'Multiple-entry China L visas via courier, travel insurance, Turkey e-visa if needed']];
+const B0=[
+['Flights, Turkish business, MIA ⇄ HKG × 2',10538,'$5,269 each, round trip via Istanbul'],
+['Hotels, 18 nights',3110,'HK $140 × 5 · Pullman $160 × 2 + Homeward $450 · InterCon $190 × 3 + Banyan Tree $380 · Zhaoxing $100 × 3 · Yangshuo $130 × 3'],
+['Drivers, 4 guide days, transfers',2100,'Park days (2) and a local Dong guide (2)'],
+['Rail, first class × 2',750,'Seven legs, none over 3h20'],
+['Spa day, the works',350,''],
+['Food',1350,''],
+['Tickets',500,'Parks, Bailong Elevator, Glass Bridge, Panda Base, villages, Li River raft'],
+['Shows',200,'Sichuan opera, Dong Grand Choir, Impression Liu Sanjie'],
+['Visas, insurance, eSIMs',1100,'Multiple-entry China L visas via courier, travel insurance, Turkey e-visa if needed']];
+function render(rows,t,v,opt){
+  const tot=rows.reduce((s,r)=>s+r[1],0),d=tot-CAP;
+  $(t).innerHTML=rows.map(r=>'<tr><td>'+r[0]+(r[2]?'<small>'+r[2]+'</small>':'')+'</td><td>'+fmt(r[1])+'</td></tr>').join('')+'<tr class="tot"><td>Total, two travelers</td><td>'+fmt(tot)+'</td></tr>';
+  const e=$(v);
+  e.className='verd '+(d<=0?'ok':'warn');
+  let msg;
+  if(d>0){
+    msg=fmt(d)+' over the $20k cap. '+(opt==='a'?'Plainly: A does not make the number as priced. The gap is the pricier open-jaw fare, the internal flight and five Beijing nights. A fare dip could close some of it; cutting the birthday night is not the plan.':'');
+  }else if(-d<100){
+    msg=fmt(-d)+' under the $20k cap. That is the number, not a cushion: one fare move and B is over too. Every line here is an estimate.';
+  }else{
+    msg=fmt(-d)+' under the $20k cap.';
+  }
+  e.innerHTML='<div class="big">'+fmt(tot)+'</div><div class="cap">Cap $20,000 · '+(d<=0?'under by '+fmt(-d):'over by '+fmt(d))+'</div><p>'+msg+'</p>';
+  return tot;
+}
+function calcA(){
+  const bt=$('bt').checked;
+  const rows=A0.map(r=>r.slice());
+  if(!bt){
+    rows[2][1]=3570-380+190;
+    rows[2][2]='HK $140 × 3 · Pullman $160 × 2 + Homeward $450 · InterCon $190 × 4 (Banyan Tree as a day pass) · Chengdu $160 × 3 · Orchid $190 × 5';
+  }
+  const tot=render(rows,'ta','va','a');
+  const d=tot-CAP;
+  const over=d>0?fmt(d)+' over the cap':fmt(-d)+' under the cap';
+  $('pa-tot').textContent=fmt(tot);
+  $('a-allin').textContent=fmt(tot);
+  $('a-allin-note').textContent=over+(bt?'':' (spa as a day pass)');
+  $('a-hero-over').textContent=over.charAt(0).toUpperCase()+over.slice(1)+'.';
+  $('a-lose-over').textContent=over;
+  if(current==='a'){$('cq-hot-note').textContent=bt?'The horizontal skyscraper, 250 m up. Verify Banyan Tree\'s name, price and availability.':'Option A with the spa as a day pass: four nights at the InterCon, no Banyan Tree night.';}
+}
+let current='a';
+function pick(o,scroll){
+  current=o;
+  document.querySelectorAll('[data-opt]').forEach(el=>{el.hidden=el.dataset.opt!==o;});
+  document.querySelectorAll('.pick button').forEach(b=>b.classList.toggle('on',b.dataset.p===o));
+  document.querySelectorAll('[data-day]').forEach(s=>{s.hidden=s.dataset.day!==o;});
+  const chip=$('cq11-chip');chip.textContent='Option '+o.toUpperCase();chip.style.setProperty('--c',o==='a'?'var(--a)':'var(--b)');
+  $('cq-hot-note').textContent=(o==='a'&&!$('bt').checked)?'Option A with the spa as a day pass: four nights at the InterCon, no Banyan Tree night.':'The horizontal skyscraper, 250 m up. Verify Banyan Tree\'s name, price and availability.';
+  try{localStorage.setItem('trip-opt',o);}catch(e){}
+  if(scroll){const rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;window.scrollTo({top:0,behavior:rm?'auto':'smooth'});}
+}
+$('bt').addEventListener('change',calcA);
+document.querySelectorAll('.pick button').forEach(b=>b.addEventListener('click',()=>pick(b.dataset.p,true)));
+render(B0,'tb','vb','b');
+calcA();
+let saved=null;try{saved=localStorage.getItem('trip-opt');}catch(e){}
+pick(saved==='b'?'b':'a',false);
+})();
+</script>
