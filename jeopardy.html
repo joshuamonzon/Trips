@@ -58,7 +58,7 @@ small{font-weight:700;opacity:.8;}
 .setup-sub{color:var(--muted);font-size:clamp(1rem,2.6vh,1.5rem);margin:.6vh 0 3vh;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
 .teams-in{display:grid;grid-template-columns:1fr auto 1fr;gap:2.5vw;align-items:end;margin-bottom:3vh;}
 .pick-label{font-weight:900;text-transform:uppercase;letter-spacing:.14em;font-size:clamp(.75rem,1.9vh,1.05rem);color:var(--muted);margin-bottom:1vh;}
-.picks{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:1.2vw;margin-bottom:3vh;}
+.picks{display:grid;gap:1.2vw;margin-bottom:3vh;}
 .pick{display:flex;flex-direction:column;align-items:flex-start;gap:.4vh;text-align:left;padding:1.3vh 1.6vw;border-radius:16px;background:var(--panel);border:3px solid var(--line);color:#fff;transition:border-color .15s,box-shadow .15s;}
 .pick b{font-family:var(--font-cond);font-size:clamp(1.1rem,3.2vh,1.8rem);letter-spacing:.04em;text-transform:uppercase;}
 .pick span{font-size:clamp(.68rem,1.7vh,.95rem);color:var(--muted);font-weight:700;line-height:1.3;}
@@ -414,10 +414,49 @@ var ROUND3 = [
   ]}
 ];
 
+var ROUND4 = [
+  { name: 'Animals', qs: [
+    { q: 'What is the fastest land animal?', a: 'Cheetah' },
+    { q: 'What is a group of lions called?', a: 'A pride' },
+    { q: 'How many hearts does an octopus have?', a: 'Three' },
+    { q: 'Which animal\u2019s fingerprints are nearly impossible to tell apart from a human\u2019s?', a: 'Koala' },
+    { q: 'What is a group of crows called?', a: 'A murder' }
+  ]},
+  { name: 'Sports', qs: [
+    { q: 'How many players does a basketball team have on the court at once?', a: '5' },
+    { q: 'What trophy is awarded to the NHL champion?', a: 'The Stanley Cup' },
+    { q: 'How many miles long is a marathon?', a: '26.2' },
+    { q: 'With five titles, which country has won the most FIFA World Cups?', a: 'Brazil' },
+    { q: 'Who is the only person to play in both a Super Bowl and a World Series?', a: 'Deion Sanders' }
+  ]},
+  { name: 'Science & Space', qs: [
+    { q: 'Which planet is known as the Red Planet?', a: 'Mars' },
+    { q: 'What is the chemical symbol for gold?', a: 'Au' },
+    { q: 'What is the closest star to Earth?', a: 'The Sun' },
+    { q: 'About how many minutes does sunlight take to reach Earth?', a: 'About 8 minutes' },
+    { q: 'Who was the first woman in space?', a: 'Valentina Tereshkova (1963)' }
+  ]},
+  { name: 'Games & Toys', qs: [
+    { q: 'In which board game do you say "King me"?', a: 'Checkers' },
+    { q: 'How many squares are on a chessboard?', a: '64' },
+    { q: 'In Monopoly, how much do you collect for passing Go?', a: '$200' },
+    { q: 'Which two letters are worth 10 points in Scrabble?', a: 'Q and Z' },
+    { q: 'Name all six weapons in the classic game of Clue', a: 'Candlestick, Knife, Lead Pipe, Revolver, Rope, Wrench' }
+  ]},
+  { name: 'Social Media & Tech', qs: [
+    { q: 'Which app\u2019s logo is a white ghost?', a: 'Snapchat' },
+    { q: 'What was Twitter renamed to in 2023?', a: 'X' },
+    { q: 'What does GIF stand for?', a: 'Graphics Interchange Format' },
+    { q: 'What was the title of the very first video uploaded to YouTube?', a: '"Me at the zoo" (2005)' },
+    { q: 'What was Instagram called before it launched?', a: 'Burbn' }
+  ]}
+];
+
 var BOARDS = [
   { name: 'Round 1', cats: ROUND1 },
   { name: 'Round 2', cats: ROUND2 },
-  { name: 'Round 3', cats: ROUND3 }
+  { name: 'Round 3', cats: ROUND3 },
+  { name: 'Round 4', cats: ROUND4 }
 ];
 function cats() { return BOARDS[state.board].cats; }
 
@@ -558,6 +597,8 @@ function render() {
 }
 function renderPicks() {
   el.picks.innerHTML = '';
+  var cols = BOARDS.length <= 3 ? BOARDS.length : Math.ceil(BOARDS.length / 2);
+  el.picks.style.gridTemplateColumns = 'repeat(' + cols + ', minmax(0, 1fr))';
   BOARDS.forEach(function (b, i) {
     var btn = document.createElement('button');
     btn.className = 'pick' + (state.board === i ? ' sel' : '');
