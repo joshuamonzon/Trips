@@ -287,56 +287,56 @@ small{font-weight:700;opacity:.8;}
 var VALUES = [200, 400, 600, 800, 1000];
 var DEFAULT_TIME = 30;      // seconds per question
 var REDEMPTION_TIME = 15;   // seconds for the steal
-var KEY = 'jeopardy-party-v1';
+var KEY = 'jeopardy-party-v2';
 
 var CATS = [
   { name: 'Guess the Year', note: 'Within 2 years counts as correct', qs: [
-    { q: 'The year the iPhone was first released', a: '2007', range: 2 },
-    { q: 'The year Titanic (the movie) came out', a: '1997', range: 2 },
-    { q: 'The year Facebook launched', a: '2004', range: 2 },
-    { q: 'The year the Berlin Wall fell', a: '1989', range: 2 },
-    { q: "The year of Michael Jordan's last Bulls championship", a: '1998', range: 2 }
+    { q: 'The year the first Toy Story hit theaters', a: '1995', range: 2 },
+    { q: 'The year YouTube was founded', a: '2005', range: 2 },
+    { q: 'The year of the Chernobyl nuclear disaster', a: '1986', range: 2 },
+    { q: 'The year the first Super Bowl was played', a: '1967', range: 2 },
+    { q: 'The year the Eiffel Tower was completed', a: '1889', range: 2 }
   ]},
   { name: 'Rom-Coms & Reality TV', qs: [
-    { q: 'Show where singles get engaged without ever seeing each other', a: 'Love Is Blind' },
-    { q: 'Movie where Kate Hudson tries to lose a guy in 10 days', a: 'How to Lose a Guy in 10 Days' },
-    { q: 'What island is Love Island USA filmed in (recent seasons)?', a: 'Fiji' },
-    { q: "In The Notebook, what's the name of Ryan Gosling's character?", a: 'Noah' },
-    { q: 'Who was the first Bachelorette?', a: 'Trista Rehn (Sutter)' }
+    { q: 'Which movie has the line "You had me at hello"?', a: 'Jerry Maguire' },
+    { q: 'Which married couple hosts Love Is Blind?', a: 'Nick and Vanessa Lachey' },
+    { q: '"10 Things I Hate About You" is a modern take on which Shakespeare play?', a: 'The Taming of the Shrew' },
+    { q: 'The "I\'ll have what she\'s having" scene in When Harry Met Sally was filmed at what NYC deli?', a: "Katz's Delicatessen" },
+    { q: 'Who was the very first Bachelor (season 1, 2002)?', a: 'Alex Michel' }
   ]},
   { name: 'Cars & Tools', qs: [
-    { q: 'What does RPM stand for?', a: 'Revolutions per minute' },
-    { q: 'Which company makes the Mustang?', a: 'Ford' },
-    { q: 'What tool measures torque on a bolt?', a: 'Torque wrench' },
-    { q: "What does a turbocharger use to spin, that a supercharger doesn't?", a: 'Exhaust gases' },
-    { q: 'What country is Lamborghini from?', a: 'Italy' }
+    { q: 'What does ABS stand for on a car?', a: 'Anti-lock braking system' },
+    { q: 'Tesla\'s Model S, 3, X and Y line up to spell what word?', a: '"SEXY" (S3XY)' },
+    { q: 'Which Volkswagen Group brand owns Lamborghini?', a: 'Audi' },
+    { q: 'What does DOHC stand for on an engine?', a: 'Dual (double) overhead camshaft' },
+    { q: 'What is the best-selling car nameplate of all time?', a: 'Toyota Corolla' }
   ]},
   { name: 'Couples & Duos', qs: [
-    { q: 'Peanut butter and ___', a: 'Jelly' },
-    { q: 'Which power couple is "Jay and Bey"?', a: 'Jay-Z and Beyoncé' },
-    { q: 'Famous outlaw couple from the 1930s', a: 'Bonnie and Clyde' },
-    { q: 'What Greek pair flew too close to the sun? (Name the son)', a: 'Icarus', a2: 'His father was Daedalus' },
-    { q: 'What real-life couple starred in Mr. & Mrs. Smith, then married?', a: 'Brad Pitt and Angelina Jolie' }
+    { q: 'Sonny and ___', a: 'Cher' },
+    { q: 'Which duo recorded "Bridge Over Troubled Water" and "Mrs. Robinson"?', a: 'Simon & Garfunkel' },
+    { q: 'What were Bonnie and Clyde\'s last names?', a: 'Parker and Barrow' },
+    { q: 'Which Hollywood couple married each other twice, in 1964 and again in 1975?', a: 'Elizabeth Taylor and Richard Burton' },
+    { q: 'In Greek myth, Orpheus went into the underworld to bring back which wife?', a: 'Eurydice' }
   ]},
   { name: 'Battle of the Sexes', note: 'Mixed bag', qs: [
-    { q: 'What does SPF stand for?', a: 'Sun Protection Factor' },
-    { q: 'How many players are on the field for one NFL team?', a: '11' },
-    { q: 'What shape is a standard makeup "beauty blender"?', a: 'Teardrop / egg' },
-    { q: "What's the max club count allowed in a golf bag?", a: '14' },
-    { q: 'Name 3 of the 5 boroughs of NYC in 10 seconds', a: 'Any 3 of: Manhattan, Brooklyn, Queens, The Bronx, Staten Island', time: 10 }
+    { q: 'How many points is a touchdown worth, before the extra point?', a: '6' },
+    { q: 'What beauty tool with a curved clamp is used on eyelashes?', a: 'Eyelash curler' },
+    { q: 'How many seconds are on the NBA shot clock?', a: '24' },
+    { q: 'What watery skincare step goes between cleansing and moisturizing?', a: 'Toner' },
+    { q: 'Name 3 of the 4 tennis Grand Slam tournaments in 10 seconds', a: 'Any 3 of: Australian Open, French Open, Wimbledon, US Open', time: 10 }
   ]}
 ];
 
 /* ================= STATE ================= */
 function fresh() {
-  return { v: 1, phase: 'setup',
+  return { v: 2, phase: 'setup',
     teams: [{ name: 'Girls', score: 0 }, { name: 'Guys', score: 0 }],
     turn: 0, used: new Array(25).fill(false), open: null };
 }
 function load() {
   try {
     var s = JSON.parse(localStorage.getItem(KEY) || 'null');
-    if (s && s.v === 1 && Array.isArray(s.used) && s.used.length === 25 &&
+    if (s && s.v === 2 && Array.isArray(s.used) && s.used.length === 25 &&
         Array.isArray(s.teams) && s.teams.length === 2) return s;
   } catch (e) {}
   return null;
