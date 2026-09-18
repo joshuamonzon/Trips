@@ -54,9 +54,16 @@ small{font-weight:700;opacity:.8;}
 /* ---------- setup ---------- */
 #setup{align-items:center;justify-content:center;background:radial-gradient(120% 100% at 50% 0%,#0f1f8a 0%,#060d4a 45%,var(--bg) 100%);}
 .setup-card{width:min(92vw,960px);text-align:center;}
-.setup-title{font-family:var(--font-cond);font-weight:900;font-size:clamp(3rem,15vh,9rem);letter-spacing:.06em;line-height:1;color:var(--gold);text-shadow:0 4px 0 var(--gold-shadow),0 10px 30px rgba(0,0,0,.7);}
-.setup-sub{color:var(--muted);font-size:clamp(1rem,2.6vh,1.5rem);margin:1vh 0 4.5vh;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
-.teams-in{display:grid;grid-template-columns:1fr auto 1fr;gap:2.5vw;align-items:end;margin-bottom:4.5vh;}
+.setup-title{font-family:var(--font-cond);font-weight:900;font-size:clamp(2.6rem,12vh,7.5rem);letter-spacing:.06em;line-height:1;color:var(--gold);text-shadow:0 4px 0 var(--gold-shadow),0 10px 30px rgba(0,0,0,.7);}
+.setup-sub{color:var(--muted);font-size:clamp(1rem,2.6vh,1.5rem);margin:.6vh 0 3vh;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+.teams-in{display:grid;grid-template-columns:1fr auto 1fr;gap:2.5vw;align-items:end;margin-bottom:3vh;}
+.pick-label{font-weight:900;text-transform:uppercase;letter-spacing:.14em;font-size:clamp(.75rem,1.9vh,1.05rem);color:var(--muted);margin-bottom:1vh;}
+.picks{display:grid;grid-template-columns:1fr 1fr;gap:1.5vw;margin-bottom:3vh;}
+.pick{display:flex;flex-direction:column;align-items:flex-start;gap:.4vh;text-align:left;padding:1.3vh 1.6vw;border-radius:16px;background:var(--panel);border:3px solid var(--line);color:#fff;transition:border-color .15s,box-shadow .15s;}
+.pick b{font-family:var(--font-cond);font-size:clamp(1.2rem,3.4vh,2rem);letter-spacing:.04em;text-transform:uppercase;}
+.pick span{font-size:clamp(.72rem,1.8vh,1rem);color:var(--muted);font-weight:700;line-height:1.3;}
+.pick.sel{border-color:var(--gold);box-shadow:0 0 0 3px rgba(255,207,63,.2),0 0 24px rgba(255,207,63,.25);}
+.pick.sel b{color:var(--gold);}
 .tin{display:flex;flex-direction:column;gap:1vh;text-align:left;}
 .tin label{font-weight:900;text-transform:uppercase;font-size:clamp(.8rem,2vh,1.1rem);letter-spacing:.12em;padding-left:.4em;}
 .tin input{font:inherit;font-weight:900;font-size:clamp(1.4rem,4.6vh,2.8rem);padding:.35em .5em;border-radius:16px;border:3px solid var(--line);background:var(--panel);color:#fff;text-align:center;outline:none;width:100%;-webkit-user-select:text;user-select:text;-webkit-appearance:none;appearance:none;}
@@ -167,7 +174,7 @@ small{font-weight:700;opacity:.8;}
 .ws .n{font-weight:900;text-transform:uppercase;letter-spacing:.06em;font-size:clamp(1rem,3vh,1.9rem);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .ws.t1 .n{color:var(--t1);} .ws.t2 .n{color:var(--t2);}
 .ws .s{font-family:var(--font-cond);font-weight:900;font-size:clamp(2rem,7vh,4.6rem);color:var(--gold);text-shadow:0 2px 0 var(--gold-shadow);line-height:1.1;}
-.win-actions{display:flex;gap:1.5vw;justify-content:center;}
+.win-actions{display:flex;gap:1.5vw;justify-content:center;flex-wrap:wrap;}
 .win-actions .btn{height:clamp(56px,9vh,84px);font-size:clamp(1rem,2.8vh,1.7rem);padding:0 2em;border-radius:16px;}
 
 .modal{z-index:30;}
@@ -200,6 +207,8 @@ small{font-weight:700;opacity:.8;}
         <input id="in1" type="text" maxlength="16" autocomplete="off" autocorrect="off" autocapitalize="words" spellcheck="false" placeholder="Guys">
       </div>
     </div>
+    <div class="pick-label">Choose a board</div>
+    <div class="picks" id="picks"></div>
     <button id="btnStart" class="btn gold start">Start Game</button>
     <div class="setup-hint">Team 1 picks first. Tap a team's scorecard during the game to switch turns manually.</div>
   </div>
@@ -260,7 +269,9 @@ small{font-weight:700;opacity:.8;}
     <div class="win-scores" id="winScores"></div>
     <div class="win-actions">
       <button id="btnWinBoard" class="btn ghost">View Board</button>
-      <button id="btnWinNew" class="btn gold">New Game</button>
+      <button id="btnCrown" class="btn ghost">&#127942; Crown Winner</button>
+      <button id="btnNext" class="btn gold">Next Round &#9654;</button>
+      <button id="btnWinNew" class="btn danger">New Game</button>
     </div>
   </div>
 </div>
@@ -289,7 +300,7 @@ var DEFAULT_TIME = 30;      // seconds per question
 var REDEMPTION_TIME = 15;   // seconds for the steal
 var KEY = 'jeopardy-party-v2';
 
-var CATS = [
+var ROUND1 = [
   { name: 'Guess the Year', note: 'Within 2 years counts as correct', qs: [
     { q: 'The year the first Toy Story hit theaters', a: '1995', range: 2 },
     { q: 'The year YouTube was founded', a: '2005', range: 2 },
@@ -327,9 +338,53 @@ var CATS = [
   ]}
 ];
 
+var ROUND2 = [
+  { name: 'Music Hits', qs: [
+    { q: "Adele's albums 19, 21, 25 and 30 are named after what?", a: 'Her age when she made them' },
+    { q: 'What girl group was Beyoncé in before going solo?', a: "Destiny's Child" },
+    { q: 'Which rapper’s real name is Aubrey Graham?', a: 'Drake' },
+    { q: 'What 1982 album is the best-selling album of all time?', a: 'Thriller (Michael Jackson)' },
+    { q: 'Which artist has won the most Grammys ever?', a: 'Beyoncé' }
+  ]},
+  { name: 'Food & Drink', qs: [
+    { q: 'What cheese goes on a classic Margherita pizza?', a: 'Mozzarella' },
+    { q: 'What spirit is in a mojito?', a: 'Rum' },
+    { q: 'What espresso drink’s name means "stained" or "marked" in Italian?', a: 'Macchiato' },
+    { q: 'Which country grows the most coffee in the world?', a: 'Brazil' },
+    { q: 'In which country was the Caesar salad invented?', a: 'Mexico (Tijuana)' }
+  ]},
+  { name: 'Disney & Pixar', qs: [
+    { q: 'What is the name of the snowman in Frozen?', a: 'Olaf' },
+    { q: 'Which Disney princess has a chameleon named Pascal?', a: 'Rapunzel (Tangled)' },
+    { q: 'In "Up", what is the name of the talking golden retriever?', a: 'Dug' },
+    { q: 'Name all five emotions in the first "Inside Out"', a: 'Joy, Sadness, Anger, Fear, Disgust' },
+    { q: 'What does "Hakuna Matata" mean, and what language is it?', a: '"No worries" — Swahili' }
+  ]},
+  { name: "'90s & 2000s Nostalgia", qs: [
+    { q: 'What egg-shaped keychain "virtual pet" took over the late ’90s?', a: 'Tamagotchi' },
+    { q: 'Which boy band sang "Bye Bye Bye"?', a: '*NSYNC' },
+    { q: 'What dial-up service greeted you with "You’ve got mail"?', a: 'AOL' },
+    { q: 'What was the name of the paperclip assistant in Microsoft Office?', a: 'Clippy' },
+    { q: 'Which Pokémon is #001 in the Pokédex?', a: 'Bulbasaur' }
+  ]},
+  { name: 'Around the World', qs: [
+    { q: 'The Great Barrier Reef is off the coast of which country?', a: 'Australia' },
+    { q: 'What is the capital of Canada?', a: 'Ottawa' },
+    { q: 'What is the smallest country in the world?', a: 'Vatican City' },
+    { q: 'What is the capital of Australia?', a: 'Canberra' },
+    { q: 'Which country has the only national flag that is not a rectangle?', a: 'Nepal' }
+  ]}
+];
+
+var BOARDS = [
+  { name: 'Round 1', cats: ROUND1 },
+  { name: 'Round 2', cats: ROUND2 }
+];
+function cats() { return BOARDS[state.board].cats; }
+
 /* ================= STATE ================= */
 function fresh() {
-  return { v: 2, phase: 'setup',
+  return { v: 2, phase: 'setup', board: 0, final: false,
     teams: [{ name: 'Girls', score: 0 }, { name: 'Guys', score: 0 }],
     turn: 0, used: new Array(25).fill(false), open: null };
 }
@@ -337,7 +392,11 @@ function load() {
   try {
     var s = JSON.parse(localStorage.getItem(KEY) || 'null');
     if (s && s.v === 2 && Array.isArray(s.used) && s.used.length === 25 &&
-        Array.isArray(s.teams) && s.teams.length === 2) return s;
+        Array.isArray(s.teams) && s.teams.length === 2) {
+      if (typeof s.board !== 'number' || !BOARDS[s.board]) s.board = 0;   // saved games from before boards existed
+      if (typeof s.final !== 'boolean') s.final = false;
+      return s;
+    }
   } catch (e) {}
   return null;
 }
@@ -356,12 +415,13 @@ var el = {
   modal: $('#modal'), btnNew: $('#btnNew'), btnResults: $('#btnResults'), btnSound: $('#btnSound'), btnFull: $('#btnFull'),
   in0: $('#in0'), in1: $('#in1'), btnStart: $('#btnStart'),
   btnModalCancel: $('#btnModalCancel'), btnModalOk: $('#btnModalOk'),
-  btnWinNew: $('#btnWinNew'), btnWinBoard: $('#btnWinBoard')
+  btnWinNew: $('#btnWinNew'), btnWinBoard: $('#btnWinBoard'), btnNext: $('#btnNext'), btnCrown: $('#btnCrown'),
+  picks: $('#picks')
 };
 var CIRC = 2 * Math.PI * 52;
 
-function getCat(idx) { return CATS[Math.floor(idx / 5)]; }
-function getQ(idx)   { return CATS[Math.floor(idx / 5)].qs[idx % 5]; }
+function getCat(idx) { return cats()[Math.floor(idx / 5)]; }
+function getQ(idx)   { return cats()[Math.floor(idx / 5)].qs[idx % 5]; }
 function getVal(idx) { return VALUES[idx % 5]; }
 function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
 function money(n) { return '$' + n.toLocaleString('en-US'); }
@@ -428,7 +488,8 @@ el.btnSound.addEventListener('click', function () {
 /* ================= BOARD ================= */
 function buildBoard() {
   el.board.innerHTML = '';
-  CATS.forEach(function (c) { var d = document.createElement('div'); d.className = 'cat'; d.textContent = c.name; el.board.appendChild(d); });
+  el.board.dataset.board = state.board;
+  cats().forEach(function (c) { var d = document.createElement('div'); d.className = 'cat'; d.textContent = c.name; el.board.appendChild(d); });
   for (var r = 0; r < 5; r++) for (var c = 0; c < 5; c++) (function (idx) {
     var t = document.createElement('button'); t.className = 'tile'; t.dataset.idx = idx; t.textContent = '$' + VALUES[r];
     t.addEventListener('click', function () { onTile(idx); });
@@ -438,7 +499,7 @@ function buildBoard() {
 function renderBoard() {
   var tiles = el.board.querySelectorAll('.tile'), left = 0;
   for (var i = 0; i < tiles.length; i++) { var u = !!state.used[tiles[i].dataset.idx]; tiles[i].classList.toggle('used', u); if (!u) left++; }
-  el.leftCount.textContent = left === 0 ? 'Board cleared' : left + ' of 25 left';
+  el.leftCount.textContent = BOARDS[state.board].name + ' · ' + (left === 0 ? 'board cleared' : left + ' of 25 left');
   el.btnResults.style.display = state.phase === 'over' ? '' : 'none';
 }
 function renderScores() {
@@ -452,7 +513,19 @@ function renderScores() {
 function render() {
   show(el.setup, state.phase === 'setup');
   show(el.game, state.phase !== 'setup');
+  if (state.phase === 'setup') renderPicks();
+  if (el.board.dataset.board !== String(state.board)) buildBoard();
   if (state.phase !== 'setup') { renderBoard(); renderScores(); }
+}
+function renderPicks() {
+  el.picks.innerHTML = '';
+  BOARDS.forEach(function (b, i) {
+    var btn = document.createElement('button');
+    btn.className = 'pick' + (state.board === i ? ' sel' : '');
+    btn.innerHTML = '<b>' + esc(b.name) + '</b><span>' + b.cats.map(function (c) { return esc(c.name); }).join(' · ') + '</span>';
+    btn.addEventListener('click', function () { state.board = i; save(); renderPicks(); sfxPop(); });
+    el.picks.appendChild(btn);
+  });
 }
 el.teams.forEach(function (node, i) {
   node.addEventListener('click', function () { if (state.phase === 'setup') return; state.turn = i; save(); renderScores(); renderBanner(); });
@@ -611,17 +684,35 @@ document.addEventListener('visibilitychange', function () {
 /* ================= WINNER + CONFETTI ================= */
 function showWinner() {
   var a = state.teams[0], b = state.teams[1], w = a.score > b.score ? 0 : b.score > a.score ? 1 : -1;
-  el.winTitle.textContent = w < 0 ? "It's a tie!" : state.teams[w].name;
-  el.winKicker.textContent = w < 0 ? 'Final score' : '🏆 Winner 🏆';
+  var roundMode = state.board < BOARDS.length - 1 && !state.final;   // more boards to play: show round results, not the final winner
+  if (roundMode) {
+    el.winTitle.textContent = w < 0 ? 'All tied up!' : state.teams[w].name + ' in the lead';
+    el.winKicker.textContent = BOARDS[state.board].name + ' complete';
+    el.winTrophy.textContent = '🏁';
+  } else {
+    el.winTitle.textContent = w < 0 ? "It's a tie!" : state.teams[w].name;
+    el.winKicker.textContent = w < 0 ? 'Final score' : '🏆 Winner 🏆';
+    el.winTrophy.textContent = w < 0 ? '🤝' : '🏆';
+  }
   el.winTitle.classList.toggle('tie', w < 0);
-  el.winTrophy.textContent = w < 0 ? '🤝' : '🏆';
+  el.btnNext.style.display = roundMode ? '' : 'none';
+  el.btnCrown.style.display = roundMode ? '' : 'none';
   el.winScores.innerHTML = state.teams.map(function (t, i) {
     return '<div class="ws t' + (i + 1) + (w === i ? ' winner' : '') + '"><div class="n">' + esc(t.name) + '</div><div class="s">' + money(t.score) + '</div></div>';
   }).join('');
   show(el.winner, true);
+  if (roundMode) { stopConfetti(); return; }
   startConfetti();
   if (w >= 0) sfxDing();
 }
+el.btnNext.addEventListener('click', function () {       // next board, scores carry over
+  if (state.board >= BOARDS.length - 1) return;
+  state.board++; state.used = new Array(25).fill(false); state.open = null; state.phase = 'play'; state.final = false;
+  save(); hideWinner(); render(); sfxPop();
+});
+el.btnCrown.addEventListener('click', function () {      // end the game here instead of playing the next board
+  state.final = true; save(); showWinner();
+});
 function hideWinner() { show(el.winner, false); stopConfetti(); }
 el.btnWinBoard.addEventListener('click', hideWinner);
 el.btnResults.addEventListener('click', showWinner);
