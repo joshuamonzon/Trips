@@ -1,0 +1,361 @@
+<title>Japan 50 Trip Map</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+/* Layout: sticky stop tabs → per-stop panel = to-scale pin map (left, sticky on desktop) + day-by-day list (right) */
+:root{
+  --bg:#FBFAF6; --surface:#FFFFFF; --fg:#1E1B17; --muted:#6E675E; --line:#E3DED4; --soft:#F1EEE7;
+  --accent:#C4361B; --stop:#2458B5; --transit:#8B857B;
+  --d1:#2458B5; --d2:#1E8A7A; --d3:#7048B8; --d4:#B8740F;
+  --map:#F3F0E9; --grid:#E4DFD5;
+  --display:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --body:"Zen Kaku Gothic New","Hiragino Sans","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#141518; --surface:#1C1D22; --fg:#ECE8E0; --muted:#A39D93; --line:#2C2E35; --soft:#22242B;
+  --accent:#F0603F; --stop:#6E9EFF; --transit:#8F8A82;
+  --d1:#6E9EFF; --d2:#3FB8A6; --d3:#A78BFA; --d4:#E0A23A;
+  --map:#1A1B20; --grid:#26282F; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#141518; --surface:#1C1D22; --fg:#ECE8E0; --muted:#A39D93; --line:#2C2E35; --soft:#22242B;
+  --accent:#F0603F; --stop:#6E9EFF; --transit:#8F8A82;
+  --d1:#6E9EFF; --d2:#3FB8A6; --d3:#A78BFA; --d4:#E0A23A;
+  --map:#1A1B20; --grid:#26282F; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5;margin:0}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:0 48px}
+header.top{padding-block:28px 14px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(28px,4.5vw,40px);line-height:1.1;margin:0;text-wrap:balance}
+h1 small{display:block;font-family:var(--body);font-weight:500;font-size:14px;color:var(--muted);margin-top:6px;letter-spacing:.02em}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:11px;height:11px;border-radius:50%;display:inline-block}
+.dot.sleep{background:var(--accent);border-radius:2px}
+.dot.stop{background:var(--stop)}
+.dot.transit{background:var(--transit)}
+
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);display:flex;gap:4px;overflow-x:auto;padding-block:8px;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{flex:0 0 auto;border:1px solid transparent;background:none;color:var(--muted);font:inherit;font-size:13px;font-weight:500;padding:7px 12px;border-radius:999px;cursor:pointer;white-space:nowrap}
+nav.tabs button b{font-family:var(--display);font-weight:700;color:var(--fg);margin-right:5px}
+nav.tabs button:hover{background:var(--soft)}
+nav.tabs button[aria-selected="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+nav.tabs button[aria-selected="true"] b{color:var(--bg)}
+nav.tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.panel{padding-block:24px 0}
+.panel-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 18px;margin-bottom:6px}
+.panel-head h2{font-family:var(--display);font-weight:700;font-size:clamp(24px,3.6vw,32px);margin:0;line-height:1.15}
+.panel-head .kanji{font-family:var(--display);color:var(--muted);font-size:20px}
+.panel-head .meta{color:var(--muted);font-size:14px}
+.hotel-line{display:flex;align-items:flex-start;gap:10px;margin:8px 0 18px;font-size:14px;max-width:70ch}
+.hotel-line .dot{margin-top:5px;flex:none}
+.hotel-line a{font-weight:700;text-decoration-color:var(--accent)}
+.hotel-line .n{color:var(--muted)}
+
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:22px}
+@media (min-width:900px){ .grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr);align-items:start} .mapcard{position:sticky;top:calc(env(safe-area-inset-top,0px) + 58px)} }
+
+.mapcard{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:0}
+.mapbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line);font-size:13px;color:var(--muted)}
+.mapbar .days{display:flex;flex-wrap:wrap;gap:4px 12px}
+.mapbar .days span{display:inline-flex;align-items:center;gap:5px}
+.mapbar .zoom{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.mapbar button{border:0;border-left:1px solid var(--line);background:var(--surface);color:var(--muted);font:inherit;font-size:12px;padding:5px 10px;cursor:pointer}
+.mapbar button:first-child{border-left:0}
+.mapbar button:hover{background:var(--soft)}
+.mapbar button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.mapbar button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+svg.map{display:block;width:100%;height:auto;background:var(--map);max-width:100%}
+svg.map text{font-family:var(--body);fill:var(--fg)}
+svg.map .lbl{font-size:11px;paint-order:stroke;stroke:var(--map);stroke-width:3px;stroke-linejoin:round}
+svg.map .lbl.sleep{font-weight:700}
+svg.map .num{font-size:9px;font-weight:700;fill:#fff;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+svg.map .pin{cursor:pointer}
+svg.map .pin circle,svg.map .pin rect{stroke:var(--map);stroke-width:1.5}
+svg.map .pin.sel circle,svg.map .pin.sel rect{stroke:var(--fg);stroke-width:2.5}
+svg.map .route{fill:none;stroke-width:1.8;stroke-dasharray:4 4;opacity:.75}
+svg.map .scale line{stroke:var(--fg);stroke-width:1.5}
+svg.map .scale text{font-size:10px;fill:var(--muted)}
+svg.map .grid line{stroke:var(--grid);stroke-width:1}
+.offmap{padding:10px 14px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 14px}
+.offmap b{color:var(--fg);font-weight:500}
+.detail{padding:12px 14px;border-top:1px solid var(--line);font-size:14px;min-height:64px}
+.detail .t{font-weight:700}
+.detail .m{color:var(--muted);font-size:13px}
+.detail .links{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px;font-size:13px}
+
+.days-list{display:flex;flex-direction:column;gap:18px;min-width:0}
+.day{border-top:3px solid var(--dc);padding-top:10px}
+.day h3{margin:0;font-family:var(--body);font-weight:700;font-size:15px}
+.day h3 .date{color:var(--dc);margin-right:8px}
+.day h3 .bday{color:var(--accent)}
+.day .tt{color:var(--muted);font-size:14px;margin:2px 0 10px;text-wrap:balance}
+.stops{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.stop{display:grid;grid-template-columns:26px 62px minmax(0,1fr);gap:0 10px;padding:9px 6px 9px 2px;border-radius:8px;position:relative;cursor:pointer}
+.stop:hover,.stop.sel{background:var(--soft)}
+.stop + .stop::before{content:"";position:absolute;left:14px;top:-9px;height:9px;border-left:2px dashed var(--line)}
+.badge{width:24px;height:24px;border-radius:50%;background:var(--dc);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.badge.sleep{background:var(--accent);border-radius:5px}
+.badge.transit{background:var(--transit)}
+.time{font-size:12px;color:var(--muted);padding-top:4px;font-variant-numeric:tabular-nums}
+.body{min-width:0}
+.body .name{font-weight:700}
+.body .name a{text-decoration:none;border-bottom:1px solid var(--line)}
+.body .name a:hover{border-color:var(--fg)}
+.body .note{color:var(--muted);font-size:13.5px;margin-top:1px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--fg);text-decoration:none;background:var(--surface)}
+.chip:hover{border-color:var(--fg)}
+.chip .arrow{color:var(--muted)}
+.chip.h{border-style:dashed}
+.hop{grid-column:3;font-size:12px;color:var(--muted);margin-top:-6px;padding-bottom:4px}
+
+/* overview */
+.ov{display:grid;gap:22px}
+@media (min-width:900px){ .ov{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:start} }
+.legs{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.legs li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 14px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.legs .how{color:var(--muted);font-size:13px}
+.legs .dur{font-family:var(--display);font-weight:700;font-size:18px;text-align:right;font-variant-numeric:tabular-nums}
+.legs .cost{color:var(--muted);font-size:12px;text-align:right}
+.note{font-size:13px;color:var(--muted);max-width:70ch;margin-top:14px}
+.note b{color:var(--fg);font-weight:500}
+@media (prefers-reduced-motion:no-preference){ .stop,.chip{transition:background .15s,border-color .15s} }
+</style>
+
+<div class="wrap">
+<header class="top">
+  <h1>Japan for the 50th<small>Nov 27 – Dec 14, 2026 · Every pin, to scale, with how long it takes to get there</small></h1>
+  <div class="legend">
+    <span><i class="dot sleep"></i>Where you sleep</span>
+    <span><i class="dot stop"></i>Stops, numbered in order</span>
+    <span><i class="dot transit"></i>Stations &amp; airports</span>
+    <span>≈ estimated time · tap for live</span>
+  </div>
+</header>
+<nav class="tabs" id="tabs" role="tablist" aria-label="Stops"></nav>
+<main id="main"></main>
+</div>
+
+<script>
+const DATA = /*__DATA__*/;
+const PINS = DATA.pins, CITIES = DATA.cities;
+const DAYCOL = ['var(--d1)','var(--d2)','var(--d3)','var(--d4)'];
+const MODEICON = {walk:'🚶',hike:'🥾',train:'🚆',subway:'🚇',bus:'🚌',taxi:'🚕',flight:'✈️',ropeway:'🚡',shuttle:'🚐'};
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = m => m >= 60 ? (m%60 ? `${Math.floor(m/60)}h${String(m%60).padStart(2,'0')}` : `${m/60}h`) : `${m} min`;
+const hav = (a,b) => { const R=6371,r=Math.PI/180, dl=(b.lat-a.lat)*r, dn=(b.lng-a.lng)*r;
+  const h=Math.sin(dl/2)**2+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dn/2)**2; return 2*R*Math.asin(Math.sqrt(h)); };
+const bearing = (a,b) => { const d=Math.atan2(b.lng-a.lng, b.lat-a.lat)*180/Math.PI; return ['N','NE','E','SE','S','SW','W','NW'][Math.round(((d+360)%360)/45)%8]; };
+
+// ---- build tabs ----
+const tabs = document.getElementById('tabs');
+const TABS = [{id:'route',n:0,name:'The route'}].concat(CITIES);
+TABS.forEach(c => {
+  const b = document.createElement('button'); b.role='tab'; b.id='tab-'+c.id; b.dataset.id=c.id;
+  b.innerHTML = `<b>${String(c.n).padStart(2,'0')}</b>${esc(c.name)}`;
+  b.addEventListener('click', () => show(c.id, true));
+  tabs.appendChild(b);
+});
+
+const main = document.getElementById('main');
+const state = { city:null, zoomAll:{}, sel:null };
+
+function show(id, push){
+  state.city = id; state.sel = null;
+  tabs.querySelectorAll('button').forEach(b => b.setAttribute('aria-selected', b.dataset.id===id ? 'true':'false'));
+  if (push) { try { history.replaceState(null,'','#'+id); } catch(e){} }
+  main.innerHTML = '';
+  main.appendChild(id==='route' ? renderRoute() : renderCity(CITIES.find(c=>c.id===id)));
+  window.scrollTo({top:0, behavior:'instant'});
+}
+
+// ---- projection ----
+function project(pins, W, H, pad){
+  const lat0 = pins.reduce((s,p)=>s+p.lat,0)/pins.length, k = Math.cos(lat0*Math.PI/180);
+  const xs = pins.map(p=>p.lng*k), ys = pins.map(p=>-p.lat);
+  let minx=Math.min(...xs), maxx=Math.max(...xs), miny=Math.min(...ys), maxy=Math.max(...ys);
+  const spanx = Math.max(maxx-minx, 0.002), spany = Math.max(maxy-miny, 0.002);
+  const s = Math.min((W-2*pad)/spanx, (H-2*pad)/spany);
+  const ox = (W - spanx*s)/2 - minx*s, oy = (H - spany*s)/2 - miny*s;
+  return { xy: p => [p.lng*k*s + ox, -p.lat*s + oy], kmPx: s/111 }; // px per km (lat degree = 111 km)
+}
+
+function scaleBar(kmPx, W, H){
+  const target = 90; // px
+  const nice = [0.2,0.5,1,2,5,10,20,50,100];
+  let km = nice.find(v => v*kmPx >= target) || 100;
+  const px = km*kmPx, x = W-16-px, y = H-16;
+  return `<g class="scale"><line x1="${x}" y1="${y}" x2="${x+px}" y2="${y}"/><line x1="${x}" y1="${y-4}" x2="${x}" y2="${y+4}"/><line x1="${x+px}" y1="${y-4}" x2="${x+px}" y2="${y+4}"/><text x="${x+px/2}" y="${y-7}" text-anchor="middle">${km} km</text></g>`;
+}
+
+// ---- city panel ----
+function renderCity(c){
+  const hotel = PINS[c.hotel];
+  const panel = document.createElement('section'); panel.className='panel'; panel.id='panel-'+c.id;
+  // order of pins across the city
+  const order = []; const seen = new Set([c.hotel]);
+  c.days.forEach((d,di) => d.stops.forEach(s => { if(!seen.has(s.pin)){ seen.add(s.pin); order.push({pin:s.pin, day:di}); } }));
+  const numOf = {}; let n=0; order.forEach(o => { if (PINS[o.pin].type==='stop') numOf[o.pin] = ++n; });
+
+  const dayLegend = c.days.map((d,i)=>`<span><i class="dot" style="background:${DAYCOL[i]}"></i>${esc(d.date.split(' · ')[0])}</span>`).join('');
+  panel.innerHTML = `
+    <div class="panel-head"><h2>${String(c.n).padStart(2,'0')} · ${esc(c.name)}</h2><span class="kanji">${esc(c.kanji)}</span><span class="meta">${esc(c.dates)} · ${esc(c.nights)}</span></div>
+    <div class="hotel-line"><i class="dot sleep"></i><div><a href="${hotel.url}" target="_blank" rel="noopener">${esc(hotel.name)} ↗</a> <span class="n">${esc(c.hotel_note)}</span></div></div>
+    <div class="grid">
+      <div class="mapcard">
+        <div class="mapbar"><div class="days">${dayLegend}</div><div class="zoom" id="zoom-${c.id}" role="group" aria-label="Zoom"></div></div>
+        <div id="svgwrap-${c.id}"></div>
+        <div class="offmap" id="offmap-${c.id}" hidden></div>
+        <div class="detail" id="detail-${c.id}"><span class="m">Tap a pin or a stop to see how far it is from ${esc(hotel.short)}.</span></div>
+      </div>
+      <div class="days-list" id="days-${c.id}"></div>
+    </div>`;
+
+  // days list
+  const list = panel.querySelector('#days-'+c.id);
+  c.days.forEach((d,di) => {
+    const day = document.createElement('article'); day.className='day'; day.style.setProperty('--dc', DAYCOL[di]);
+    const isB = /50/.test(d.date);
+    const [dd, extra] = d.date.split(' · ');
+    day.innerHTML = `<h3><span class="date">${esc(dd)}</span>${extra?`<span class="bday">★ ${esc(extra)}</span>`:''}</h3><p class="tt">${esc(d.title)}</p><ol class="stops"></ol>`;
+    const ol = day.querySelector('ol');
+    d.stops.forEach((s,si) => {
+      const p = PINS[s.pin];
+      const li = document.createElement('li'); li.className='stop'; li.dataset.pin=s.pin;
+      const badge = p.type==='sleep' ? `<span class="badge sleep">⌂</span>` : p.type==='transit' ? `<span class="badge transit">${MODEICON[(s.hop&&s.hop.mode)||'train']||'•'}</span>` : `<span class="badge">${numOf[s.pin]||''}</span>`;
+      let hop = '';
+      if (s.hop) hop = `<a class="chip" href="${s.hop.url}" target="_blank" rel="noopener" title="Live directions in Google Maps">${MODEICON[s.hop.mode]||''} ≈ ${fmt(s.hop.min)} <span class="arrow">from previous ↗</span></a>`;
+      let fh = '';
+      if (s.from_hotel && p.type!=='sleep') fh = `<a class="chip h" href="${s.from_hotel.url}" target="_blank" rel="noopener" title="Live directions in Google Maps">${MODEICON[s.from_hotel.mode]||''} ≈ ${fmt(s.from_hotel.min)} <span class="arrow">from ${esc(hotel.short)} ↗</span></a>`;
+      li.innerHTML = `${badge}<span class="time">${esc(s.time)}</span><div class="body"><div class="name"><a href="${p.url}" target="_blank" rel="noopener">${esc(p.name)}</a></div>${s.note?`<div class="note">${esc(s.note)}</div>`:''}<div class="chips">${hop}${fh}</div></div>`;
+      li.addEventListener('click', e => { if (e.target.closest('a')) return; select(c, s.pin, hotel); });
+      ol.appendChild(li);
+    });
+    list.appendChild(day);
+  });
+
+  const draw = () => drawMap(c, hotel, order, numOf, panel);
+  draw();
+  return panel;
+}
+
+// zoom levels: km radius from the hotel. Only levels that change the pin set are offered.
+const ZOOMS = [{id:'near',label:'Around the hotel',r:3.5},{id:'city',label:'City',r:15},{id:'all',label:'Day trips',r:Infinity}];
+function drawMap(c, hotel, order, numOf, panel){
+  const W=560, H=430, pad=42;
+  const all = [hotel].concat(order.map(o=>PINS[o.pin]));
+  const within = r => all.filter(p => hav(hotel,p) <= r);
+  // distinct levels
+  const levels = []; let lastN = -1;
+  ZOOMS.forEach(z => { const n = within(z.r).length; if (n !== lastN && n > 1){ levels.push(z); lastN = n; } });
+  let cur = state.zoomAll[c.id] || (levels.find(z=>z.id==='city') ? 'city' : levels[levels.length-1].id);
+  if (!levels.some(z=>z.id===cur)) cur = levels[levels.length-1].id;
+  const r = ZOOMS.find(z=>z.id===cur).r;
+  const shown = within(r);
+  const far = all.filter(p => hav(hotel,p) > r);
+  const zb = panel.querySelector('#zoom-'+c.id);
+  zb.innerHTML = levels.length>1 ? levels.map(z=>`<button type="button" data-z="${z.id}" aria-pressed="${z.id===cur}">${z.label}</button>`).join('') : '';
+  zb.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { state.zoomAll[c.id] = b.dataset.z; drawMap(c, hotel, order, numOf, panel); }));
+  const off = panel.querySelector('#offmap-'+c.id);
+  if (far.length){ off.hidden=false; off.innerHTML = 'Off this map: ' + far.map(p=>`<span><b>${esc(p.short)}</b> ${Math.round(hav(hotel,p))} km ${bearing(hotel,p)}</span>`).join(''); } else off.hidden=true;
+
+  const {xy, kmPx} = project(shown, W, H, pad);
+  const shownIds = new Set(shown.map(p=>p.id));
+  let g = `<g class="grid">`;
+  for (let i=1;i<6;i++){ g += `<line x1="${W*i/6}" y1="0" x2="${W*i/6}" y2="${H}"/><line x1="0" y1="${H*i/6}" x2="${W}" y2="${H*i/6}"/>`; }
+  g += `</g>`;
+  // routes per day
+  c.days.forEach((d,di) => {
+    const pts = d.stops.map(s=>PINS[s.pin]).filter(p=>shownIds.has(p.id)).map(p=>xy(p));
+    if (pts.length>1) g += `<polyline class="route" style="stroke:${DAYCOL[di]}" points="${pts.map(q=>q.map(v=>v.toFixed(1)).join(',')).join(' ')}"/>`;
+  });
+  // pins
+  const placed = [];
+  const pinHtml = [], lblHtml = [];
+  shown.forEach(p => {
+    const [x,y] = xy(p);
+    const dayIdx = (order.find(o=>o.pin===p.id)||{day:0}).day;
+    let col = p.type==='sleep' ? 'var(--accent)' : p.type==='transit' ? 'var(--transit)' : DAYCOL[dayIdx];
+    const r = p.type==='sleep' ? 10 : p.type==='transit' ? 6 : 9;
+    let shape = p.type==='sleep' ? `<rect x="${x-r}" y="${y-r}" width="${2*r}" height="${2*r}" rx="3" fill="${col}"/>` : `<circle cx="${x}" cy="${y}" r="${r}" fill="${col}"/>`;
+    const num = p.type==='stop' ? `<text class="num" x="${x}" y="${y+0.5}">${numOf[p.id]||''}</text>` : p.type==='sleep' ? `<text class="num" x="${x}" y="${y+0.5}">⌂</text>` : '';
+    pinHtml.push(`<g class="pin" data-pin="${p.id}" tabindex="0" role="button" aria-label="${esc(p.name)}">${shape}${num}</g>`);
+    // label if room
+    const crowded = placed.some(q => Math.hypot(q[0]-x,q[1]-y) < 26);
+    placed.push([x,y]);
+    if (!crowded || p.type==='sleep'){
+      const right = x < W*0.72;
+      lblHtml.push(`<text class="lbl ${p.type}" x="${right?x+r+4:x-r-4}" y="${y+4}" text-anchor="${right?'start':'end'}">${esc(p.short)}</text>`);
+    }
+  });
+  const svg = `<svg class="map" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" aria-label="Map of ${esc(c.name)} stops">${g}${pinHtml.join('')}${lblHtml.join('')}${scaleBar(kmPx,W,H)}</svg>`;
+  const wrap = panel.querySelector('#svgwrap-'+c.id); wrap.innerHTML = svg;
+  wrap.querySelectorAll('.pin').forEach(el => {
+    el.addEventListener('click', () => select(c, el.dataset.pin, hotel));
+    el.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' '){ e.preventDefault(); select(c, el.dataset.pin, hotel);} });
+  });
+  if (state.sel) select(c, state.sel, hotel, true);
+}
+
+function select(c, pid, hotel, quiet){
+  state.sel = pid;
+  const panel = document.getElementById('panel-'+c.id);
+  panel.querySelectorAll('.pin').forEach(el => el.classList.toggle('sel', el.dataset.pin===pid));
+  panel.querySelectorAll('.stop').forEach(el => el.classList.toggle('sel', el.dataset.pin===pid));
+  const p = PINS[pid];
+  // find first occurrence for from-hotel + hop
+  let occ=null, dayName='';
+  for (const d of c.days){ const s = d.stops.find(s=>s.pin===pid); if (s){ occ=s; dayName=d.date; break; } }
+  const det = panel.querySelector('#detail-'+c.id);
+  const km = hav(hotel,p);
+  let lines = `<div class="t">${esc(p.name)}</div><div class="m">${esc(dayName)}${occ&&occ.time?` · ${esc(occ.time)}`:''}${p.id!==hotel.id?` · ${km<1?Math.round(km*1000)+' m':km.toFixed(1)+' km'} from ${esc(hotel.short)}`:''}</div>`;
+  const links = [];
+  if (occ && occ.from_hotel && p.id!==hotel.id) links.push(`<a href="${occ.from_hotel.url}" target="_blank" rel="noopener">${MODEICON[occ.from_hotel.mode]||''} ≈ ${fmt(occ.from_hotel.min)} from ${esc(hotel.short)} · live directions ↗</a>`);
+  if (occ && occ.hop) links.push(`<a href="${occ.hop.url}" target="_blank" rel="noopener">${MODEICON[occ.hop.mode]||''} ≈ ${fmt(occ.hop.min)} from previous stop ↗</a>`);
+  links.push(`<a href="${p.url}" target="_blank" rel="noopener">Open in Google Maps ↗</a>`);
+  det.innerHTML = lines + `<div class="links">${links.join('')}</div>`;
+  if (!quiet){ const row = panel.querySelector(`.stop[data-pin="${pid}"]`); if (row && window.innerWidth>=900) row.scrollIntoView({block:'nearest', behavior:'smooth'}); }
+}
+
+// ---- overview ----
+function renderRoute(){
+  const sec = document.createElement('section'); sec.className='panel';
+  const bases = CITIES.map(c=>PINS[c.hotel]);
+  const W=720, H=420, pad=56;
+  const {xy, kmPx} = project(bases, W, H, pad);
+  let g = `<g class="grid">`; for (let i=1;i<6;i++){ g += `<line x1="${W*i/6}" y1="0" x2="${W*i/6}" y2="${H}"/><line x1="0" y1="${H*i/6}" x2="${W}" y2="${H*i/6}"/>`; } g += `</g>`;
+  DATA.legs.forEach(l => {
+    const a=xy(PINS[l.a]), b=xy(PINS[l.b]); const fl = /Flight/.test(l.how);
+    g += `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="var(--accent)" stroke-width="${fl?1.2:2}" stroke-dasharray="${fl?'2 5':'5 4'}" opacity=".8"/>`;
+    const mx=(a[0]+b[0])/2, my=(a[1]+b[1])/2;
+    g += `<text class="lbl" x="${mx}" y="${my-6}" text-anchor="middle" style="font-size:10px;fill:var(--muted)">${esc(l.dur)}</text>`;
+  });
+  CITIES.forEach((c,i) => {
+    const p = PINS[c.hotel]; const [x,y]=xy(p);
+    const jitter = (c.id==='tokyo2') ? 14 : 0; // Tokyo appears twice (Shinjuku / Marunouchi)
+    g += `<g><rect x="${x-9}" y="${y-9+jitter}" width="18" height="18" rx="3" fill="var(--accent)" stroke="var(--map)" stroke-width="1.5"/><text class="num" x="${x}" y="${y+jitter+0.5}" style="font-size:9px">${c.n}</text>`;
+    const right = x < W*0.6;
+    g += `<text class="lbl sleep" x="${right?x+14:x-14}" y="${y+jitter+4}" text-anchor="${right?'start':'end'}">${esc(c.name)} <tspan style="font-weight:400;fill:var(--muted)">${esc(c.dates)}</tspan></text></g>`;
+  });
+  const svg = `<svg class="map" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" aria-label="Route map">${g}${scaleBar(kmPx,W,H)}</svg>`;
+  const legs = DATA.legs.map((l,i) => `<li><div><div>${esc(PINS[l.a].short==='Metropolitan'?'Tokyo':CITIES[i].name)} → ${esc(CITIES[i+1].name)}</div><div class="how">${esc(l.how)}</div></div><div><div class="dur">${esc(l.dur)}</div><div class="cost">${esc(l.cost)}</div></div></li>`).join('');
+  sec.innerHTML = `
+    <div class="panel-head"><h2>The shape of it</h2><span class="meta">16 nights · 14 Japan, 2 Korea · a loop through the middle of Japan, a hop to Seoul, back to Tokyo for the flight home</span></div>
+    <div class="ov">
+      <div class="mapcard"><div class="mapbar"><div class="days"><span><i class="dot sleep"></i>Where you sleep</span><span>— — train · · · flight</span></div></div>${svg}</div>
+      <div><ol class="legs">${legs}</ol>
+        <p class="note"><b>How to read the times.</b> Intercity legs are the itinerary's own numbers. Inside each city, "≈" times are estimates from the itinerary plus typical transit; every chip opens live Google Maps directions so the real number is one tap away. In Seoul, Google Maps can't do walking or driving: use Naver Map or KakaoMap for the last few hundred meters.</p>
+        <p class="note"><b>Pick a stop above</b> to see its pins to scale, numbered in the order you visit them, with the hotel as the anchor.</p>
+      </div>
+    </div>`;
+  return sec;
+}
+
+// boot
+const start = (location.hash||'').replace('#','');
+show(TABS.some(t=>t.id===start) ? start : 'route', false);
+window.addEventListener('hashchange', () => { const h=(location.hash||'').replace('#',''); if (TABS.some(t=>t.id===h) && h!==state.city) show(h,false); });
+</script>
