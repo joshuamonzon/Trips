@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Japan for the 50th</title>
+<meta name="description" content="Mom's 50th birthday trip — Tokyo, Kanazawa, Kyoto, Osaka, Seoul. Nov 27 – Dec 14, 2026.">
+<meta name="theme-color" content="#C4361B">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Japan 50">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="site.css?v=10">
+</head>
+<body>
+
+<nav class="nav"><div class="wrap">
+  <a class="brand" href="#top">Japan <b>50</b></a>
+  <div class="navlinks">
+    <a href="#map-sec">Map</a>
+    <a href="#itin">Day by day</a>
+    <a href="#budget">Budget</a>
+    <a href="#book">Booking</a>
+    <a href="#know">Before you go</a>
+  </div>
+</div></nav>
+
+<div class="track" id="track" aria-hidden="true">
+  <div class="rail"></div>
+  <div class="stops" id="trackStops"></div>
+  <svg id="train" viewBox="0 0 64 26"><path d="M2 20h3l4-9c1.5-3 4-5 8-5h36c4 0 7 2 9 5l0 9H2z" fill="#f4f1ea" stroke="#1a1714" stroke-width="1.5"/><path d="M6 20l3.5-8c1-2.5 3-4 6-4h17v12z" fill="#2B3A55" opacity=".18"/><rect x="18" y="10" width="7" height="5" rx="1" fill="#2B3A55"/><rect x="28" y="10" width="7" height="5" rx="1" fill="#2B3A55"/><rect x="38" y="10" width="7" height="5" rx="1" fill="#2B3A55"/><rect x="48" y="10" width="7" height="5" rx="1" fill="#2B3A55"/><path d="M2 17h60" stroke="#C4361B" stroke-width="2"/><circle cx="14" cy="22" r="2.5" fill="#1a1714"/><circle cx="26" cy="22" r="2.5" fill="#1a1714"/><circle cx="42" cy="22" r="2.5" fill="#1a1714"/><circle cx="54" cy="22" r="2.5" fill="#1a1714"/></svg>
+</div>
+
+<div class="chips" id="chips"><div class="wrap">
+  <a class="chip" href="#tokyo" data-for="tokyo"><span class="e">🗼</span>Tokyo</a>
+  <a class="chip" href="#kanazawa" data-for="kanazawa"><span class="e">⚔️</span>Kanazawa</a>
+  <a class="chip" href="#kyoto" data-for="kyoto"><span class="e">⛩️</span>Kyoto</a>
+  <a class="chip" href="#osaka" data-for="osaka"><span class="e">🐙</span>Osaka</a>
+  <a class="chip" href="#seoul" data-for="seoul"><span class="e">🇰🇷</span>Seoul</a>
+  <a class="chip" href="#tokyo2" data-for="tokyo2"><span class="e">🗻</span>Tokyo, last night</a>
+  <a class="chip" href="#budget" data-for="budget"><span class="e">💴</span>Budget</a>
+  <a class="chip" href="#know" data-for="know"><span class="e">🎒</span>Before you go</a>
+</div></div>
+
+<nav class="tabbar" id="tabbar">
+  <a href="#map-sec" data-tab="map-sec"><span class="i">🗾</span>Map</a>
+  <a href="#itin" data-tab="itin"><span class="i">📅</span>Days</a>
+  <a href="#budget" data-tab="budget"><span class="i">💴</span>Budget</a>
+  <a href="#know" data-tab="know"><span class="i">🎒</span>Go</a>
+</nav>
+<button class="today-btn" id="todayBtn" hidden>Jump to today ↓</button>
+
+<header class="hero" id="top"><div class="wrap">
+  <div>
+    <div class="eyebrow">Mom's 50th · Nov 27 – Dec 14, 2026 · Air Canada, booked</div>
+    <h1>Seventeen days,<br>six stops, two countries,<br><em>one big birthday.</em></h1>
+    <div class="jp">東京 → 金沢 → 京都 → 大阪 → 서울 → 東京</div>
+  </div>
+  <div class="facts">
+    <div><span class="k">Flights (booked)</span><span class="v">$10,000</span></div>
+    <div><span class="k">Everything on the ground</span><span class="v">$9,885</span></div>
+    <div><span class="k">Trip total</span><span class="v">$19,885</span></div>
+    <div><span class="k">Nights away</span><span class="v">16 · 14 Japan, 2 Korea</span></div>
+    <div><span class="k">Birthday</span><span class="v">Dec 8 · Kyoto · Maiko dinner</span></div>
+    <div><span class="k">Suitcase carries</span><span class="v">One short one (forwarded otherwise)</span></div>
+  </div>
+  <div class="route-strip" style="grid-column:1/-1">
+    <div class="stop"><span class="n">01</span><span class="c">Tokyo</span><span class="d">Nov 28 – Dec 2 · 4 nts</span><span class="tr">→ bullet train 2h30</span></div>
+    <div class="stop"><span class="n">02</span><span class="c">Kanazawa</span><span class="d">Dec 2 – 4 · 2 nts</span><span class="tr">→ express 2h15</span></div>
+    <div class="stop"><span class="n">03</span><span class="c">Kyoto</span><span class="d">Dec 4 – 9 · 5 nts</span><span class="tr">→ bullet train 15 min</span></div>
+    <div class="stop"><span class="n">04</span><span class="c">Osaka</span><span class="d">Dec 9 – 11 · 2 nts</span><span class="tr">→ ✈ flight 2h</span></div>
+    <div class="stop"><span class="n">05</span><span class="c">Seoul</span><span class="d">Dec 11 – 13 · 2 nts</span><span class="tr">→ ✈ flight 2h30</span></div>
+    <div class="stop"><span class="n">06</span><span class="c">Tokyo</span><span class="d">Dec 13 · 1 nt</span><span class="tr">→ fly home Dec 14</span></div>
+  </div>
+</div></header>
+
+<section id="map-sec"><div class="wrap">
+  <div class="sec-head">
+    <div class="eyebrow">The shape of it</div>
+    <h2>Tokyo, a samurai city with a hot-spring night, five nights in Kyoto, two in Osaka, three days in Seoul, and back to Tokyo for the flight home.</h2>
+    <p class="lede">Red pins are where you sleep. Blue pins are day trips. The dashed line is trains (every ride under three hours); the faint dotted line is the two short flights. Suitcases ride ahead by courier for ~$20 a bag; you carry them once, for a 15-minute train.</p>
+  </div>
+  <div id="map"></div>
+  <div class="legs">
+    <div class="leg"><span class="from">Tokyo → Kanazawa</span><span class="meta">Hokuriku Shinkansen, direct · 2h30 · $95 pp</span><span class="note">Left side for the mountains.</span></div>
+    <div class="leg"><span class="from">Kanazawa → Kyoto</span><span class="meta">Thunderbird express · 2h15 · $50 pp</span><span class="note">Taxi from the ryokan to the station first, 25 min. Along Lake Biwa.</span></div>
+    <div class="leg"><span class="from">Kyoto → Osaka</span><span class="meta">Shinkansen · 15 min · $15 pp</span><span class="note">Bags come with you. It's shorter than the walk to the platform.</span></div>
+    <div class="leg"><span class="from">Osaka ✈ Seoul</span><span class="meta">Kansai (KIX) → Incheon (ICN) · 2h · ~$150–250 pp</span><span class="note">Morning flight. Korean Air, Asiana, Peach, Jeju Air all fly it.</span></div>
+    <div class="leg"><span class="from">Seoul ✈ Tokyo</span><span class="meta">Incheon (ICN) → Narita (NRT) · 2h30 · ~$150–250 pp</span><span class="note">Afternoon flight. Narita, not Haneda: the flight home leaves from Narita.</span></div>
+  </div>
+</div></section>
+
+<section id="itin" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
+  <div class="sec-head">
+    <div class="eyebrow">Day by day</div>
+    <h2>Sixteen days, no two alike. Built to walk, shop, eat, and move.</h2>
+    <p class="lede">Tap any <span class="t" data-t="dotted">dotted word</span> for a plain-English explanation. Every place links to Google Maps. Every day shows what it costs on the ground; food is listed separately in grey so you can set your own pace.</p>
+  </div>
+
+  <!-- TOKYO -->
+  <div class="city" id="tokyo">
+    <div class="city-head"><span class="sticker" aria-hidden="true">🗼</span>
+      <div><div class="eyebrow">Stop 1 · Nov 28 – Dec 2 · 4 nights</div><h2>Tokyo <span>A temple at dawn, a chef's fish market, custom pillows, catch-your-own-dinner, a vintage crawl, and a day at Mt. Fuji.</span></h2>
+        <p class="why">Four nights, three real days. One is out at Fuji. The other two are on foot: old Tokyo in the morning, shopping streets in the afternoon, food at night.</p></div>
+      <figure class="wiki" data-wiki="Shibuya Crossing|Shibuya"></figure>
+    </div>
+    <div class="days">
+
+      <div class="day" data-d="Nov-27"><span class="badge" aria-hidden="true">✈️</span><div class="date"><span class="dow">Fri–Sat</span><span class="dn">27</span><span class="dow">Nov</span><span class="tag">Flights</span></div>
+        <div>
+          <h3>Miami → Montréal → Tokyo</h3>
+          <ul>
+            <li><b>AC 1205</b> Miami 8:00am → Montréal 11:32am (3h32, A220, breakfast). 68-minute connection; same terminal, walk to the gate.</li>
+            <li><b>AC 5</b> Montréal 12:40pm → <b>Tokyo Narita 4:30pm Sat Nov 28</b> (13h50, 777-300ER, lie-flat). <span class="why">Sleep on Tokyo time from the moment you board: it's 1:40am in Tokyo when you take off. Eat, sleep 7 hours, wake for breakfast, and you land at a sane hour.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="day" data-d="Nov-28"><span class="badge" aria-hidden="true">🍜</span><div class="date"><span class="dow">Sat</span><span class="dn">28</span><span class="dow">Nov</span><span class="tag">Arrival</span></div>
+        <div>
+          <h3>Land, breathe, ramen, sleep</h3>
+          <ul>
+            <li>Land at Narita 4:30pm, through immigration by 5:30. <a href="https://www.jreast.co.jp/multi/en/nex/" target="_blank" rel="noopener">Narita Express</a> straight to Shinjuku, 80 min, reserved seats, luggage racks. Hotel by 7:15. <span class="why">Narita is the far airport, 40 miles out. The train beats a car on both time and price. Buy N'EX tickets at the counter after customs.</span></li>
+            <li>Evening walk into <a href="https://www.google.com/maps/search/?api=1&query=Shibuya+Crossing" target="_blank" rel="noopener">Shibuya Crossing</a>, the intersection where 2,000 people cross at once. Stand in the middle of it, then watch from above.</li>
+            <li>Ramen, bed by 10. <span class="why">Jet lag cure: sunlight tomorrow, walk, early sleep. You'll wake at 5am, which is exactly when the old temple wants you.</span></li>
+          </ul>
+          <div class="stay"><b>Sleep, 4 nights:</b> <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Gracery+Shinjuku" target="_blank" rel="noopener">Hotel Gracery Shinjuku</a> (the one with Godzilla on the roof, ~$220; the N'EX stops at Shinjuku) or <a href="https://www.google.com/maps/search/?api=1&query=Shibuya+Stream+Excel+Hotel+Tokyu" target="_blank" rel="noopener">Shibuya Stream Excel</a> (~$240, above the station). Clean, central, real beds, not fancy on purpose.</div>
+          <div class="price"><div><span>Narita Express × 2</span><span class="n">$60</span></div><div><span>Hotel × 4 nights</span><span class="n">$880</span></div><div class="tot"><span>Ground today</span><span class="n">$940</span></div><div class="food"><span>Food (ramen, snacks)</span><span class="n">~$40</span></div></div>
+        </div>
+        <figure class="wiki small" data-wiki="Ramen"></figure>
+      </div>
+
+      <div class="day" data-d="Nov-29"><span class="badge" aria-hidden="true">🐟</span><div class="date"><span class="dow">Sun</span><span class="dn">29</span><span class="dow">Nov</span></div>
+        <div>
+          <h3>Old Tokyo at dawn, the knife street, a chef walks you through the fish market, pillows made to your neck, then dinner you catch yourself</h3>
+          <ul>
+            <li>Jet lag wakes you at 5. Use it: <a href="https://www.google.com/maps/search/?api=1&query=Senso-ji" target="_blank" rel="noopener">Senso-ji</a> in Asakusa at 6:30am, Tokyo's oldest temple (645 AD), the giant red lantern gate, incense you waft over yourself for luck. Thirty minutes, then the Nakamise shopping street outside it. <span class="why">By 10am it's a mob. At dawn it's yours.</span></li>
+            <li>Walk 10 min to <a href="https://www.google.com/maps/search/?api=1&query=Kappabashi+Street" target="_blank" rel="noopener">Kappabashi</a>, the kitchen-supply street: hand-forged knives engraved with your name while you wait, ceramics, the plastic food models every restaurant uses. <span class="why">Buy the knives now and forward them home in the suitcase, not on the last day in a rush.</span></li>
+            <li>10am–noon: the <a href="https://www.airbnb.com/experiences/6919404" target="_blank" rel="noopener">Tsukiji food tour with Ali</a>, a former seafood chef (he ran a Milos) who walks you through the Outer Market: how to judge tuna by the cut, uni by the season, katsuobushi, the vendors locals use. Meet at the Shinran Shonin statue by Tsukiji Hongan-ji. <span class="why">5.0 across 50 reviews, $32 a head, and the food's on you: bring cash and show up hungry. Book the 10am slot now; it sells out.</span></li>
+            <li>12:30: <a href="https://www.google.com/maps/search/?api=1&query=Nishikawa+Sleep+Navi+Matsuya+Ginza" target="_blank" rel="noopener">Nishikawa</a> on the 7th floor of Matsuya Ginza, Japan's 450-year-old bedding house. They measure your neck and head, lay you down, test heights and fills, and build you a pillow on the spot. Walk-ins work: 30 minutes to fit, 40 to make. <span class="why">Go shop while it's built. Both of you. The best thing you'll bring home that isn't edible.</span></li>
+            <li>Then <a href="https://www.google.com/maps/search/?api=1&query=Ginza+Tokyo" target="_blank" rel="noopener">Ginza</a> on foot: the 12-floor Uniqlo, Itoya stationery, the <span class="t" data-t="depachika">depachika</span> food basements. Pick up the pillows on the way out. <span class="why">Passports out: tax-free at the register. Petite sizing is the default here.</span></li>
+            <li>3pm slot at <a href="https://www.teamlab.art/e/planets/" target="_blank" rel="noopener">teamLab Planets</a>, 15 min away in Toyosu: a digital-art museum you walk through barefoot, wading knee-deep through water full of projected koi. <span class="why">Yes it's touristy. It's also one of the coolest rooms on earth. Book 3 weeks out.</span></li>
+            <li>5:45pm early dinner at <a href="https://www.google.com/maps/search/?api=1&query=Zauo+Shibuya" target="_blank" rel="noopener">Zauo Shibuya</a>: you sit on a boat built inside the restaurant, fish your dinner out of the tank with a rod, the staff bang a drum when you land one, and they cook it however you want: sashimi, grilled, tempura. Loud, goofy, great. Reserve. Done by 7:30, bed by 8. <span class="why">Day two of jet lag is the hard one. Nothing past 8pm.</span></li>
+          </ul>
+          <div class="price"><div><span>Local trains</span><span class="n">$10</span></div><div><span>Tsukiji tour × 2</span><span class="n">$64</span></div><div><span>teamLab × 2</span><span class="n">$60</span></div><div class="tot"><span>Ground today</span><span class="n">$134</span></div><div class="food"><span>Food (market tastings + Zauo)</span><span class="n">~$230</span></div><div class="food"><span>Pillows (shopping, not in the total)</span><span class="n">~$150–250 each</span></div></div>
+        </div>
+        <figure class="wiki small" data-wiki="Tsukiji fish market|Sensō-ji"></figure>
+      </div>
+
+      <div class="day" data-d="Nov-30"><span class="badge" aria-hidden="true">👖</span><div class="date"><span class="dow">Mon</span><span class="dn">30</span><span class="dow">Nov</span></div>
+        <div>
+          <h3>The vintage crawl: Harajuku to Aoyama on foot, a whole second-hand neighborhood, yakitori alley, tiny bars</h3>
+          <ul>
+            <li>10:30 start in Harajuku's back streets (Cat Street, not the main drag). <a href="https://solakzade.com/" target="_blank" rel="noopener">Solakzade</a>: the vintage eyewear shop, frames from the 1800s to the 1980s, fitted like a tailor. Dad's stop.</li>
+            <li>Five minutes on: <a href="https://www.google.com/maps/search/?api=1&query=MixTHINKS+Harajuku" target="_blank" rel="noopener">MixTHINKS</a>, two floors of pre-owned designer bags, every house you can name, graded and priced well under Miami. 5.0 across 1,400 reviews. <span class="why">Mom's stop. Ask the condition grade (N and S are like-new, A is lightly used). Passport for tax-free.</span></li>
+            <li>Walk Omotesando to Aoyama: <a href="https://www.google.com/maps/search/?api=1&query=Momotaro+Jeans+Aoyama" target="_blank" rel="noopener">Momotaro Jeans</a>, the Okayama <span class="t" data-t="selvedge">selvedge</span> denim house. They hem for free on the spot; it takes about an hour, so leave the jeans and go eat.</li>
+            <li>Lunch: <a href="https://www.google.com/maps/search/?api=1&query=Katsudon-ya+Zuicho+Shibuya" target="_blank" rel="noopener">Katsudon-ya Zuicho</a> in Shibuya, 20 min away. One dish, eight seats, a short line that moves. Add the extra egg. Then back to Aoyama for the hemmed jeans.</li>
+            <li>3:30: train 20 min to <a href="https://www.google.com/maps/search/?api=1&query=Shimokitazawa" target="_blank" rel="noopener">Shimokitazawa</a>, a whole low-rise neighborhood of vintage shops, record stores, and coffee, where Tokyo's 20-somethings actually buy their clothes. Two hours of lanes, no plan. <span class="why">This is the "walk around and look at things" part of the trip, done right: it's a town, not a mall.</span></li>
+            <li>Night: yakitori under the train tracks at <a href="https://www.google.com/maps/search/?api=1&query=Omoide+Yokocho" target="_blank" rel="noopener">Omoide Yokocho</a>, then <a href="https://www.google.com/maps/search/?api=1&query=Golden+Gai+Shinjuku" target="_blank" rel="noopener">Golden Gai</a>: six alleys, 200 bars that seat six people each. Start with Japanese whisky at <a href="https://www.google.com/maps/search/?api=1&query=Bar+Zoetrope+Shinjuku" target="_blank" rel="noopener">Bar Zoetrope</a>, then hop. <span class="why">Look for bars with English signs; ~¥1,000 cover each.</span></li>
+          </ul>
+          <div class="price"><div><span>Local trains</span><span class="n">$15</span></div><div class="tot"><span>Ground today</span><span class="n">$15</span></div><div class="food"><span>Food + bars</span><span class="n">~$170</span></div><div class="food"><span>Bags, frames, jeans (shopping)</span><span class="n">whatever you decide</span></div></div>
+        </div>
+        <figure class="wiki small" data-wiki="Shimokitazawa|Harajuku"></figure>
+      </div>
+
+      <div class="day" data-d="Dec-1"><span class="badge" aria-hidden="true">🗻</span><div class="date"><span class="dow">Tue</span><span class="dn">1</span><span class="dow">Dec</span><span class="tag">Day trip</span></div>
+        <div>
+          <h3>Mt. Fuji: a hike with the mountain filling the sky, then the sushi counter</h3>
+          <ul>
+            <li>Fuji's summit is closed Oct–June, so nobody climbs it in December. You hike the ridge across the lake from it instead, on the clearest-sky month of the year.</li>
+            <li>7:30am <a href="https://www.google.com/maps/search/?api=1&query=Kawaguchiko+Station" target="_blank" rel="noopener">Fuji Excursion</a> train from Shinjuku, direct, 1h50. Right side faces the mountain.</li>
+            <li>Hike <a href="https://www.google.com/maps/search/?api=1&query=Mt+Tenjo+Kawaguchiko" target="_blank" rel="noopener">Mt. Tenjo</a> from the lake: an hour of real climbing through forest to a viewpoint where Fuji is the whole horizon. Ropeway down. <span class="why">Want the big one? Mt. Mitsutoge is the 5-hour version with the best Fuji view in Japan.</span></li>
+            <li>Lunch: hoto, the fat-noodle miso stew, at <a href="https://www.google.com/maps/search/?api=1&query=Hoto+Fudo+Kawaguchiko" target="_blank" rel="noopener">Hoto Fudo</a>. Lakeshore at <a href="https://www.google.com/maps/search/?api=1&query=Oishi+Park+Kawaguchiko" target="_blank" rel="noopener">Oishi Park</a> for the reflection shot. Train back by 6.</li>
+            <li>7:30pm dinner: <span class="t" data-t="omakase">omakase</span> at <a href="https://www.kyubey.jp/en/" target="_blank" rel="noopener">Kyubey Ginza</a>, the classic counter that's been feeding first-timers since 1935. <span class="why">Shower, change, 20 min on the subway from Shinjuku. Earned.</span></li>
+            <li>Pack tonight: big suitcases go to the front desk in the morning, overnight bags for the next two nights.</li>
+          </ul>
+          <div class="price"><div><span>Trains × 2 RT</span><span class="n">$70</span></div><div><span>Ropeway × 2</span><span class="n">$20</span></div><div class="tot"><span>Ground today</span><span class="n">$90</span></div><div class="food"><span>Food (hoto + Kyubey)</span><span class="n">~$550</span></div></div>
+        </div>
+        <figure class="wiki small" data-wiki="Lake Kawaguchi|Mount Fuji"></figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- KANAZAWA -->
+  <div class="city" id="kanazawa">
+    <div class="city-head"><span class="sticker" aria-hidden="true">⚔️</span>
+      <div><div class="eyebrow">Stop 2 · Dec 2 – 4 · 2 nights · Bullet train 2h30, direct</div><h2>Kanazawa <span>Crab for lunch, geisha lanes, gold leaf, samurai streets, a thatched village in the snow, then a night at a 200-year-old hot-spring inn.</span></h2>
+        <p class="why">The samurai city, never bombed, so the old districts are intact and walkable. One night in town, one night out at an <span class="t" data-t="onsen">onsen</span> <span class="t" data-t="ryokan">ryokan</span> with a <span class="t" data-t="crab">crab</span> dinner: the spa night, without a detour to a spa town.</p></div>
+      <figure class="wiki" data-wiki="Higashi Chaya District|Kanazawa"></figure>
+    </div>
+    <div class="days">
+      <div class="day" data-d="Dec-2"><span class="badge" aria-hidden="true">🦀</span><div class="date"><span class="dow">Wed</span><span class="dn">2</span><span class="dow">Dec</span><span class="tag">Travel</span></div>
+        <div>
+          <h3>Fish-market lunch, the teahouse district, samurai lanes, sake</h3>
+          <ul>
+            <li>8am Hokuriku Shinkansen from Tokyo Station, direct to Kanazawa, in by 10:30. Left side for the mountains. Big bags <span class="t" data-t="takkyubin">forwarded</span> straight to the Kyoto hotel, which holds them until Dec 4; you carry one overnight bag for two nights.</li>
+            <li>Drop the bag, then lunch at a counter inside <a href="https://www.google.com/maps/search/?api=1&query=Omicho+Market+Kanazawa" target="_blank" rel="noopener">Omicho Market</a>: peak <span class="t" data-t="crab">snow crab</span> season, plus uni and sweet shrimp off the boats.</li>
+            <li>Two hours in <a href="https://www.google.com/maps/search/?api=1&query=Higashi+Chaya+District" target="_blank" rel="noopener">Higashi Chaya</a>: the 1820s teahouse district where <span class="t" data-t="geisha">geisha</span> still perform. Lattice fronts, stone lanes, and shops in every house. Gild a pair of chopsticks at a gold-leaf workshop (Kanazawa makes 99% of Japan's gold leaf), eat the gold-leaf ice cream.</li>
+            <li>3:30: <a href="https://www.google.com/maps/search/?api=1&query=Nagamachi+Samurai+District" target="_blank" rel="noopener">Nagamachi</a>, earthen walls and narrow lanes, and 45 minutes inside the <a href="https://www.nomurake.com/" target="_blank" rel="noopener">Nomura house</a>, a real samurai residence: the armor, the tea room, the tiny perfect garden. <span class="why">In and out. It's a house, not a museum day.</span></li>
+            <li>Dinner: <span class="t" data-t="nodoguro">nodoguro</span>, the buttery local fish, grilled over charcoal. Then a <span class="t" data-t="sake">sake</span> flight at <a href="https://www.google.com/maps/search/?api=1&query=Fukumitsuya+Sake+Brewery+Kanazawa" target="_blank" rel="noopener">Fukumitsuya</a>, the city's 400-year-old brewery.</li>
+          </ul>
+          <div class="stay"><b>Sleep, night 1:</b> <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Intergate+Kanazawa" target="_blank" rel="noopener">Hotel Intergate Kanazawa</a> (~$190, free evening drinks, great breakfast, 15 min from the station).</div>
+          <div class="price"><div><span>Bullet train × 2</span><span class="n">$190</span></div><div><span>Nomura house × 2</span><span class="n">$10</span></div><div><span>Gold-leaf workshop × 2</span><span class="n">$40</span></div><div><span>Sake flight × 2</span><span class="n">$20</span></div><div><span>Hotel × 1 night</span><span class="n">$190</span></div><div class="tot"><span>Ground today</span><span class="n">$450</span></div><div class="food"><span>Food (crab lunch, nodoguro dinner)</span><span class="n">~$200</span></div></div>
+        </div>
+        <figure class="wiki small" data-wiki="Nagamachi|Ōmichō Market"></figure>
+      </div>
+
+      <div class="day" data-d="Dec-3"><span class="badge" aria-hidden="true">♨️</span><div class="date"><span class="dow">Thu</span><span class="dn">3</span><span class="dow">Dec</span><span class="tag">Spa night</span></div>
+        <div>
+          <h3>The thatched village in the snow, then robes, a red-iron hot spring, crab in the room</h3>
+          <ul>
+            <li>Check out, bag in a station locker, 8:10am direct bus (75 min) to <a href="https://shirakawa-go.gr.jp/en/" target="_blank" rel="noopener">Shirakawa-go</a>, a UNESCO village of 250-year-old farmhouses with steep <span class="t" data-t="gassho">gassho</span> thatched roofs built to shed six feet of snow. Climb to the Shiroyama viewpoint for the postcard, go inside the Wada house, eat Hida beef, wander the lanes. Bus back at 1pm. <span class="why">A village you walk through, not a garden you stand in. The bus drops you at the gate and the whole thing is on foot.</span></li>
+            <li>Back in Kanazawa by 2:15. Grab the bag, taxi 25 minutes out to <a href="https://www.google.com/maps/search/?api=1&query=Motoyu+Ishiya+Kanazawa" target="_blank" rel="noopener">Motoyu Ishiya</a> in Fukatani Onsen (the inn can also send a shuttle; ask when booking).</li>
+            <li>Check in by 3. <span class="t" data-t="yukata">Yukata</span> on, then the big outdoor bath: Fukatani's water is iron-rich and runs reddish, the real stuff. Noh stage in the garden, a 200-year-old house, almost no other foreigners. <span class="why">This replaces the hot-spring-town night: same soak, same crab, no extra train.</span></li>
+            <li>Dinner in the room: <span class="t" data-t="kaiseki">kaiseki</span> with <span class="t" data-t="crab">matsuba crab</span> four ways. Futons laid out while you take one more soak. Early night.</li>
+          </ul>
+          <div class="stay"><b>Sleep, night 2:</b> <a href="https://www.google.com/maps/search/?api=1&query=Motoyu+Ishiya+Kanazawa" target="_blank" rel="noopener">Motoyu Ishiya</a>, dinner + breakfast, ~$500 for two. Book early; crab season fills it. <span class="why">The menu is very traditional (sashimi, whole small squid, roe); if that's a worry, ask for the crab-forward course when you book.</span></div>
+          <div class="price"><div><span>Shirakawa-go bus × 2 RT</span><span class="n">$60</span></div><div><span>Taxi to the inn</span><span class="n">$30</span></div><div><span>Ryokan w/ dinner + breakfast</span><span class="n">$500</span></div><div class="tot"><span>Ground today</span><span class="n">$590</span></div><div class="food"><span>Food (Hida beef lunch; dinner included)</span><span class="n">~$50</span></div></div>
+        </div>
+        <figure class="wiki small" data-wiki="Shirakawa-gō|Historic Villages of Shirakawa-gō and Gokayama"></figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- KYOTO -->
+  <div class="city" id="kyoto">
+    <div class="city-head"><span class="sticker" aria-hidden="true">⛩️</span>
+      <div><div class="eyebrow">Stop 3 · Dec 4 – 9 · 5 nights · Express 2h15</div><h2>Kyoto <span>Market streets and arcades, a sword lesson, an open-air train through the gorge, bowing deer, ten thousand gates, a Gion shopping day, two three-star kitchens, and the birthday.</span></h2>
+        <p class="why">Five nights, the most of any stop, because this is where the 50th happens. Fewer gardens, more streets: Kyoto's old neighborhoods are the walkable thing, and its restaurants are the high-end thing. Fall color runs latest here, so early December still catches red maples with the crowds gone.</p></div>
+      <figure class="wiki" data-wiki="Gion|Fushimi Inari-taisha"></figure>
+    </div>
+    <div class="days">
+      <div class="day" data-d="Dec-4"><span class="badge" aria-hidden="true">🗡️</span><div class="date"><span class="dow">Fri</span><span class="dn">4</span><span class="dow">Dec</span><span class="tag">Travel</span></div>
+        <div>
+          <h3>Into Kyoto, the market street, the arcades, build a watch, a samurai sword lesson</h3>
+          <ul>
+            <li>Ryokan breakfast, one last soak, taxi to the station for the 10:15 Thunderbird express along Lake Biwa. In by 12:30. Bags already at the hotel.</li>
+            <li>2pm: <a href="https://www.google.com/maps/search/?api=1&query=Nishiki+Market" target="_blank" rel="noopener">Nishiki Market</a>, "Kyoto's kitchen": five blocks of pickles, tofu doughnuts, knife shops, grilled everything. Graze for lunch. It's two minutes from the hotel.</li>
+            <li>Straight into <a href="https://www.google.com/maps/search/?api=1&query=Shinkyogoku+Shopping+Street+Kyoto" target="_blank" rel="noopener">Teramachi and Shinkyogoku</a>, two covered arcades running north off the market: vintage shops, kimono, tea, sneakers, the second-oldest arcade in Japan. An hour and a half of walking and looking.</li>
+            <li>4:45: <a href="https://www.google.com/maps/search/?api=1&query=KUOE+Kyoto" target="_blank" rel="noopener">KUOE</a>, the Kyoto watch brand that lets you build your own, case, dial, hands, strap, at the flagship two minutes from the hotel. Closed Tuesdays. <span class="why">A watch built in Kyoto, on the trip, for Dad. Thirty minutes.</span></li>
+            <li>Evening: <a href="https://www.google.com/maps/search/?api=1&query=Samurai+Kembu+Theater+Kyoto" target="_blank" rel="noopener">Samurai Kembu</a>: a real sword-dance school where you put on the hakama, learn to draw and cut with a katana from a master, then watch the performance. 90 minutes. <span class="why">Touristy in the best way. Dad will talk about this for years.</span></li>
+            <li>Late dinner in <a href="https://www.google.com/maps/search/?api=1&query=Pontocho+Kyoto" target="_blank" rel="noopener">Pontocho</a>, the lantern-lit lane five feet wide along the river, out the back of the hotel.</li>
+          </ul>
+          <div class="stay"><b>Sleep, 5 nights:</b> <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Resol+Kyoto+Kawaramachi+Sanjo" target="_blank" rel="noopener">Hotel Resol Kawaramachi Sanjo</a> (~$225, central, public bath, Nishiki and the arcades out the front door, Pontocho out the back) or a restored <span class="t" data-t="machiya">machiya</span> townhouse to yourselves (~$275). Gion is a 10-min walk either way.</div>
+          <div class="price"><div><span>Taxi + express × 2</span><span class="n">$130</span></div><div><span>Samurai lesson × 2</span><span class="n">$120</span></div><div><span>Hotel × 5 nights</span><span class="n">$1,125</span></div><div class="tot"><span>Ground today</span><span class="n">$1,375</span></div><div class="food"><span>Food</span><span class="n">~$150</span></div><div class="food"><span>KUOE watch (shopping)</span><span class="n">~$400–600</span></div></div>
+        </div>
+        <figure class="wiki small" data-wiki="Nishiki Market"></figure>
+      </div>
+
+      <div class="day" data-d="Dec-5"><span class="badge" aria-hidden="true">🚂</span><div class="date"><span class="dow">Sat</span><span class="dn">5</span><span class="dow">Dec</span></div>
+        <div>
+          <h3>The open-air train through the gorge, bamboo, Arashiyama's street, department stores at dusk</h3>
+          <ul>
+            <li>12:15: the <a href="https://www.sagano-kanko.co.jp/en/" target="_blank" rel="noopener">Sagano Romantic Train</a> from Saga Torokko Station: a 1920s-style open-sided train, 25 minutes through the Hozu River gorge at the peak of fall color. Car No. 5 is fully open-air; sit on the right. JR local back from Umahori, 15 minutes. <span class="why">Seats open exactly one month out, Nov 5, and peak-season seats go that morning. Set an alarm.</span></li>
+            <li><a href="https://www.google.com/maps/search/?api=1&query=Arashiyama+Bamboo+Grove" target="_blank" rel="noopener">Arashiyama</a> on foot: the bamboo grove (60-ft stalks creaking in the wind, 20 minutes), Tenryu-ji's garden (30 minutes, skip the inner buildings), and the <a href="https://www.google.com/maps/search/?api=1&query=Okochi+Sanso+Garden" target="_blank" rel="noopener">Okochi Sanso villa</a>, a silent-film star's mountain garden with the best view in Arashiyama and a bowl of matcha included. Then the shop street down to the river bridge.</li>
+            <li>5:30: back in town to Shijo, the department-store row: <a href="https://www.google.com/maps/search/?api=1&query=Takashimaya+Kyoto" target="_blank" rel="noopener">Takashimaya</a>, Daimaru, Fujii Daimaru. Tax-free counter on Takashimaya's 7th floor. Dinner from the <span class="t" data-t="depachika">depachika</span>, eaten by the river.</li>
+            <li>Nightcap at <a href="https://www.google.com/maps/search/?api=1&query=Bar+K6+Kyoto" target="_blank" rel="noopener">Bar K6</a> for Japanese whisky.</li>
+          </ul>
+          <div class="price"><div><span>Sagano train × 2</span><span class="n">$20</span></div><div><span>Temple + villa × 2</span><span class="n">$40</span></div><div><span>Trains</span><span class="n">$20</span></div><div class="tot"><span>Ground today</span><span class="n">$80</span></div><div class="food"><span>Food + bar</span><span class="n">~$150</span></div></div>
+        </div>
+        <figure class="wiki small" data-wiki="Sagano Scenic Railway|Arashiyama"></figure>
+      </div>
+
+      <div class="day" data-d="Dec-6"><span class="badge" aria-hidden="true">🦌</span><div class="date"><span class="dow">Sun</span><span class="dn">6</span><span class="dow">Dec</span><span class="tag">Day trip</span></div>
+        <div>
+          <h3>Bowing deer, the giant Buddha, sake street, the mountain of gates at dusk</h3>
+          <ul>
+            <li>45 min to Nara. Buy deer crackers: 1,200 wild deer roam the park and bow for food. <span class="why">Sacred messengers of the gods. They will also eat your map. This is the active kind of park: you're the entertainment.</span></li>
+            <li><a href="https://www.google.com/maps/search/?api=1&query=Todai-ji" target="_blank" rel="noopener">Todai-ji</a>: the largest wooden building on earth, a 50-ft bronze Buddha from 752. Then the lantern-lined cedar path to <a href="https://www.google.com/maps/search/?api=1&query=Kasuga+Taisha" target="_blank" rel="noopener">Kasuga Shrine</a>, 30 minutes, and lunch on Higashimuki, Nara's covered shopping street, on the way back to the train.</li>
+            <li>Back via <a href="https://www.google.com/maps/search/?api=1&query=Fushimi+Sake+Village" target="_blank" rel="noopener">Fushimi</a>, Kyoto's sake district: 20 breweries on a willow canal, one tasting counter with 18 of them.</li>
+            <li><a href="https://www.google.com/maps/search/?api=1&query=Fushimi+Inari+Taisha" target="_blank" rel="noopener">Fushimi Inari</a> at dusk: 10,000 orange <span class="t" data-t="torii">torii</span> gates up a mountain. Everyone stops at the first 200 yards. Keep going 30 minutes and you're alone in a cedar forest as the lanterns come on. Free, open all night.</li>
+            <li>Dinner on Kiyamachi, the bar-and-restaurant street behind the hotel. No reservation, walk until something looks right.</li>
+          </ul>
+          <div class="price"><div><span>Trains × 2</span><span class="n">$30</span></div><div><span>Todai-ji + crackers</span><span class="n">$15</span></div><div><span>Sake flights × 2</span><span class="n">$30</span></div><div class="tot"><span>Ground today</span><span class="n">$75</span></div><div class="food"><span>Food</span><span class="n">~$120</span></div></div>
+        </div>
+        <figure class="wiki small" data-wiki="Nara Park"></figure>
+      </div>
+
+      <div class="day" data-d="Dec-7"><span class="badge" aria-hidden="true">🛍️</span><div class="date"><span class="dow">Mon</span><span class="dn">7</span><span class="dow">Dec</span></div>
+        <div>
+          <h3>The Gion shopping day: a workwear atelier, the stone lanes, the temple on stilts at golden hour, then the oldest three-star in Japan</h3>
+          <ul>
+            <li>11am: <a href="https://www.google.com/maps/search/?api=1&query=Taiga+Takahashi+Kyoto" target="_blank" rel="noopener">Taiga Takahashi</a>, the Kyoto label that remakes 1900s–1940s American workwear with Japanese fabric, in a traditional <span class="t" data-t="machiya">machiya</span> in Gion with a gallery upstairs. Sizing runs boxy; try everything on. Then the Hanamikoji and Shijo Gion shops.</li>
+            <li>Lunch in Gion, then the Yasaka backstreets on foot: Ishibe-koji, Nene-no-michi, the lanes between the temples where the old houses are shops and cafés now.</li>
+            <li>2pm: the stone lanes of <a href="https://www.google.com/maps/search/?api=1&query=Ninenzaka" target="_blank" rel="noopener">Ninenzaka</a> and Sannenzaka up the hill, every house a shop. <span class="why">Kimono rental shops sit at the bottom of the hill; if Mom's in, this is the walk to do it on.</span></li>
+            <li>3:30: <a href="https://www.google.com/maps/search/?api=1&query=Kiyomizu-dera" target="_blank" rel="noopener">Kiyomizu-dera</a>, the temple on wooden stilts over the valley, at golden hour. 45 minutes. The view is the point.</li>
+            <li>6pm: <a href="https://hyotei.co.jp/en/" target="_blank" rel="noopener">Hyotei</a>, three Michelin stars, run by the same family since 1837, <span class="t" data-t="kaiseki">kaiseki</span> served in a private tatami room off a lantern-lit garden by Nanzen-ji. The oldest three-star in Japan. <span class="why">Book through the hotel concierge the day the hotel is confirmed; it needs a Japanese phone line. Alternates if Hyotei is full: Roan Kikunoi (2 stars, Kikunoi's younger sibling), Gion Nishikawa (2 stars). Not Gion Sasaki: it no longer takes overseas reservations.</span></li>
+          </ul>
+          <div class="price"><div><span>Taxis</span><span class="n">$30</span></div><div><span>Kiyomizu × 2</span><span class="n">$10</span></div><div class="tot"><span>Ground today</span><span class="n">$40</span></div><div class="food"><span>Hyotei dinner for two</span><span class="n">~$800</span></div><div class="food"><span>Lunch</span><span class="n">~$60</span></div><div class="food"><span>Taiga, kimono rental (shopping)</span><span class="n">whatever you decide</span></div></div>
+        </div>
+        <figure class="wiki small" data-wiki="Ninenzaka|Kiyomizu-dera"></figure>
+      </div>
+
+      <div class="day" data-d="Dec-8"><span class="badge" aria-hidden="true">🎂</span><div class="date"><span class="dow">Tue</span><span class="dn">8</span><span class="dow">Dec</span><span class="tag bday">★ Mom turns 50</span></div>
+        <div>
+          <h3>The birthday: a slow morning, a three-star lunch, a private tea ceremony, Pontocho at blue hour, a maiko dinner</h3>
+          <ul>
+            <li>Slow morning. Coffee, then a last pass through Nishiki and the arcades for anything you walked past on Friday. Nothing scheduled before noon on purpose.</li>
+            <li>12:30 lunch at <a href="https://kikunoi.jp/en/" target="_blank" rel="noopener">Kikunoi</a>: three Michelin stars, 100-year-old family, the lunch <span class="t" data-t="kaiseki">kaiseki</span> at half the dinner price. <span class="why">Two three-stars in 24 hours. Lunch is the lighter one, and the room looks onto a garden in red maple.</span></li>
+            <li>2:30: private <span class="t" data-t="tea">tea ceremony</span> in a Gion teahouse on Hanamikoji, 45 minutes.</li>
+            <li>4:30: <a href="https://www.google.com/maps/search/?api=1&query=Pontocho+Kyoto" target="_blank" rel="noopener">Pontocho</a> at blue hour, a glass of something on the river side of the alley while the lanterns come on.</li>
+            <li><b>The dinner.</b> A private <span class="t" data-t="maiko">maiko</span> evening in a Gion teahouse: multi-course dinner for just your table while an apprentice geisha performs a dance, plays drinking games with you, pours the sake, and talks (interpreter included). Two hours. Book through the hotel concierge or <a href="https://www.google.com/maps/search/?api=1&query=Gion+Hatanaka" target="_blank" rel="noopener">Gion Hatanaka</a>; ask for the private booking, and ask them to bring a cake.</li>
+            <li>Tonight, 2 minutes on the phone: Korea's <span class="t" data-t="earrival">e-Arrival Card</span> opens 72 hours before you land in Seoul. Fill it out now so it's done.</li>
+          </ul>
+          <div class="price"><div><span>Tea ceremony, private</span><span class="n">$150</span></div><div><span>Maiko dinner, private, for two</span><span class="n">$1,000</span></div><div><span>Taxis</span><span class="n">$15</span></div><div class="tot"><span>Ground today</span><span class="n">$1,165</span></div><div class="food"><span>Kikunoi lunch</span><span class="n">~$300</span></div></div>
+        </div>
+        <figure class="wiki small" data-wiki="Maiko|Gion"></figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- OSAKA -->
+  <div class="city" id="osaka">
+    <div class="city-head"><span class="sticker" aria-hidden="true">🐙</span>
+      <div><div class="eyebrow">Stop 4 · Dec 9 – 11 · 2 nights · Bullet train 15 min</div><h2>Osaka <span>The city's kitchen, the knife street, a mile of covered arcade, vintage watches, whisky at the source, a mall city, and the retro neighborhood under the tower.</span></h2>
+        <p class="why">Two nights now, and the whole stay is on foot: Osaka is markets, arcades, and neon, which is exactly the brief. Motto of the city: "eat till you drop."</p></div>
+      <figure class="wiki" data-wiki="Dōtonbori"></figure>
+    </div>
+    <div class="days">
+      <div class="day" data-d="Dec-9"><span class="badge" aria-hidden="true">🔪</span><div class="date"><span class="dow">Wed</span><span class="dn">9</span><span class="dow">Dec</span><span class="tag">Travel</span></div>
+        <div>
+          <h3>Osaka's kitchen, the knife street, the arcade, Amerikamura, neon</h3>
+          <ul>
+            <li>9:30 Shinkansen, 15 minutes. Bags come with you this once. Drop them at the hotel by 10:30.</li>
+            <li>11am: <a href="https://www.google.com/maps/search/?api=1&query=Kuromon+Market+Osaka" target="_blank" rel="noopener">Kuromon Market</a>, 600 meters of covered market: grilled king-crab legs, otoro, wagyu skewers, oysters, eaten standing up. <span class="why">The good stalls sell out by 1; go hungry.</span></li>
+            <li>12:30: <a href="https://www.google.com/maps/search/?api=1&query=Sennichimae+Doguyasuji" target="_blank" rel="noopener">Sennichimae Doguyasuji</a>, five minutes on: 150 meters of professional kitchen shops. Knives (they'll engrave a name), takoyaki pans, ceramics, the plastic display food every restaurant window uses. Closes at 6.</li>
+            <li>2pm: <a href="https://www.google.com/maps/search/?api=1&query=Shinsaibashi-suji+Shopping+Street" target="_blank" rel="noopener">Shinsaibashi-suji</a>, a 600-meter covered arcade: Uniqlo, drugstores, the giant Don Quijote, every brand. Tax-free with passport. It pours into Amerikamura, Osaka's vintage-and-streetwear quarter, on the west side.</li>
+            <li>3:30: <a href="https://www.google.com/maps/search/?api=1&query=B.B.+GARAGE+Amerikamura" target="_blank" rel="noopener">B.B. Garage</a> in Amerikamura: vintage Americana out front, and at the back of the shop, the vintage watch counter, from King Seikos to Swiss. 4.9 across a thousand reviews; the staff walk you through every defect and don't push. <span class="why">Ask whether it's been serviced and whether the dial and hands are original. The watch stop of the trip. Open till 8, closed Wednesdays, and Dec 9 is a Wednesday, so if the shutter's down, it's Thursday at 4 instead (below).</span></li>
+            <li>6pm: <a href="https://www.google.com/maps/search/?api=1&query=Dotonbori" target="_blank" rel="noopener">Dotonbori</a> at dusk: the canal, the giant Glico running man, the 3-D crab signs, a hundred food stalls. <span class="t" data-t="kushikatsu">Kushikatsu</span>, <span class="t" data-t="okonomiyaki">okonomiyaki</span>, <span class="t" data-t="takoyaki">takoyaki</span>, standing up.</li>
+          </ul>
+          <div class="stay"><b>Sleep, 2 nights:</b> <a href="https://www.google.com/maps/search/?api=1&query=Cross+Hotel+Osaka" target="_blank" rel="noopener">Cross Hotel Osaka</a> (~$210, one block from Dotonbori, five minutes from Amerikamura) or <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Royal+Classic+Osaka" target="_blank" rel="noopener">Hotel Royal Classic</a> (~$220, the one that looks like a kabuki theater, on Namba Station).</div>
+          <div class="price"><div><span>Shinkansen × 2</span><span class="n">$30</span></div><div><span>Hotel × 2 nights</span><span class="n">$420</span></div><div class="tot"><span>Ground today</span><span class="n">$450</span></div><div class="food"><span>Food (market + street food night)</span><span class="n">~$140</span></div><div class="food"><span>Knives, watch (shopping)</span><span class="n">whatever you decide</span></div></div>
+        </div>
+        <figure class="wiki small" data-wiki="Kuromon Ichiba Market|Amerikamura"></figure>
+      </div>
+
+      <div class="day" data-d="Dec-10"><span class="badge" aria-hidden="true">🥃</span><div class="date"><span class="dow">Thu</span><span class="dn">10</span><span class="dow">Dec</span></div>
+        <div>
+          <h3>Whisky at the source, Umeda's mall city, then retro Osaka under the tower</h3>
+          <ul>
+            <li>10am: 30 min by train to <a href="https://www.suntory.com/factory/yamazaki/" target="_blank" rel="noopener">Suntory Yamazaki Distillery</a>, where Japanese whisky was born in 1923. The guided tour with tasting is a lottery you enter two months ahead; the tasting counter and museum take a simple reservation. <span class="why">Yamazaki 12 by the glass here costs a fraction of anywhere else on earth.</span></li>
+            <li>1pm: Umeda, Osaka's other downtown: <a href="https://www.google.com/maps/search/?api=1&query=Grand+Front+Osaka" target="_blank" rel="noopener">Grand Front</a>, Hankyu department store, and the underground mall maze that connects them. Lunch on Grand Front's top-floor terrace. Two or three hours of shopping with a roof over it.</li>
+            <li>4pm: back to Amerikamura for <a href="https://www.google.com/maps/search/?api=1&query=B.B.+GARAGE+Amerikamura" target="_blank" rel="noopener">B.B. Garage</a> if Wednesday was shut. Skip if done.</li>
+            <li>6pm: <a href="https://www.google.com/maps/search/?api=1&query=Tsutenkaku" target="_blank" rel="noopener">Shinsekai</a>, the 1912 neighborhood under Tsutenkaku tower: Showa-era signs, <span class="t" data-t="kushikatsu">kushikatsu</span> counters that haven't changed since the 60s, pachinko noise. Go up the tower for the night view, then eat on the street below. Early night: the airport train is at 7am.</li>
+            <li>Tonight: repack. Big suitcases go to the front desk in the morning, forwarded to the Dec 13 Tokyo hotel. Seoul is carry-on only.</li>
+          </ul>
+          <div class="price"><div><span>Yamazaki tasting × 2</span><span class="n">$50</span></div><div><span>Trains</span><span class="n">$20</span></div><div><span>Tsutenkaku × 2</span><span class="n">$20</span></div><div class="tot"><span>Ground today</span><span class="n">$90</span></div><div class="food"><span>Food (terrace lunch, kushikatsu night)</span><span class="n">~$120</span></div></div>
+        </div>
+        <figure class="wiki small" data-wiki="Tsūtenkaku|Shinsekai"></figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEOUL -->
+  <div class="city" id="seoul">
+    <div class="city-head"><span class="sticker" aria-hidden="true">🇰🇷</span>
+      <div><div class="eyebrow">Stop 5 · Dec 11 – 13 · 2 nights, 3 days · Flight 2h</div><h2>Seoul <span>An IV for the jet lag, an oxygen chamber, the Gangnam skin menu, a color analysis, a scalp spa, custom skincare, a sunrise hike up the city wall, ginseng chicken, and the palace in silk.</span></h2>
+        <p class="why">Three days built like a recovery camp with shopping in between: Gangnam is where the clinics are, so that's where you sleep. Carry-on only; the suitcases are already on their way to Tokyo. This isn't the sit-in-a-bathhouse version of Seoul. It's the one where you leave in better shape than you arrived.</p></div>
+      <figure class="wiki" data-wiki="Gangnam District|Gyeongbokgung"></figure>
+    </div>
+    <div class="days">
+      <div class="day" data-d="Dec-11"><span class="badge" aria-hidden="true">💉</span><div class="date"><span class="dow">Fri</span><span class="dn">11</span><span class="dow">Dec</span><span class="tag">Travel · Recovery</span></div>
+        <div>
+          <h3>Land, IV drip, oxygen chamber, the tree-lined boutique street, Korean beef</h3>
+          <ul>
+            <li>7am airport express from Namba to Kansai (45 min). Morning flight Kansai → Incheon, 2 hours; through immigration by noon with the <span class="t" data-t="earrival">e-Arrival Card</span> you filled out on the 8th. AREX train plus one subway change to Gangnam, 75 min. Drop bags at 1.</li>
+            <li>2pm: <a href="https://www.google.com/maps/search/?api=1&query=AGJ+Hana+Clinic+Apgujeong" target="_blank" rel="noopener">AGJ Hana Clinic</a> in Apgujeong, a doctor-led clinic that works with visitors over WhatsApp: a longevity consult, then a <span class="t" data-t="nad">NAD+ or glutathione IV</span> in a recliner, 90 minutes. <span class="why">The jet-lag reset. You walk in off a flight and walk out with your head clear.</span></li>
+            <li>4pm: <a href="https://www.google.com/maps/search/?api=1&query=O2ON+Sinsa+Gangnam" target="_blank" rel="noopener">O2ON</a> in Sinsa, 10 minutes away: 60 minutes of medical-grade <span class="t" data-t="hbot">hyperbaric oxygen</span>. <span class="why">Same chamber the plastic-surgery clinics charge $250 for, at a third of the price, with a nicer front desk.</span></li>
+            <li>5:30: <a href="https://www.google.com/maps/search/?api=1&query=Garosu-gil" target="_blank" rel="noopener">Garosu-gil</a>, the tree-lined boutique street a 10-minute walk from the chamber: Korean designers, concept stores, cafés. Olive Young for the first K-beauty haul (tax-free with passport).</li>
+            <li>8pm: <span class="t" data-t="hanwoo">hanwoo</span> Korean BBQ, the premium native beef, grilled at your table in Sinsa or Apgujeong (ask the hotel for their pick). Then the hotel's hot tub, cold plunge, sauna, bed. <span class="why">Hot, cold, hot: the contrast-bathing round that flushes the flight out of your legs.</span></li>
+          </ul>
+          <div class="stay"><b>Sleep, 2 nights:</b> <a href="https://www.google.com/maps/search/?api=1&query=Andaz+Seoul+Gangnam" target="_blank" rel="noopener">Andaz Seoul Gangnam</a> (~$300, pool, sauna and hot tub on site, direct subway access from B2, every clinic within 15 minutes). <span class="why">Gangnam is a deliberate move from the old-town hotel: three of the four Seoul days are here. Alt, north side: <a href="https://www.google.com/maps/search/?api=1&query=Nine+Tree+Premier+Hotel+Insadong" target="_blank" rel="noopener">Nine Tree Insadong</a>, ~$230.</span></div>
+          <div class="price"><div><span>Flight KIX → ICN × 2</span><span class="n">$400</span></div><div><span>Airport trains, both ends</span><span class="n">$50</span></div><div><span>NAD+ / glutathione IV × 2</span><span class="n">$500</span></div><div><span>Hyperbaric oxygen × 2</span><span class="n">$160</span></div><div><span>Hotel × 2 nights</span><span class="n">$600</span></div><div class="tot"><span>Ground today</span><span class="n">$1,710</span></div><div class="food"><span>Food (hanwoo night)</span><span class="n">~$250</span></div></div>
+        </div>
+        <figure class="wiki small" data-wiki="Garosu-gil|Sinsa-dong, Seoul"></figure>
+      </div>
+
+      <div class="day" data-d="Dec-12"><span class="badge" aria-hidden="true">✨</span><div class="date"><span class="dow">Sat</span><span class="dn">12</span><span class="dow">Dec</span><span class="tag">The glow-up</span></div>
+        <div>
+          <h3>The Gangnam glow: skin, color, scalp, then custom skincare and the cool neighborhood</h3>
+          <ul>
+            <li>9:30: <a href="https://www.google.com/maps/search/?api=1&query=Reberry+Clinic+Gangnam" target="_blank" rel="noopener">Reberry Clinic Gangnam</a>, an officially designated regenerative-medicine clinic with English-speaking doctors and a 4.9 over a thousand reviews. AI skin profiling first, then the zero-downtime lifting menu: <span class="t" data-t="thermage">Thermage FLX, Ultherapy, or Potenza</span>, finished with an LDM ultrasound for the immediate glow. About three hours. <span class="why">Single sessions only; nothing that needs healing time. You walk out looking like you slept nine hours. Book 2–4 weeks ahead and say what you want in the first message.</span></li>
+            <li>1:30: <a href="https://www.google.com/maps/search/?api=1&query=Myshopper+Color+Analysis+Sinsa" target="_blank" rel="noopener">Myshopper</a> in Sinsa for the 16-type <span class="t" data-t="colors">personal color analysis</span>, an hour, in English. Bring your makeup pouch. They send a palette PDF afterward, which is the shopping list for the afternoon.</li>
+            <li>3pm: <a href="https://www.google.com/maps/search/?api=1&query=Park+Jun+Beauty+Lab+Cheongdam" target="_blank" rel="noopener">Park Jun Beauty Lab</a> in Cheongdam: the 15-step <span class="t" data-t="scalp">scalp spa</span> with a neck-and-back massage, in a private room, 90 minutes. A Gangnam medical-tourism award winner. <span class="why">Do it as a couple's booking. Dad will pretend he didn't love it.</span></li>
+            <li>5:30: taxi across the river to <a href="https://www.google.com/maps/search/?api=1&query=AMORE+Seongsu" target="_blank" rel="noopener">Amore Seongsu</a>, Amorepacific's flagship in a converted factory: an AI skin scan and a serum or lipstick formulated to your numbers, in the palette you were handed two hours ago. Open till 8:30. Then <a href="https://www.google.com/maps/search/?api=1&query=Seongsu-dong" target="_blank" rel="noopener">Seongsu-dong</a> itself: warehouses turned cafés, pop-ups, sneaker shops, the Brooklyn of Seoul.</li>
+            <li>Dinner in Seongsu: <span class="t" data-t="chimaek">chimaek</span> or a pocha (a tent bar with grilled everything), and a <span class="t" data-t="noraebang">noraebang</span> room if there's gas left.</li>
+          </ul>
+          <div class="price"><div><span>Color analysis × 2</span><span class="n">$200</span></div><div><span>Scalp spa × 2</span><span class="n">$300</span></div><div><span>Custom serum / lipstick × 2</span><span class="n">$100</span></div><div><span>Taxis (cheap here)</span><span class="n">$40</span></div><div class="tot"><span>Ground today</span><span class="n">$640</span></div><div class="food"><span>Food</span><span class="n">~$100</span></div><div class="food"><span>Reberry skin session, priced separately</span><span class="n">$600–2,000 pp</span></div></div>
+        </div>
+        <figure class="wiki small" data-wiki="Seongsu-dong"></figure>
+      </div>
+
+      <div class="day" data-d="Dec-13"><span class="badge" aria-hidden="true">🥾</span><div class="date"><span class="dow">Sun</span><span class="dn">13</span><span class="dow">Dec</span><span class="tag">Hike · Travel</span></div>
+        <div>
+          <h3>Sunrise on the city wall, ginseng chicken, the palace in silk, fly to Tokyo</h3>
+          <ul>
+            <li>7:15am taxi across the river. 7:30 at the <a href="https://www.google.com/maps/search/?api=1&query=Inwangsan+trail+entrance" target="_blank" rel="noopener">Inwangsan</a> trailhead: 90 minutes up the Seoul fortress wall to the granite summit as the sun comes up over the whole city. Stairs, rock, a real climb, and down by 9:15. <span class="why">Trail shoes in the carry-on. This is the Bukhansan trail run, compressed to fit a flight day: same granite, same views, a tenth of the time.</span></li>
+            <li>10am: <a href="https://www.google.com/maps/search/?api=1&query=Tosokchon+Samgyetang" target="_blank" rel="noopener">Tosokchon</a>, by the palace: <span class="t" data-t="samgyetang">samgyetang</span>, whole ginseng chicken soup, the recovery meal. It opens at 10; be in line at 9:50 and the line moves.</li>
+            <li>11am: <a href="https://www.google.com/maps/search/?api=1&query=Gyeongbokgung+Palace" target="_blank" rel="noopener">Gyeongbokgung Palace</a> in rented <span class="t" data-t="hanbok">hanbok</span>: rent from any shop by the gate (they do your hair too), and wearing it gets you into the palace free. The 1395 throne hall, the pavilion on the lake. One hour, then out. <span class="why">The photo op of the whole trip. Both of you. Non-negotiable.</span></li>
+            <li>12:30: taxi to Seoul Station, AREX express to Incheon. Early-afternoon flight to <b>Narita</b> (not Haneda: tomorrow's flight home leaves from Narita), 2h30. Window seat on the right; on a clear day Fuji shows up on the descent.</li>
+          </ul>
+          <div class="price"><div><span>Taxis</span><span class="n">$30</span></div><div><span>Hanbok rental × 2</span><span class="n">$40</span></div><div class="tot"><span>Ground this morning</span><span class="n">$70</span></div><div class="food"><span>Samgyetang × 2</span><span class="n">~$40</span></div></div>
+        </div>
+        <figure class="wiki small" data-wiki="Inwangsan"></figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOKYO RETURN -->
+  <div class="city" id="tokyo2" style="margin-bottom:0">
+    <div class="city-head"><span class="sticker" aria-hidden="true">🗻</span>
+      <div><div class="eyebrow">Stop 6 · Dec 13 · 1 night · Flight 2h30</div><h2>Tokyo, one last night <span>A short flight, the suitcases waiting, and the best sushi of the trip.</span></h2></div>
+      <figure class="wiki" data-wiki="Mount Fuji"></figure>
+    </div>
+    <div class="days">
+      <div class="day" data-d="Dec-13b"><span class="badge" aria-hidden="true">🍣</span><div class="date"><span class="dow">Sun</span><span class="dn">13</span><span class="dow">Dec</span><span class="tag">Evening</span></div>
+        <div>
+          <h3>Land, the last sushi counter</h3>
+          <ul>
+            <li>Land ~4:30pm. <a href="https://www.jreast.co.jp/multi/en/nex/" target="_blank" rel="noopener">Narita Express</a> to Tokyo Station, 1 hour. The suitcases forwarded from Osaka are waiting at the front desk. <span class="why">If you're in by 6 and feel like it, Ginza is 10 minutes away for a final tax-free run; if not, that's what the Seoul haul was for.</span></li>
+            <li>Last dinner: the second <span class="t" data-t="omakase">omakase</span>, a tier up from the first. <a href="https://www.google.com/maps/search/?api=1&query=Sushi+Yuu+Nishiazabu" target="_blank" rel="noopener">Sushi Yuu</a> (English-speaking chef) or whatever <a href="https://pocket-concierge.jp/en/" target="_blank" rel="noopener">Pocket Concierge</a> has at the $300-a-head tier, 8pm seating. <span class="why">If two sushi counters is one too many, the swap is <a href="https://www.google.com/maps/search/?api=1&query=Coco+Nemaru+Ginza" target="_blank" rel="noopener">Coco Nemaru</a> in Ginza: wagyu yakiniku you grill at the table, private rooms, a minute from the station.</span> Pack it all tonight; tomorrow's a travel day.</li>
+          </ul>
+          <div class="stay"><b>Sleep, 1 night:</b> <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Metropolitan+Tokyo+Marunouchi" target="_blank" rel="noopener">Hotel Metropolitan Marunouchi</a> (~$220, on top of Tokyo Station, where the Narita Express leaves from). Ship the suitcases here.</div>
+          <div class="price"><div><span>Flight ICN → NRT × 2</span><span class="n">$400</span></div><div><span>Narita Express × 2</span><span class="n">$60</span></div><div><span>Hotel × 1 night</span><span class="n">$220</span></div><div class="tot"><span>Ground tonight</span><span class="n">$680</span></div><div class="food"><span>Food (omakase night)</span><span class="n">~$650</span></div></div>
+        </div>
+        <figure class="wiki small" data-wiki="Sushi"></figure>
+      </div>
+      <div class="day" data-d="Dec-14"><span class="badge" aria-hidden="true">🏠</span><div class="date"><span class="dow">Mon</span><span class="dn">14</span><span class="dow">Dec</span><span class="tag">Home</span></div>
+        <div>
+          <h3>A slow last morning, then home</h3>
+          <ul>
+            <li>Flight's not until 6:45pm, so the morning is free. Sleep in, or one last <a href="https://www.google.com/maps/search/?api=1&query=Tsukiji+Outer+Market" target="_blank" rel="noopener">Tsukiji</a> breakfast and a walk through the <a href="https://www.google.com/maps/search/?api=1&query=Imperial+Palace+East+Garden" target="_blank" rel="noopener">Imperial Palace East Garden</a>, five minutes from the hotel. Check out by noon, bags at the front desk.</li>
+            <li>2:45pm <a href="https://www.jreast.co.jp/multi/en/nex/" target="_blank" rel="noopener">Narita Express</a> from Tokyo Station, 1 hour to the airport, at the gate with time for the lounge.</li>
+            <li><b>AC 6</b> Narita 6:45pm → Montréal 5:00pm same day (12h15, 777-300ER, lie-flat). <span class="why">Stay awake for the first half, sleep the second; you land at 5pm Montréal time and want to be tired by Miami bedtime.</span></li>
+            <li><b>AC 1208</b> Montréal 7:05pm → <b>Miami 11:11pm</b> (4h06, A220). Home Monday night.</li>
+          </ul>
+          <div class="price"><div><span>Narita Express × 2</span><span class="n">$60</span></div><div class="tot"><span>Ground today</span><span class="n">$60</span></div><div class="food"><span>Food</span><span class="n">~$40</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div></section>
+
+<!-- ===================== BUDGET ===================== -->
+<section id="budget"><div class="wrap">
+  <div class="sec-head"><div class="eyebrow">Money</div><h2>$9,885 on the ground. $19,885 all in.</h2><p class="lede">Every hotel, every train, the two short flights, every ticket, the birthday dinner, the Seoul recovery days, insurance, and phones. Cutting the snow monkeys and the Kinosaki detour paid for the ryokan night, the fifth Kyoto night, the second Osaka night, and the Seoul clinics, and it still lands under $10k on the ground. Food is on top and listed per day in grey; at the pace above, with two three-star meals and two omakase counters, it runs about $3,600 for two. The Reberry skin session is priced separately because it ranges from a hydrating facial to a full Thermage, and that's Mom's call.</p></div>
+  <div class="budget">
+    <div class="tbl"><table>
+      <thead><tr><th>Item</th><th>Detail</th><th class="n">Two people</th></tr></thead>
+      <tbody>
+        <tr><td>Hotels &amp; inns</td><td>16 nights: value hotels in cities, one onsen ryokan with crab dinner, two nights at the Andaz in Gangnam</td><td class="n">$3,935</td></tr>
+        <tr class="sub"><td></td><td>Tokyo 5 nts $1,100 · Kanazawa $190 · Motoyu Ishiya $500 · Kyoto 5 nts $1,125 · Osaka 2 nts $420 · Seoul 2 nts $600</td><td class="n"></td></tr>
+        <tr><td>Trains, taxis &amp; transfers</td><td>3 intercity legs, Fuji day, Sagano train, Shirakawa-go bus, ryokan taxis, local trains, airport trains at both ends of both flights, Narita Express both ways, Seoul taxis</td><td class="n">$900</td></tr>
+        <tr><td>Short flights</td><td>Osaka (KIX) → Seoul (ICN) Dec 11, Seoul (ICN) → Tokyo (NRT) Dec 13, ~$150–250 pp each</td><td class="n">$800</td></tr>
+        <tr><td>Luggage forwarding</td><td>2 hand-offs (Tokyo → Kyoto, Osaka → Tokyo), ~$20/bag</td><td class="n">$100</td></tr>
+        <tr><td>Birthday maiko dinner</td><td>Private, Gion teahouse, for two</td><td class="n">$1,000</td></tr>
+        <tr><td>Japan experiences</td><td>Tsukiji chef tour, teamLab, Zauo rods, gold leaf, samurai lesson, Arashiyama temples, tea ceremony, Yamazaki, sake flights, Tsutenkaku, Nara</td><td class="n">$650</td></tr>
+        <tr><td>Seoul recovery &amp; beauty</td><td>NAD+ IVs, hyperbaric oxygen, color analysis, scalp spa, custom skincare, hanbok rental</td><td class="n">$1,300</td></tr>
+        <tr><td>Insurance + eSIMs</td><td>Travel insurance, Japan and Korea eSIMs</td><td class="n">$400</td></tr>
+        <tr><td>Buffer</td><td>Taxis in the rain, a forgotten ticket, a shop you walk past twice</td><td class="n">$800</td></tr>
+        <tr class="total"><td>Ground total</td><td>vs. $10,000 target</td><td class="n">$9,885</td></tr>
+        <tr><td>Flights</td><td>Air Canada business, MIA → YUL → NRT / NRT → YUL → MIA, booked</td><td class="n">$10,000</td></tr>
+        <tr class="total"><td>Trip total</td><td>excluding food and shopping</td><td class="n">$19,885</td></tr>
+        <tr class="sub"><td>Not in the total</td><td>Reberry skin session Dec 12 (facial through Thermage / Ultherapy), Mom's call</td><td class="n">$600–2,000 pp</td></tr>
+        <tr class="sub"><td>Not in the total</td><td>Shopping: pillows, bags, frames, jeans, the KUOE watch, a vintage watch, knives, K-beauty</td><td class="n">whatever you decide</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.85rem;color:var(--muted);margin-top:12px">Food at the pace above: ~$3,600 for two, of which Kyubey ($550), Hyotei ($800), Kikunoi lunch ($300), the hanwoo dinner ($250), and the last-night omakase ($650) are $2,550. Swap the last omakase for Coco Nemaru and it's ~$3,300.</p>
+    </div>
+    <div id="book">
+      <div class="eyebrow" style="margin-bottom:12px">Book in this order</div>
+      <div class="book" id="booklist">
+        <label><input type="checkbox" checked><span>Flights: AC 1205 + AC 5 out Nov 27, AC 6 + AC 1208 home Dec 14<small>Booked. Business class via Montréal.</small></span></label>
+        <label><input type="checkbox"><span>Hyotei dinner Dec 7, Kikunoi lunch + maiko dinner Dec 8<small>Through the Kyoto hotel concierge the day the hotel is confirmed; Hyotei needs a Japanese phone line. Backups: Roan Kikunoi, Gion Nishikawa.</small></span></label>
+        <label><input type="checkbox"><span>Motoyu Ishiya, Dec 3, dinner + breakfast<small>Crab season fills it. Ask about the shuttle and the crab-forward course.</small></span></label>
+        <label><input type="checkbox"><span>Kyoto hotel, 5 nights Dec 4–9<small>Resol Kawaramachi Sanjo or a machiya. Book this before the restaurants so the concierge exists.</small></span></label>
+        <label><input type="checkbox"><span>The two short flights: KIX → ICN morning of Dec 11, ICN → NRT early afternoon Dec 13<small>Korean Air, Asiana, Peach, or Jeju Air. Narita, not Haneda, on the way back.</small></span></label>
+        <label><input type="checkbox"><span>Seoul clinics, Dec 11–12: Hana (IV), Reberry (skin), Park Jun (scalp), Myshopper (color)<small>2–4 weeks ahead, all over WhatsApp or Klook. Say what you want in the first message. O2ON and Amore take walk-ins.</small></span></label>
+        <label><input type="checkbox"><span>Yamazaki Distillery tour lottery, Dec 10<small>Enter ~2 months ahead; book the tasting counter as backup</small></span></label>
+        <label><input type="checkbox"><span>Sagano Romantic Train, Dec 5, Car No. 5<small>Opens Nov 5 at 10am Japan time (one month out). Peak-color seats sell that morning.</small></span></label>
+        <label><input type="checkbox"><span>Tsukiji tour with Ali, Nov 29, 10am slot<small>Airbnb Experiences; it sells out</small></span></label>
+        <label><input type="checkbox"><span>Two omakase counters: Dec 1 (Kyubey) and Dec 13<small>3–4 weeks out. Or Coco Nemaru for the 13th.</small></span></label>
+        <label><input type="checkbox"><span>Zauo Nov 29, teamLab Nov 29, Samurai Kembu Dec 4, tea ceremony Dec 8<small>Timed tickets, 2–4 weeks out</small></span></label>
+        <label><input type="checkbox"><span>Hotels: Tokyo (×2), Kanazawa, Osaka, Seoul</span></label>
+        <label><input type="checkbox"><span>Train seats<small><a href="https://smart-ex.jp/en/" target="_blank" rel="noopener">smartEX</a> for the Tokyo → Kanazawa shinkansen, 1 month out. Fuji Excursion and Shirakawa-go bus too. Skip the JR Pass; point-to-point is cheaper for this route.</small></span></label>
+        <label><input type="checkbox"><span>Narita Express seats, Japan + Korea eSIMs, insurance</span></label>
+        <label><input type="checkbox"><span>Korea e-Arrival Card, online, Dec 8–11<small>Within 72 hours before landing in Seoul. Two minutes on the phone.</small></span></label>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="know" style="background:var(--paper-2);border-top:1px solid var(--line)"><div class="wrap">
+  <div class="sec-head"><div class="eyebrow">Before you go</div><h2>Seven things to know, then stop reading and go.</h2></div>
+  <div class="know">
+    <div class="g"><b>The bag rhythm</b><p>Twice on this trip you live out of a small bag while the big suitcases travel ahead. <b>Dec 2–4:</b> the Tokyo hotel ships the suitcases to Kyoto (Kyoto holds them); you carry a backpack or duffel through Kanazawa and the ryokan. <b>Dec 9:</b> you carry the suitcases yourself once, Kyoto to Osaka, a 15-minute train. <b>Dec 11–13:</b> Osaka ships them to the Dec 13 Tokyo hotel and you fly to Seoul with carry-ons only. Pack the small bags on purpose: three days of clothes, trail shoes for the Seoul hike, toiletries, chargers, meds, and room for the K-beauty haul. Inns provide robes and slippers. Forwarding is ~$20 a bag, arrives the next afternoon, and every hotel desk does it.</p></div>
+    <div class="g"><b>Korea paperwork &amp; phones</b><p>US passports don't need a K-ETA visa waiver through Dec 31, 2026, but you do need the free online <b>e-Arrival Card</b>, filled out within 72 hours before landing (so Dec 8–11; the birthday-night reminder is in the itinerary). Your Japan eSIM almost certainly won't cover Korea: buy a separate Korea eSIM or turn on roaming for three days. Download <b>Naver Map</b> or <b>KakaoMap</b> before you land; Google Maps can't do walking or driving directions in Korea. Korea runs on cards, but carry a little won (₩) for the market stalls and the hanbok shop.</p></div>
+    <div class="g"><b>The Seoul clinics, honestly</b><p>Everything on Dec 11–12 is single-session, zero-downtime, and done by the thousand on visitors every week: IV drips, the oxygen chamber, color analysis, the scalp spa, and the skin lifting are all walk-out-looking-normal treatments. Two things to do ahead: tell each clinic what you want in the first WhatsApp message (they quote and schedule from that), and have Mom decide the Reberry menu before the trip, because the price ranges from a $150 LDM glow to a $2,000 Thermage. Skip anything with needles into the face the day before a flight. Tongin, the Korean-medicine clinic from the original list, is closed Fri–Sun, which is exactly when you're there, so it's out.</p></div>
+    <div class="g"><b>Money &amp; phones, Japan</b><p>Japan still runs on more cash than you'd expect. Pull yen from 7-Eleven ATMs (US cards work, good rates). Tipping does not exist, in either country. Add a Suica card to your iPhone Wallet before you leave and tap it on every train, bus, and vending machine. Buy a Japan eSIM (Ubigi or Airalo) before flying. Google Translate's camera reads menus in both countries.</p></div>
+    <div class="g"><b>Shopping tax-free</b><p>Japan: show your passport at any store with the Tax-Free sign for 10% off on purchases over ¥5,000: Uniqlo, department stores, drugstores, Nishikawa, Momotaro, MixTHINKS, KUOE, most boutiques. Petite sizing is the default. Korea: same idea at Olive Young and the department stores, refund at the airport kiosk. Leave room in the carry-on for Seoul; the suitcases are waiting in Tokyo for the final pack. Knives go in checked bags only.</p></div>
+    <div class="g"><b>Two closed-day traps</b><p><b>B.B. Garage</b> in Osaka is closed Wednesdays, and Dec 9 is a Wednesday; the Thursday 4pm backup is in the plan. <b>KUOE</b> in Kyoto is closed Tuesdays; it's scheduled for Friday the 4th. <b>Zuicho</b> is closed Sundays; it's on Monday. <b>Amore Seongsu</b> is closed Mondays; it's on Saturday. If any day shifts, re-check these four.</p></div>
+    <div class="g"><b>Weather &amp; jet lag</b><p>Tokyo, Kyoto, Osaka: 40–55°F, dry, sunny. Kanazawa and the ryokan: 35–45°F, grey, rain or first snow. Seoul: colder, 25–40°F and windy; real coat, hat, gloves, and the sunrise hike will be below freezing. Waterproof shoes, layers. Japan is 14 hours ahead of Miami, Korea the same. On the Montréal–Tokyo leg, eat, then sleep 7 hours (it takes off at 1:40am Tokyo time). First two days: sunlight, walk, no nap after 3pm, bed by 10. By day 3 you're fine.</p></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">Built by Josh for Mom's 50th. Photos load from Wikipedia; each caption links to its source. Prices are estimates in USD, Oct 2026, for two people.</div></footer>
+
+<div class="pop" id="pop" role="tooltip"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="app.js?v=10"></script>
+</body>
+</html>
