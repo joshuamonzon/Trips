@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-<link rel="stylesheet" href="site.css?v=10">
+<link rel="stylesheet" href="site.css?v=11">
 </head>
 <body>
 
@@ -62,14 +62,14 @@
   </div>
   <div class="facts">
     <div><span class="k">Flights (booked)</span><span class="v">$10,000</span></div>
-    <div><span class="k">Everything on the ground</span><span class="v">$9,885</span></div>
-    <div><span class="k">Trip total</span><span class="v">$19,885</span></div>
+    <div><span class="k">Everything on the ground</span><span class="v">$10,135</span></div>
+    <div><span class="k">Trip total</span><span class="v">$20,135</span></div>
     <div><span class="k">Nights away</span><span class="v">16 · 14 Japan, 2 Korea</span></div>
     <div><span class="k">Birthday</span><span class="v">Dec 8 · Kyoto · Maiko dinner</span></div>
     <div><span class="k">Suitcase carries</span><span class="v">One short one (forwarded otherwise)</span></div>
   </div>
   <div class="route-strip" style="grid-column:1/-1">
-    <div class="stop"><span class="n">01</span><span class="c">Tokyo</span><span class="d">Nov 28 – Dec 2 · 4 nts</span><span class="tr">→ bullet train 2h30</span></div>
+    <div class="stop"><span class="n">01</span><span class="c">Tokyo</span><span class="d">Nov 28 – Dec 2 · 4 nts</span><span class="tr">→ bullet train 2h30 + taxi</span></div>
     <div class="stop"><span class="n">02</span><span class="c">Kanazawa</span><span class="d">Dec 2 – 4 · 2 nts</span><span class="tr">→ express 2h15</span></div>
     <div class="stop"><span class="n">03</span><span class="c">Kyoto</span><span class="d">Dec 4 – 9 · 5 nts</span><span class="tr">→ bullet train 15 min</span></div>
     <div class="stop"><span class="n">04</span><span class="c">Osaka</span><span class="d">Dec 9 – 11 · 2 nts</span><span class="tr">→ ✈ flight 2h</span></div>
@@ -86,7 +86,7 @@
   </div>
   <div id="map"></div>
   <div class="legs">
-    <div class="leg"><span class="from">Tokyo → Kanazawa</span><span class="meta">Hokuriku Shinkansen, direct · 2h30 · $95 pp</span><span class="note">Left side for the mountains.</span></div>
+    <div class="leg"><span class="from">Tokyo → Kanazawa</span><span class="meta">Hokuriku Shinkansen, direct · 2h30 · $95 pp</span><span class="note">Left side for the mountains. The ryokan is a 25-min taxi from the station; you go into town by day and sleep out at the hot spring.</span></div>
     <div class="leg"><span class="from">Kanazawa → Kyoto</span><span class="meta">Thunderbird express · 2h15 · $50 pp</span><span class="note">Taxi from the ryokan to the station first, 25 min. Along Lake Biwa.</span></div>
     <div class="leg"><span class="from">Kyoto → Osaka</span><span class="meta">Shinkansen · 15 min · $15 pp</span><span class="note">Bags come with you. It's shorter than the walk to the platform.</span></div>
     <div class="leg"><span class="from">Osaka ✈ Seoul</span><span class="meta">Kansai (KIX) → Incheon (ICN) · 2h · ~$150–250 pp</span><span class="note">Morning flight. Korean Air, Asiana, Peach, Jeju Air all fly it.</span></div>
@@ -188,38 +188,38 @@
   <!-- KANAZAWA -->
   <div class="city" id="kanazawa">
     <div class="city-head"><span class="sticker" aria-hidden="true">⚔️</span>
-      <div><div class="eyebrow">Stop 2 · Dec 2 – 4 · 2 nights · Bullet train 2h30, direct</div><h2>Kanazawa <span>Crab for lunch, geisha lanes, gold leaf, samurai streets, a thatched village in the snow, then a night at a 200-year-old hot-spring inn.</span></h2>
-        <p class="why">The samurai city, never bombed, so the old districts are intact and walkable. One night in town, one night out at an <span class="t" data-t="onsen">onsen</span> <span class="t" data-t="ryokan">ryokan</span> with a <span class="t" data-t="crab">crab</span> dinner: the spa night, without a detour to a spa town.</p></div>
+      <div><div class="eyebrow">Stop 2 · Dec 2 – 4 · 2 nights · Bullet train 2h30, direct</div><h2>Kanazawa <span>Crab for lunch, geisha lanes, gold leaf, samurai streets, a thatched village in the snow, and two nights at a 200-year-old hot-spring inn.</span></h2>
+        <p class="why">The samurai city, never bombed, so the old districts are intact and walkable. Both nights at an <span class="t" data-t="onsen">onsen</span> <span class="t" data-t="ryokan">ryokan</span> 25 minutes outside town: one base, no hotel-to-hotel shuffle, a soak every night, and the <span class="t" data-t="crab">crab</span> dinner on the first.</p></div>
       <figure class="wiki" data-wiki="Higashi Chaya District|Kanazawa"></figure>
     </div>
     <div class="days">
       <div class="day" data-d="Dec-2"><span class="badge" aria-hidden="true">🦀</span><div class="date"><span class="dow">Wed</span><span class="dn">2</span><span class="dow">Dec</span><span class="tag">Travel</span></div>
         <div>
-          <h3>Fish-market lunch, the teahouse district, samurai lanes, sake</h3>
+          <h3>Fish-market lunch, the teahouse district, samurai lanes, then out to the hot spring</h3>
           <ul>
-            <li>8am Hokuriku Shinkansen from Tokyo Station, direct to Kanazawa, in by 10:30. Left side for the mountains. Big bags <span class="t" data-t="takkyubin">forwarded</span> straight to the Kyoto hotel, which holds them until Dec 4; you carry one overnight bag for two nights.</li>
-            <li>Drop the bag, then lunch at a counter inside <a href="https://www.google.com/maps/search/?api=1&query=Omicho+Market+Kanazawa" target="_blank" rel="noopener">Omicho Market</a>: peak <span class="t" data-t="crab">snow crab</span> season, plus uni and sweet shrimp off the boats.</li>
+            <li>8am Hokuriku Shinkansen from Tokyo Station, direct to Kanazawa, in by 10:30. Left side for the mountains. Big bags <span class="t" data-t="takkyubin">forwarded</span> straight to the Kyoto hotel, which holds them until Dec 4; you carry one overnight bag for two nights. Bag into a station locker.</li>
+            <li>Lunch at a counter inside <a href="https://www.google.com/maps/search/?api=1&query=Omicho+Market+Kanazawa" target="_blank" rel="noopener">Omicho Market</a>: peak <span class="t" data-t="crab">snow crab</span> season, plus uni and sweet shrimp off the boats.</li>
             <li>Two hours in <a href="https://www.google.com/maps/search/?api=1&query=Higashi+Chaya+District" target="_blank" rel="noopener">Higashi Chaya</a>: the 1820s teahouse district where <span class="t" data-t="geisha">geisha</span> still perform. Lattice fronts, stone lanes, and shops in every house. Gild a pair of chopsticks at a gold-leaf workshop (Kanazawa makes 99% of Japan's gold leaf), eat the gold-leaf ice cream.</li>
             <li>3:30: <a href="https://www.google.com/maps/search/?api=1&query=Nagamachi+Samurai+District" target="_blank" rel="noopener">Nagamachi</a>, earthen walls and narrow lanes, and 45 minutes inside the <a href="https://www.nomurake.com/" target="_blank" rel="noopener">Nomura house</a>, a real samurai residence: the armor, the tea room, the tiny perfect garden. <span class="why">In and out. It's a house, not a museum day.</span></li>
-            <li>Dinner: <span class="t" data-t="nodoguro">nodoguro</span>, the buttery local fish, grilled over charcoal. Then a <span class="t" data-t="sake">sake</span> flight at <a href="https://www.google.com/maps/search/?api=1&query=Fukumitsuya+Sake+Brewery+Kanazawa" target="_blank" rel="noopener">Fukumitsuya</a>, the city's 400-year-old brewery.</li>
+            <li>5pm: grab the bag, taxi 25 minutes out to <a href="https://www.google.com/maps/search/?api=1&query=Motoyu+Ishiya+Kanazawa" target="_blank" rel="noopener">Motoyu Ishiya</a> in Fukatani Onsen (the inn also runs a shuttle; ask when booking). <span class="t" data-t="yukata">Yukata</span> on, then the big outdoor bath: Fukatani's water is iron-rich and runs reddish, the real stuff. Noh stage in the garden, a 200-year-old house, almost no other foreigners.</li>
+            <li>Dinner in the room: <span class="t" data-t="kaiseki">kaiseki</span> with <span class="t" data-t="crab">matsuba crab</span> four ways. Futons laid out while you take one more soak.</li>
           </ul>
-          <div class="stay"><b>Sleep, night 1:</b> <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Intergate+Kanazawa" target="_blank" rel="noopener">Hotel Intergate Kanazawa</a> (~$190, free evening drinks, great breakfast, 15 min from the station).</div>
-          <div class="price"><div><span>Bullet train × 2</span><span class="n">$190</span></div><div><span>Nomura house × 2</span><span class="n">$10</span></div><div><span>Gold-leaf workshop × 2</span><span class="n">$40</span></div><div><span>Sake flight × 2</span><span class="n">$20</span></div><div><span>Hotel × 1 night</span><span class="n">$190</span></div><div class="tot"><span>Ground today</span><span class="n">$450</span></div><div class="food"><span>Food (crab lunch, nodoguro dinner)</span><span class="n">~$200</span></div></div>
+          <div class="stay"><b>Sleep, 2 nights:</b> <a href="https://www.google.com/maps/search/?api=1&query=Motoyu+Ishiya+Kanazawa" target="_blank" rel="noopener">Motoyu Ishiya</a>. Night 1 with the crab dinner + breakfast (~$500 for two), night 2 room + breakfast only (~$350) so you can eat in town. Book early; crab season fills it. <span class="why">The kaiseki is very traditional (sashimi, whole small squid, roe); if that's a worry, ask for the crab-forward course when you book.</span></div>
+          <div class="price"><div><span>Bullet train × 2</span><span class="n">$190</span></div><div><span>Nomura house × 2</span><span class="n">$10</span></div><div><span>Gold-leaf workshop × 2</span><span class="n">$40</span></div><div><span>Taxi to the inn</span><span class="n">$30</span></div><div><span>Ryokan night 1, crab dinner + breakfast</span><span class="n">$500</span></div><div class="tot"><span>Ground today</span><span class="n">$770</span></div><div class="food"><span>Food (crab lunch; dinner included)</span><span class="n">~$120</span></div></div>
         </div>
         <figure class="wiki small" data-wiki="Nagamachi|Ōmichō Market"></figure>
       </div>
 
       <div class="day" data-d="Dec-3"><span class="badge" aria-hidden="true">♨️</span><div class="date"><span class="dow">Thu</span><span class="dn">3</span><span class="dow">Dec</span><span class="tag">Spa night</span></div>
         <div>
-          <h3>The thatched village in the snow, then robes, a red-iron hot spring, crab in the room</h3>
+          <h3>The thatched village in the snow, sake at the brewery, the buttery fish, back to the bath</h3>
           <ul>
-            <li>Check out, bag in a station locker, 8:10am direct bus (75 min) to <a href="https://shirakawa-go.gr.jp/en/" target="_blank" rel="noopener">Shirakawa-go</a>, a UNESCO village of 250-year-old farmhouses with steep <span class="t" data-t="gassho">gassho</span> thatched roofs built to shed six feet of snow. Climb to the Shiroyama viewpoint for the postcard, go inside the Wada house, eat Hida beef, wander the lanes. Bus back at 1pm. <span class="why">A village you walk through, not a garden you stand in. The bus drops you at the gate and the whole thing is on foot.</span></li>
-            <li>Back in Kanazawa by 2:15. Grab the bag, taxi 25 minutes out to <a href="https://www.google.com/maps/search/?api=1&query=Motoyu+Ishiya+Kanazawa" target="_blank" rel="noopener">Motoyu Ishiya</a> in Fukatani Onsen (the inn can also send a shuttle; ask when booking).</li>
-            <li>Check in by 3. <span class="t" data-t="yukata">Yukata</span> on, then the big outdoor bath: Fukatani's water is iron-rich and runs reddish, the real stuff. Noh stage in the garden, a 200-year-old house, almost no other foreigners. <span class="why">This replaces the hot-spring-town night: same soak, same crab, no extra train.</span></li>
-            <li>Dinner in the room: <span class="t" data-t="kaiseki">kaiseki</span> with <span class="t" data-t="crab">matsuba crab</span> four ways. Futons laid out while you take one more soak. Early night.</li>
+            <li>7:15 taxi from the inn for the 8:10am direct bus (75 min) to <a href="https://shirakawa-go.gr.jp/en/" target="_blank" rel="noopener">Shirakawa-go</a>, a UNESCO village of 250-year-old farmhouses with steep <span class="t" data-t="gassho">gassho</span> thatched roofs built to shed six feet of snow. Climb to the Shiroyama viewpoint for the postcard, go inside the Wada house, eat Hida beef, wander the lanes. Bus back at 1pm. <span class="why">A village you walk through, not a garden you stand in. The bus drops you at the gate and the whole thing is on foot.</span></li>
+            <li>Back in Kanazawa by 2:15. A <span class="t" data-t="sake">sake</span> flight at <a href="https://www.google.com/maps/search/?api=1&query=Fukumitsuya+Sake+Brewery+Kanazawa" target="_blank" rel="noopener">Fukumitsuya</a>, the city's 400-year-old brewery, then anything you skipped yesterday.</li>
+            <li>5:30 dinner: <span class="t" data-t="nodoguro">nodoguro</span>, the buttery local fish, grilled over charcoal, at a counter near the brewery. <span class="why">Night 2 at the inn is booked without dinner on purpose: two kaiseki in a row is one too many, and this fish is the thing Kanazawa is known for.</span></li>
+            <li>8pm taxi back to the inn. One more soak, early night, ryokan breakfast in the morning.</li>
           </ul>
-          <div class="stay"><b>Sleep, night 2:</b> <a href="https://www.google.com/maps/search/?api=1&query=Motoyu+Ishiya+Kanazawa" target="_blank" rel="noopener">Motoyu Ishiya</a>, dinner + breakfast, ~$500 for two. Book early; crab season fills it. <span class="why">The menu is very traditional (sashimi, whole small squid, roe); if that's a worry, ask for the crab-forward course when you book.</span></div>
-          <div class="price"><div><span>Shirakawa-go bus × 2 RT</span><span class="n">$60</span></div><div><span>Taxi to the inn</span><span class="n">$30</span></div><div><span>Ryokan w/ dinner + breakfast</span><span class="n">$500</span></div><div class="tot"><span>Ground today</span><span class="n">$590</span></div><div class="food"><span>Food (Hida beef lunch; dinner included)</span><span class="n">~$50</span></div></div>
+          <div class="price"><div><span>Shirakawa-go bus × 2 RT</span><span class="n">$60</span></div><div><span>Taxis, both ways</span><span class="n">$60</span></div><div><span>Sake flight × 2</span><span class="n">$20</span></div><div><span>Ryokan night 2, room + breakfast</span><span class="n">$350</span></div><div class="tot"><span>Ground today</span><span class="n">$490</span></div><div class="food"><span>Food (Hida beef lunch, nodoguro dinner)</span><span class="n">~$180</span></div></div>
         </div>
         <figure class="wiki small" data-wiki="Shirakawa-gō|Historic Villages of Shirakawa-gō and Gokayama"></figure>
       </div>
@@ -238,7 +238,7 @@
         <div>
           <h3>Into Kyoto, the market street, the arcades, build a watch, a samurai sword lesson</h3>
           <ul>
-            <li>Ryokan breakfast, one last soak, taxi to the station for the 10:15 Thunderbird express along Lake Biwa. In by 12:30. Bags already at the hotel.</li>
+            <li>Ryokan breakfast, one last soak, 9:30 taxi to the station for the 10:15 Thunderbird express along Lake Biwa. In by 12:30. Bags already at the hotel.</li>
             <li>2pm: <a href="https://www.google.com/maps/search/?api=1&query=Nishiki+Market" target="_blank" rel="noopener">Nishiki Market</a>, "Kyoto's kitchen": five blocks of pickles, tofu doughnuts, knife shops, grilled everything. Graze for lunch. It's two minutes from the hotel.</li>
             <li>Straight into <a href="https://www.google.com/maps/search/?api=1&query=Shinkyogoku+Shopping+Street+Kyoto" target="_blank" rel="noopener">Teramachi and Shinkyogoku</a>, two covered arcades running north off the market: vintage shops, kimono, tea, sneakers, the second-oldest arcade in Japan. An hour and a half of walking and looking.</li>
             <li>4:45: <a href="https://www.google.com/maps/search/?api=1&query=KUOE+Kyoto" target="_blank" rel="noopener">KUOE</a>, the Kyoto watch brand that lets you build your own, case, dial, hands, strap, at the flagship two minutes from the hotel. Closed Tuesdays. <span class="why">A watch built in Kyoto, on the trip, for Dad. Thirty minutes.</span></li>
@@ -448,14 +448,14 @@
 
 <!-- ===================== BUDGET ===================== -->
 <section id="budget"><div class="wrap">
-  <div class="sec-head"><div class="eyebrow">Money</div><h2>$9,885 on the ground. $19,885 all in.</h2><p class="lede">Every hotel, every train, the two short flights, every ticket, the birthday dinner, the Seoul recovery days, insurance, and phones. Cutting the snow monkeys and the Kinosaki detour paid for the ryokan night, the fifth Kyoto night, the second Osaka night, and the Seoul clinics, and it still lands under $10k on the ground. Food is on top and listed per day in grey; at the pace above, with two three-star meals and two omakase counters, it runs about $3,600 for two. The Reberry skin session is priced separately because it ranges from a hydrating facial to a full Thermage, and that's Mom's call.</p></div>
+  <div class="sec-head"><div class="eyebrow">Money</div><h2>$10,135 on the ground. $20,135 all in.</h2><p class="lede">Every hotel, every train, the two short flights, every ticket, the birthday dinner, the Seoul recovery days, insurance, and phones. Cutting the snow monkeys and the Kinosaki detour paid for the ryokan, the fifth Kyoto night, the second Osaka night, and the Seoul clinics. The second ryokan night pushes it $135 over the $10k ground target; the buffer line covers it, and the Seoul IVs are the easy trim if you want it back under. Food is on top and listed per day in grey; at the pace above, with two three-star meals and two omakase counters, it runs about $3,600 for two. The Reberry skin session is priced separately because it ranges from a hydrating facial to a full Thermage, and that's Mom's call.</p></div>
   <div class="budget">
     <div class="tbl"><table>
       <thead><tr><th>Item</th><th>Detail</th><th class="n">Two people</th></tr></thead>
       <tbody>
-        <tr><td>Hotels &amp; inns</td><td>16 nights: value hotels in cities, one onsen ryokan with crab dinner, two nights at the Andaz in Gangnam</td><td class="n">$3,935</td></tr>
-        <tr class="sub"><td></td><td>Tokyo 5 nts $1,100 · Kanazawa $190 · Motoyu Ishiya $500 · Kyoto 5 nts $1,125 · Osaka 2 nts $420 · Seoul 2 nts $600</td><td class="n"></td></tr>
-        <tr><td>Trains, taxis &amp; transfers</td><td>3 intercity legs, Fuji day, Sagano train, Shirakawa-go bus, ryokan taxis, local trains, airport trains at both ends of both flights, Narita Express both ways, Seoul taxis</td><td class="n">$900</td></tr>
+        <tr><td>Hotels &amp; inns</td><td>16 nights: value hotels in cities, two nights at an onsen ryokan (one with the crab dinner), two nights at the Andaz in Gangnam</td><td class="n">$4,095</td></tr>
+        <tr class="sub"><td></td><td>Tokyo 5 nts $1,100 · Motoyu Ishiya 2 nts $850 · Kyoto 5 nts $1,125 · Osaka 2 nts $420 · Seoul 2 nts $600</td><td class="n"></td></tr>
+        <tr><td>Trains, taxis &amp; transfers</td><td>3 intercity legs, Fuji day, Sagano train, Shirakawa-go bus, ryokan taxis (4), local trains, airport trains at both ends of both flights, Narita Express both ways, Seoul taxis</td><td class="n">$990</td></tr>
         <tr><td>Short flights</td><td>Osaka (KIX) → Seoul (ICN) Dec 11, Seoul (ICN) → Tokyo (NRT) Dec 13, ~$150–250 pp each</td><td class="n">$800</td></tr>
         <tr><td>Luggage forwarding</td><td>2 hand-offs (Tokyo → Kyoto, Osaka → Tokyo), ~$20/bag</td><td class="n">$100</td></tr>
         <tr><td>Birthday maiko dinner</td><td>Private, Gion teahouse, for two</td><td class="n">$1,000</td></tr>
@@ -463,9 +463,9 @@
         <tr><td>Seoul recovery &amp; beauty</td><td>NAD+ IVs, hyperbaric oxygen, color analysis, scalp spa, custom skincare, hanbok rental</td><td class="n">$1,300</td></tr>
         <tr><td>Insurance + eSIMs</td><td>Travel insurance, Japan and Korea eSIMs</td><td class="n">$400</td></tr>
         <tr><td>Buffer</td><td>Taxis in the rain, a forgotten ticket, a shop you walk past twice</td><td class="n">$800</td></tr>
-        <tr class="total"><td>Ground total</td><td>vs. $10,000 target</td><td class="n">$9,885</td></tr>
+        <tr class="total"><td>Ground total</td><td>vs. $10,000 target · $135 over</td><td class="n">$10,135</td></tr>
         <tr><td>Flights</td><td>Air Canada business, MIA → YUL → NRT / NRT → YUL → MIA, booked</td><td class="n">$10,000</td></tr>
-        <tr class="total"><td>Trip total</td><td>excluding food and shopping</td><td class="n">$19,885</td></tr>
+        <tr class="total"><td>Trip total</td><td>excluding food and shopping</td><td class="n">$20,135</td></tr>
         <tr class="sub"><td>Not in the total</td><td>Reberry skin session Dec 12 (facial through Thermage / Ultherapy), Mom's call</td><td class="n">$600–2,000 pp</td></tr>
         <tr class="sub"><td>Not in the total</td><td>Shopping: pillows, bags, frames, jeans, the KUOE watch, a vintage watch, knives, K-beauty</td><td class="n">whatever you decide</td></tr>
       </tbody>
@@ -477,7 +477,7 @@
       <div class="book" id="booklist">
         <label><input type="checkbox" checked><span>Flights: AC 1205 + AC 5 out Nov 27, AC 6 + AC 1208 home Dec 14<small>Booked. Business class via Montréal.</small></span></label>
         <label><input type="checkbox"><span>Hyotei dinner Dec 7, Kikunoi lunch + maiko dinner Dec 8<small>Through the Kyoto hotel concierge the day the hotel is confirmed; Hyotei needs a Japanese phone line. Backups: Roan Kikunoi, Gion Nishikawa.</small></span></label>
-        <label><input type="checkbox"><span>Motoyu Ishiya, Dec 3, dinner + breakfast<small>Crab season fills it. Ask about the shuttle and the crab-forward course.</small></span></label>
+        <label><input type="checkbox"><span>Motoyu Ishiya, Dec 2–4, 2 nights: night 1 with dinner, night 2 room + breakfast<small>Crab season fills it. Ask about the shuttle and the crab-forward course.</small></span></label>
         <label><input type="checkbox"><span>Kyoto hotel, 5 nights Dec 4–9<small>Resol Kawaramachi Sanjo or a machiya. Book this before the restaurants so the concierge exists.</small></span></label>
         <label><input type="checkbox"><span>The two short flights: KIX → ICN morning of Dec 11, ICN → NRT early afternoon Dec 13<small>Korean Air, Asiana, Peach, or Jeju Air. Narita, not Haneda, on the way back.</small></span></label>
         <label><input type="checkbox"><span>Seoul clinics, Dec 11–12: Hana (IV), Reberry (skin), Park Jun (scalp), Myshopper (color)<small>2–4 weeks ahead, all over WhatsApp or Klook. Say what you want in the first message. O2ON and Amore take walk-ins.</small></span></label>
@@ -486,7 +486,7 @@
         <label><input type="checkbox"><span>Tsukiji tour with Ali, Nov 29, 10am slot<small>Airbnb Experiences; it sells out</small></span></label>
         <label><input type="checkbox"><span>Two omakase counters: Dec 1 (Kyubey) and Dec 13<small>3–4 weeks out. Or Coco Nemaru for the 13th.</small></span></label>
         <label><input type="checkbox"><span>Zauo Nov 29, teamLab Nov 29, Samurai Kembu Dec 4, tea ceremony Dec 8<small>Timed tickets, 2–4 weeks out</small></span></label>
-        <label><input type="checkbox"><span>Hotels: Tokyo (×2), Kanazawa, Osaka, Seoul</span></label>
+        <label><input type="checkbox"><span>Hotels: Tokyo (×2), Osaka, Seoul</span></label>
         <label><input type="checkbox"><span>Train seats<small><a href="https://smart-ex.jp/en/" target="_blank" rel="noopener">smartEX</a> for the Tokyo → Kanazawa shinkansen, 1 month out. Fuji Excursion and Shirakawa-go bus too. Skip the JR Pass; point-to-point is cheaper for this route.</small></span></label>
         <label><input type="checkbox"><span>Narita Express seats, Japan + Korea eSIMs, insurance</span></label>
         <label><input type="checkbox"><span>Korea e-Arrival Card, online, Dec 8–11<small>Within 72 hours before landing in Seoul. Two minutes on the phone.</small></span></label>
@@ -498,7 +498,7 @@
 <section id="know" style="background:var(--paper-2);border-top:1px solid var(--line)"><div class="wrap">
   <div class="sec-head"><div class="eyebrow">Before you go</div><h2>Seven things to know, then stop reading and go.</h2></div>
   <div class="know">
-    <div class="g"><b>The bag rhythm</b><p>Twice on this trip you live out of a small bag while the big suitcases travel ahead. <b>Dec 2–4:</b> the Tokyo hotel ships the suitcases to Kyoto (Kyoto holds them); you carry a backpack or duffel through Kanazawa and the ryokan. <b>Dec 9:</b> you carry the suitcases yourself once, Kyoto to Osaka, a 15-minute train. <b>Dec 11–13:</b> Osaka ships them to the Dec 13 Tokyo hotel and you fly to Seoul with carry-ons only. Pack the small bags on purpose: three days of clothes, trail shoes for the Seoul hike, toiletries, chargers, meds, and room for the K-beauty haul. Inns provide robes and slippers. Forwarding is ~$20 a bag, arrives the next afternoon, and every hotel desk does it.</p></div>
+    <div class="g"><b>The bag rhythm</b><p>Twice on this trip you live out of a small bag while the big suitcases travel ahead. <b>Dec 2–4:</b> the Tokyo hotel ships the suitcases to Kyoto (Kyoto holds them); you carry a backpack or duffel for the two ryokan nights outside Kanazawa. <b>Dec 9:</b> you carry the suitcases yourself once, Kyoto to Osaka, a 15-minute train. <b>Dec 11–13:</b> Osaka ships them to the Dec 13 Tokyo hotel and you fly to Seoul with carry-ons only. Pack the small bags on purpose: three days of clothes, trail shoes for the Seoul hike, toiletries, chargers, meds, and room for the K-beauty haul. Inns provide robes and slippers. Forwarding is ~$20 a bag, arrives the next afternoon, and every hotel desk does it.</p></div>
     <div class="g"><b>Korea paperwork &amp; phones</b><p>US passports don't need a K-ETA visa waiver through Dec 31, 2026, but you do need the free online <b>e-Arrival Card</b>, filled out within 72 hours before landing (so Dec 8–11; the birthday-night reminder is in the itinerary). Your Japan eSIM almost certainly won't cover Korea: buy a separate Korea eSIM or turn on roaming for three days. Download <b>Naver Map</b> or <b>KakaoMap</b> before you land; Google Maps can't do walking or driving directions in Korea. Korea runs on cards, but carry a little won (₩) for the market stalls and the hanbok shop.</p></div>
     <div class="g"><b>The Seoul clinics, honestly</b><p>Everything on Dec 11–12 is single-session, zero-downtime, and done by the thousand on visitors every week: IV drips, the oxygen chamber, color analysis, the scalp spa, and the skin lifting are all walk-out-looking-normal treatments. Two things to do ahead: tell each clinic what you want in the first WhatsApp message (they quote and schedule from that), and have Mom decide the Reberry menu before the trip, because the price ranges from a $150 LDM glow to a $2,000 Thermage. Skip anything with needles into the face the day before a flight. Tongin, the Korean-medicine clinic from the original list, is closed Fri–Sun, which is exactly when you're there, so it's out.</p></div>
     <div class="g"><b>Money &amp; phones, Japan</b><p>Japan still runs on more cash than you'd expect. Pull yen from 7-Eleven ATMs (US cards work, good rates). Tipping does not exist, in either country. Add a Suica card to your iPhone Wallet before you leave and tap it on every train, bus, and vending machine. Buy a Japan eSIM (Ubigi or Airalo) before flying. Google Translate's camera reads menus in both countries.</p></div>
@@ -513,6 +513,6 @@
 <div class="pop" id="pop" role="tooltip"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script src="app.js?v=10"></script>
+<script src="app.js?v=11"></script>
 </body>
 </html>

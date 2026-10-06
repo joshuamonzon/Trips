@@ -59,7 +59,7 @@ async function loadWiki(fig){
 
 const stops=[
   {n:'01',name:'Tokyo',sub:'Nov 28 – Dec 2 · 4 nights',ll:[35.6812,139.7671],a:'#tokyo'},
-  {n:'02',name:'Kanazawa',sub:'Dec 2 – 4 · 2 nights · onsen ryokan night 2',ll:[36.5780,136.6480],a:'#kanazawa'},
+  {n:'02',name:'Kanazawa',sub:'Dec 2 – 4 · 2 nights at the onsen ryokan',ll:[36.5780,136.6480],a:'#kanazawa'},
   {n:'03',name:'Kyoto',sub:'Dec 4 – 9 · 5 nights · birthday Dec 8',ll:[35.0116,135.7681],a:'#kyoto'},
   {n:'04',name:'Osaka',sub:'Dec 9 – 11 · 2 nights',ll:[34.6937,135.5023],a:'#osaka'},
   {n:'05',name:'Seoul',sub:'Dec 11 – 13 · 2 nights · by air',ll:[37.5254,127.0289],a:'#seoul'},
@@ -68,7 +68,7 @@ const stops=[
 const trips=[
   {name:'Mt. Fuji / Kawaguchiko',sub:'Day trip from Tokyo · Dec 1',ll:[35.5055,138.7640]},
   {name:'Shirakawa-go',sub:'Morning from Kanazawa · Dec 3',ll:[36.2578,136.9062]},
-  {name:'Motoyu Ishiya (Fukatani Onsen)',sub:'Ryokan night · Dec 3',ll:[36.6137,136.7210]},
+  {name:'Motoyu Ishiya (Fukatani Onsen)',sub:'Where you sleep, Dec 2 – 4 · 25 min from town',ll:[36.6137,136.7210]},
   {name:'Arashiyama + Sagano train',sub:'Afternoon from Kyoto · Dec 5',ll:[35.0168,135.6713]},
   {name:'Nara',sub:'Day trip from Kyoto · Dec 6',ll:[34.6851,135.8048]},
   {name:'Yamazaki Distillery',sub:'Morning from Osaka · Dec 10',ll:[34.8930,135.6750]}
