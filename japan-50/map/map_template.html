@@ -343,7 +343,7 @@ function renderRoute(){
   const svg = `<svg class="map" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" aria-label="Route map">${g}${scaleBar(kmPx,W,H)}</svg>`;
   const legs = DATA.legs.map((l,i) => `<li><div><div>${esc(PINS[l.a].short==='Metropolitan'?'Tokyo':CITIES[i].name)} → ${esc(CITIES[i+1].name)}</div><div class="how">${esc(l.how)}</div></div><div><div class="dur">${esc(l.dur)}</div><div class="cost">${esc(l.cost)}</div></div></li>`).join('');
   sec.innerHTML = `
-    <div class="panel-head"><h2>The shape of it</h2><span class="meta">16 nights · 14 Japan, 2 Korea · a loop through the middle of Japan, a hop to Seoul, back to Tokyo for the flight home</span></div>
+    <div class="panel-head"><h2>The shape of it</h2><span class="meta">16 nights · 14 Japan, 2 Korea · Tokyo, a Kanazawa onsen, five nights in Kyoto, two in Osaka, three days in Seoul, back to Tokyo for the flight home</span></div>
     <div class="ov">
       <div class="mapcard"><div class="mapbar"><div class="days"><span><i class="dot sleep"></i>Where you sleep</span><span>— — train · · · flight</span></div></div>${svg}</div>
       <div><ol class="legs">${legs}</ol>

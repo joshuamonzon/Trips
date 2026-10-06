@@ -1,7 +1,7 @@
 from xml.sax.saxutils import escape as e
 P=[
 ("Tokyo — Food & Drink",[
-("Yakiniku Coco Nemaru Ginza",35.6717064,139.7612311,"Wagyu yakiniku (grill at table). No free Tokyo dinner left; swap candidate for the Dec 13 Sushi Yuu night. Private rooms. 1 min from Ginza Stn Exit C3."),
+("Yakiniku Coco Nemaru Ginza",35.6717064,139.7612311,"Wagyu yakiniku (grill at table). Swap candidate for the Dec 13 Sushi Yuu night if you want wagyu over a second omakase. Private rooms. 1 min from Ginza Stn Exit C3."),
 ("The SG Club",35.6642434,139.69923140000003,"Top cocktail bar, Shibuya. Opens 6 PM. Nightcap spot."),
 ("Sushi Punch",35.653654599999996,139.7357535,"Omakase sushi, Azabujuban 7F. Book ahead. Closed Sundays."),
 ("Yoroniku Ebisu",35.646357099999996,139.71180569999999,"Wagyu yakiniku omakase. Reservation-only, book ~1 month out. Overlaps w/ Coco Nemaru — pick one."),
@@ -11,10 +11,8 @@ P=[
 ("Tokyo — Shopping",[
 ]),
 ("Kyoto",[
-("KUOE Kyoto (optional)",35.00851,135.76682,"Build-your-own watch. ~2 min walk from Hotel Resol; 11-5:30, closed Tue. Drop in if a Kyoto gap opens."),
 ]),
 ("Osaka",[
-("Sennichimae Doguyasuji",34.664014099999996,135.5035063,"Kitchenware street. Skipped: closes 6 PM and Kappabashi (Tokyo, Nov 29) already covers knives + fake food."),
 ]),
 ]
 out=['<?xml version="1.0" encoding="UTF-8"?>','<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>Japan 50 · Bench (saved, not slotted)</name><Style id="idea"><IconStyle><color>ff00d7ff</color><Icon><href>https://maps.google.com/mapfiles/kml/paddle/ylw-stars.png</href></Icon></IconStyle></Style>']

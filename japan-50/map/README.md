@@ -10,6 +10,9 @@ Times marked ≈ are estimates (itinerary figures where stated, typical transit 
 
 ## Bench layer
 
-- Saved spots from chat are now slotted into the itinerary days in `build_trip_map.py` (Tsukiji food tour, Nishikawa pillows, Zauo, MixTHINKS, Momotaro, Zuicho, Sagano train, Taiga Takahashi, B.B. Garage).
-- `ideas.kml` / `ideas.csv` — the 8 that didn't fit (Coco Nemaru, Yoroniku, SG Club, Sushi Punch, Uonami, Good Wood Terrace, KUOE, Doguyasuji), each with the reason. Yellow stars. Import as a second layer in the same My Map.
+- `ideas.kml` / `ideas.csv` — saved spots that didn't make the schedule (Coco Nemaru, Yoroniku, SG Club, Sushi Punch, Uonami, Good Wood Terrace), each pin says why. Yellow stars. Import as a second layer in the same My Map.
 - `build_ideas.py` — source for that layer.
+
+## Changelog
+
+- **Oct 6** — Route reworked: snow monkeys and Kinosaki cut; Kanazawa night 2 moved to Motoyu Ishiya ryokan (onsen + crab kaiseki); Kyoto now 5 nights with a shopping day, Hyotei (3*) dinner and Kikunoi lunch; Osaka 2 nights (Kuromon, Doguyasuji, Shinsaibashi, Amemura/B.B. Garage, Yamazaki, Umeda, Shinsekai); Seoul rebuilt around Gangnam clinics (IV, HBOT, Reberry, Myshopper, Park Jun, Amore Seongsu, Inwangsan hike) at Andaz Gangnam; go-karts, Meiji Jingu, Kenroku-en, Saiho-ji, Shunkoin and the Kurama hike cut.
