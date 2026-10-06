@@ -7,3 +7,8 @@ Pins and travel times for Mom's 50th trip (Nov 27 – Dec 14, 2026). Companion t
 - `build_trip_map.py` + `map_template.html` — the source. Edit the itinerary data at the top of the script and run `python3 build_trip_map.py` to regenerate both files.
 
 Times marked ≈ are estimates (itinerary figures where stated, typical transit otherwise). Intercity legs are the itinerary's own numbers.
+
+## Ideas layer
+
+- `ideas.kml` / `ideas.csv` — 19 spots Josh saved while scrolling (food, shopping, Sagano train, watches, Osaka kitchen street). Yellow stars, one folder per area. Not yet slotted into the itinerary. Import into the same My Map as a **second layer** (Add layer → Import) so it sits on top of the itinerary pins.
+- `build_ideas.py` — source for that layer; edit the list and run `python3 build_ideas.py`.
