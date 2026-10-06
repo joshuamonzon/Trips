@@ -28,6 +28,11 @@ pin("tenjo","Mt. Tenjo / Fuji Panoramic Ropeway",35.5038024,138.7743776,"stop","
 pin("hoto","Hoto Fudo",35.4988609,138.7686546,"stop","ChIJD9e0oIJgGWARjCiXDS-GJmA")
 pin("oishi","Oishi Park",35.522904,138.7457522,"stop","ChIJlSsLjKZfGWARBCllOgtTLqI")
 pin("kyubey","Kyubey Ginza",35.6684684,139.7612701,"stop","ChIJu3eG8uiLGGAR14kVvD_YrHI","Kyubey")
+pin("nishikawa","Nishikawa custom pillow (Matsuya Ginza)",35.6723299,139.7667615,"stop","ChIJG8GsGImLGGAR1PfGCC2k-ok","Nishikawa pillow")
+pin("zauo","Zauo Shibuya",35.6624737,139.6998545,"stop","ChIJa3cs7aiMGGAR8weY287qaJE","Zauo")
+pin("mixthinks","MixTHINKS Harajuku (vintage designer bags)",35.6671291,139.7038071,"stop","ChIJd5DukxmNGGAR0dK6sam4DIs","MixTHINKS")
+pin("momotaro","Momotaro Jeans Aoyama",35.663737,139.7105572,"stop","ChIJLcQt9l-LGGAR0dWhLQOnX-Y","Momotaro Jeans")
+pin("zuicho","Katsudon-ya Zuicho",35.662703,139.6953601,"stop","ChIJCZkGEqyMGGAR72gGFgeNxEE","Zuicho")
 pin("tokyosta","Tokyo Station",35.6812996,139.7670658,"transit","ChIJC3Cf2PuLGGAROO00ukl8JwA","Tokyo Sta")
 # Nagano
 pin("nagano","Nagano Station",36.6431243,138.1886437,"transit","ChIJh0bai5KGHWARO9I7pK11KTU","Nagano Sta")
@@ -53,6 +58,8 @@ pin("resol","Hotel Resol Kyoto Kawaramachi Sanjo",35.0079505,135.7692203,"sleep"
 pin("bamboo","Arashiyama Bamboo Grove",35.0168187,135.6713013,"stop","ChIJrYtcv-urAWAR3XzWvXv8n_s","Bamboo Grove")
 pin("tenryuji","Tenryu-ji",35.0158379,135.6737654,"stop","ChIJk54PuAGqAWARwEgz_9o-nM0")
 pin("okochi","Okochi Sanso Garden",35.0167147,135.6699227,"stop","ChIJGTfQ9gSqAWARvzp3lzOgjk8","Okochi Sanso")
+pin("torokko","Sagano Romantic Train (Saga Torokko Sta)",35.018568,135.6807823,"stop","ChIJh2v-m_6pAWAR9TR4D4O6S24","Sagano train")
+pin("taiga","Taiga Takahashi (T.T)",35.0019692,135.7743322,"stop","ChIJSVB1LIIJAWARSqg5sapwPYo","Taiga Takahashi")
 pin("nishiki","Nishiki Market",35.0050258,135.764723,"stop","ChIJT8uMzZwIAWARnGzsARCjnrY")
 pin("kembu","Samurai Kembu Theater",35.0095371,135.7755388,"stop","ChIJXQxzcPgMAWAR2MVdzqV2kkY","Samurai Kembu")
 pin("todaiji","Todai-ji (Nara)",34.6889851,135.8398158,"stop","ChIJ3XYIepA5AWARjzzVnT-skPg","Todai-ji")
@@ -81,6 +88,7 @@ pin("shinosaka","Shin-Osaka Station",34.7334658,135.5002547,"transit","ChIJSc4Sb
 pin("yamazaki","Suntory Yamazaki Distillery",34.8924574,135.6744508,"stop","ChIJ-WxR9WMDAWARHW0W4OC39qE","Yamazaki")
 pin("crosshotel","Cross Hotel Osaka",34.6697148,135.5007625,"sleep","ChIJA0zO7hPnAGARHooEfgZ_MsY","Cross Hotel")
 pin("dotonbori","Dotonbori",34.6686471,135.5030983,"stop","ChIJg2DcJhXnAGARCbeAHoZrPeQ")
+pin("bbgarage","B.B. Garage (vintage watches)",34.6703075,135.4985753,"stop","ChIJ62Sj0EznAGARLILmS20T5LM","B.B. Garage")
 pin("namba","Namba Station (airport express)",34.6627,135.5021,"transit",None,"Namba Sta")
 pin("kix","Kansai International Airport (KIX)",34.4319994,135.2366019,"transit","ChIJ9_rNIxO5AGARiI-QjZ-ncfE","KIX")
 # Seoul
@@ -118,14 +126,19 @@ CITIES = [
    dict(date="Sun Nov 29", title="Old Tokyo at dawn, the knife street, fish-market brunch, teamLab", stops=[
      ("sensoji","6:30am","Tokyo's oldest temple, empty at dawn. By 10am it's a mob.",(35,"subway")),
      ("kappabashi","8am","Knives engraved with your name. Buy now, forward home in the suitcase.",(10,"walk")),
-     ("tsukiji","10am","Late brunch standing up: scallops, tuna bowls, tamago.",(20,"subway")),
-     ("ginza","noon","12-floor Uniqlo, Itoya, depachika food halls. Passports out for tax-free.",(15,"walk")),
+     ("tsukiji","10am","Tsukiji food tour with Ali (ex-Milos seafood chef), 10am–noon slot. Meet at the Shinran Shonin statue. Food not included: bring cash. airbnb.com/experiences/6919404",(20,"subway")),
+     ("nishikawa","12:30pm","Custom-fit pillow at Nishikawa, Matsuya 7F. Walk-in OK: ~30 min fitting, ~40 min to make, so browse Ginza while it's built.",(15,"walk")),
+     ("ginza","1:15pm","12-floor Uniqlo, Itoya, depachika food halls. Pick up the pillows on the way out. Passports out for tax-free.",(5,"walk")),
      ("teamlab","3pm","Timed slot. Barefoot, knee-deep in projected koi. Book 3 weeks out.",(15,"subway")),
-     ("gracery","6pm","Early dinner, early bed. Nothing past 8pm.",(40,"subway")),
+     ("zauo","5:45pm","Early dinner: fish your own from the boat, they cook it how you want. Reserve. Done by 7:30.",(40,"subway")),
+     ("gracery","7:45pm","Early bed. Nothing past 8pm.",(15,"train")),
    ]),
    dict(date="Mon Nov 30", title="Shrine forest, vintage glasses, go-karts, tiny bars", stops=[
      ("meiji","opening","170-acre forest in the city. Giant torii, sake barrels, quiet.",(15,"train")),
-     ("solakzade","11am","Dad's stop: frames from the 1800s–1980s, fitted like a tailor. Then Omotesando + Harajuku back streets.",(12,"walk")),
+     ("solakzade","11am","Dad's stop: frames from the 1800s–1980s, fitted like a tailor.",(12,"walk")),
+     ("mixthinks","11:45am","Vintage designer bags. Ask the condition grade (N/S/A/AB). Opens 11:30. Passports for tax-free.",(5,"walk")),
+     ("momotaro","12:45pm","Japanese selvedge denim. Free hemming while you eat (~1 hr).",(12,"walk")),
+     ("zuicho","1:45pm","Katsudon lunch, one dish, 8 seats, expect a short line. Then back to Momotaro for the hemmed jeans.",(20,"subway")),
      ("kart","3pm","Two hours in costume on real roads at dusk. Needs the International Driving Permit.",(20,"walk")),
      ("omoide","7pm","Yakitori under the train tracks.",(15,"train")),
      ("goldengai","8:30pm","Six alleys, 200 six-seat bars. ~¥1,000 cover each.",(8,"walk")),
@@ -188,10 +201,11 @@ CITIES = [
      ("kanazawasta","8:30am","Thunderbird express along Lake Biwa.",(15,"bus")),
      ("kyotosta","11am","",(135,"train")),
      ("resol","11:30am","Bags already here.",(10,"subway")),
-     ("bamboo","12:30pm","60-ft stalks creaking in the wind.",(35,"train")),
-     ("tenryuji","1:15pm","Zen garden.",(5,"walk")),
-     ("okochi","2pm","A silent-film star's mountain garden, tea included.",(8,"walk")),
-     ("nishiki","4pm","Kyoto's kitchen: five blocks of pickles, tofu doughnuts, knives.",(35,"train")),
+     ("torokko","12:15pm","Sagano Romantic Train one way through the Hozu gorge in peak fall color. Seats open exactly 1 month out (Nov 5): Car No. 5 (open-air), right side. JR back from Umahori.",(35,"train")),
+     ("bamboo","1:45pm","60-ft stalks creaking in the wind.",(5,"walk")),
+     ("tenryuji","2:15pm","Zen garden.",(5,"walk")),
+     ("okochi","3pm","A silent-film star's mountain garden, tea included.",(8,"walk")),
+     ("nishiki","4:30pm","Kyoto's kitchen: five blocks of pickles, tofu doughnuts, knives.",(35,"train")),
      ("resol","5:30pm","Change.",(5,"walk")),
      ("kembu","6:30pm","90 min: hakama on, learn to draw and cut, then the performance.",(10,"walk")),
      ("resol","8:30pm","",(10,"walk")),
@@ -216,7 +230,8 @@ CITIES = [
      ("saihoji","9am","Copy a sutra in ink, then the moss garden. Reservation only, booked a month out.",(35,"bus")),
      ("kikunoi","12:30pm","Three-star lunch kaiseki at half the dinner price.",(45,"bus")),
      ("giontea","2:30pm","Private tea ceremony in a Gion teahouse.",(8,"walk")),
-     ("ninenzaka","3:30pm","Stone lanes up the hill.",(10,"walk")),
+     ("taiga","3:15pm","Taiga Takahashi: vintage-inspired workwear in a Gion machiya, steps from the teahouse. 30 min.",(5,"walk")),
+     ("ninenzaka","3:45pm","Stone lanes up the hill.",(10,"walk")),
      ("kiyomizu","4:15pm","The temple on wooden stilts, at sunset.",(10,"walk")),
      ("hatanaka","6:30pm","The dinner. Private maiko evening, two hours, cake requested. Fill out Korea's e-Arrival Card tonight.",(15,"walk")),
      ("resol","9pm","",(15,"walk")),
@@ -242,7 +257,8 @@ CITIES = [
      ("shinosaka","1:15pm","Straight to the local train.",(160,"train")),
      ("yamazaki","2pm","Where Japanese whisky was born. Tour is a lottery 2 months out; tasting counter takes a reservation.",(30,"train")),
      ("crosshotel","5pm","Check in. Repack: Seoul is carry-on only.",(45,"train")),
-     ("dotonbori","6pm","The canal, the Glico man, kushikatsu and takoyaki standing up. Early night: 7am airport train.",(3,"walk")),
+     ("bbgarage","5:15pm","Vintage watches at the back of the shop (open till 8, closed Wed). Ask if it's been overhauled and if the dial/hands are original.",(8,"walk")),
+     ("dotonbori","6:30pm","The canal, the Glico man, kushikatsu and takoyaki standing up. Early night: 7am airport train.",(10,"walk")),
    ]),
   ]),
  dict(id="seoul", n=7, name="Seoul", kanji="서울", dates="Dec 11 – 13", nights="2 nights", hotel="ninetree",
