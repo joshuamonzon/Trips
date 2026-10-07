@@ -1,5 +1,8 @@
 from xml.sax.saxutils import escape as e
 P=[
+("Seoul — Pending",[
+("Le Blanc Dental Clinic",37.5033,127.0245,"Dad's veneers (long-standing want). 1-day in-house lab. 2F Dochung Bldg, 519 Gangnam-daero, 5 min from Sinnonhyeon, near Reberry. Mon/Thu to 9pm, Fri to 7pm, Sat 10-2, closed Sun. WhatsApp +82-10-5781-3811. Plan: Dec 11 2-7pm for Dad; Dad's IV+HBOT move to Dec 12 am while Mom's at Reberry. Send photos/scan ahead, confirm it finishes in one visit. Not in budget: ~$500-1,500/tooth."),
+]),
 ("Tokyo — Food & Drink",[
 ("Yakiniku Coco Nemaru Ginza",35.6717064,139.7612311,"Wagyu yakiniku (grill at table). Swap candidate for the Dec 13 Sushi Yuu night if you want wagyu over a second omakase. Private rooms. 1 min from Ginza Stn Exit C3."),
 ("The SG Club",35.6642434,139.69923140000003,"Top cocktail bar, Shibuya. Opens 6 PM. Nightcap spot."),
