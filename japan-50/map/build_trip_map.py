@@ -9,6 +9,7 @@ def pin(id, name, lat, lng, typ="stop", pid=None, short=None):
 
 # Tokyo
 pin("narita","Narita Airport (NRT)",35.7647,140.3864,"transit",None,"Narita")
+pin("mitsui","Mitsui Garden Hotel Ginza-gochome",35.6688823,139.7667539,"sleep","ChIJe-N7TlaLGGARAevqIrCQyEQ","Mitsui Ginza")
 pin("gracery","Hotel Gracery Shinjuku",35.6953583,139.7020345,"sleep","ChIJF-U1JdiMGGARaay7KIrrtZ0","Gracery")
 pin("shinjuku","Shinjuku Station",35.6896067,139.7005713,"transit","ChIJH7qx1tCMGGAR1f2s7PGhMhw","Shinjuku Sta")
 pin("shibuya","Shibuya Scramble Crossing",35.659482,139.7005596,"stop","ChIJK9EM68qLGGARacmu4KJj5SA","Shibuya Crossing")
@@ -216,20 +217,22 @@ pin("snuh","SNUH Healthcare System Gangnam Center (38–40F)",37.5000225,127.036
 # mode: walk, train, subway, bus, taxi, flight, ropeway, hike, shuttle
 # picks = (pin_id, blurb): "while you're here" options, no schedule
 CITIES = [
- dict(id="tokyo", n=1, name="Tokyo", kanji="東京", dates="Nov 28 – Dec 2", nights="4 nights", hotel="gracery",
-  hotel_note="Godzilla on the roof. Narita Express stops at Shinjuku. Alt: Shibuya Stream Excel.",
+ dict(id="tokyo", n=1, name="Tokyo", kanji="東京", dates="Nov 28 – Dec 2", nights="4 nights", hotel="mitsui",
+  hotel_note="BOOKED (conf. 1065452050, refundable to Nov 24). Ginza 5-chome: Tsukiji, Kyubey, Nishikawa and Uniqlo are walks; Higashi-Ginza (Asakusa line, direct to Senso-ji) and Ginza stations 3 min; Tokyo Station 10 min by taxi. Public bath on site. Check-in after 3pm; if you're later than 9pm, call ahead or they can cancel.",
   days=[
    dict(date="Sat Nov 28", title="Land, breathe, ramen, sleep", stops=[
      ("narita","4:30pm","Land. Immigration by 5:30. Buy N'EX tickets at the counter after customs.",None),
-     ("gracery","7:15pm","Check in. Hotel by 7:15.",(80,"train")),
-     ("shibuya","evening","Stand in the middle of it. (You go above it tomorrow at sunset.)",(15,"train")),
-     ("gracery","10pm","Ramen on the way. Bed by 10.",(15,"train")),
+     ("tokyosta","6:30pm","Narita Express to Tokyo Station, 55 min. Taxi stand on the Yaesu side.",(55,"train")),
+     ("mitsui","7pm","Check in by 7 (the hotel cancels unannounced arrivals after 9pm). Bath on site.",(10,"taxi")),
+     ("shibuya","evening","Ginza line, 20 min. Stand in the middle of it. (You go above it tomorrow at sunset.)",(20,"subway")),
+     ("mitsui","10pm","Ramen on the way. Bed by 10.",(20,"subway")),
    ], picks=[
-     ("omoide","Yakitori under the train tracks, 5 min from the hotel. If you want more than ramen."),
-     ("mitaba","Ramen 5 min from the hotel, open till 5:45am. The jet-lag bowl."),
+     ("hachigou","Ginza, 3 min from the hotel: the 6-seat Bib Gourmand ramen. Reservation only and closed Mon; tonight it's a walk-past unless you booked."),
+     ("iroriya","Higashi-Ginza, 3 min: basement izakaya around a hearth, open till 3am. The if-you're-still-up option."),
+     ("omoide","Shinjuku: yakitori under the train tracks. 25 min away now; save it for the Dec 1 Fuji return if you want it."),
    ]),
    dict(date="Sun Nov 29", title="Old Tokyo at dawn, matcha, pancakes, Dad's watch, Mom's frames (order today), denim, the city from the roof at sunset", stops=[
-     ("sensoji","6:30am","Tokyo's oldest temple at dawn, 30 min, then Nakamise street. By 10am it's a mob.",(35,"subway")),
+     ("sensoji","6:30am","Asakusa line from Higashi-Ginza, direct, 20 min. Tokyo's oldest temple at dawn, 30 min, then Nakamise street. By 10am it's a mob.",(20,"subway")),
      ("hatoya","9am","Matcha whisked in front of you. Opens 9; be there at 8:50 or the line is 30 min.",(8,"walk")),
      ("micasadeco","9:45am","Ricotta pancakes. Opens 10 on Sunday; the line forms 30 min early. Harajuku.",(40,"subway")),
      ("watchnian","11:30am","Pre-owned Rolex / Omega / Cartier with service records, tax-free, English staff. Dad's browse. 5.0 across 1,600 reviews.",(15,"walk")),
@@ -239,7 +242,7 @@ CITIES = [
      ("mixthinks","3:30pm","Vintage designer bags. Ask the condition grade (N/S/A/AB). Passports for tax-free.",(10,"walk")),
      ("shibuyasky","4pm","The open-air roof over the crossing. Sunset is 4:28; book the 4pm slot the day tickets open (sunset sells out first). Fuji on a clear day.",(12,"walk")),
      ("zauo","6:15pm","Fish your own dinner from the boat; they cook it how you want. Reserve. Done by 8.",(8,"walk")),
-     ("gracery","8:30pm","Day two of jet lag is the hard one. Bed.",(15,"train")),
+     ("mitsui","8:30pm","Ginza line back, 20 min. Day two of jet lag is the hard one. Bed.",(20,"subway")),
    ], picks=[
      ("imopippi","Asakusa: crème-brûlée sweet potato, cash only, 11am open (so only if you're still in Asakusa)."),
      ("iyoshi","Asakusa: craft cola made in front of you. Opens 12:30, so a Nov 30 Kappabashi add-on instead."),
@@ -253,15 +256,15 @@ CITIES = [
      ("sgclub","Shibuya: one of the world's top-50 cocktail bars, opens 6. Not on a jet-lag night."),
    ]),
    dict(date="Mon Nov 30", title="A chef walks you through the fish market, the knife street, pillows made to your neck, teamLab, vintage town, then the T-bone", stops=[
-     ("tsukiji","10am","Tsukiji food tour with Ali (ex-Milos seafood chef), 10–noon. Meet at the Shinran Shonin statue. Food not included: bring cash. airbnb.com/experiences/6919404. Not booked yet: book it.",(25,"subway")),
+     ("tsukiji","10am","12-min walk from the hotel. Tsukiji food tour with Ali (ex-Milos seafood chef), 10–noon. Meet at the Shinran Shonin statue. Food not included: bring cash. airbnb.com/experiences/6919404. Not booked yet: book it.",(12,"walk")),
      ("kappabashi","12:30pm","Knives engraved with your name. Buy now, forward home in the suitcase.",(20,"subway")),
-     ("nishikawa","1:30pm","Custom-fit pillow at Nishikawa, Matsuya 7F. Walk-in OK: ~30 min fitting, ~40 min to make, so shop Ginza while it's built.",(25,"subway")),
+     ("nishikawa","1:30pm","Custom-fit pillow at Nishikawa, Matsuya 7F, 5 min from the hotel. Walk-in OK: ~30 min fitting, ~40 min to make, so shop Ginza while it's built.",(25,"subway")),
      ("ginza","2:15pm","12-floor Uniqlo, Itoya, depachika food halls. Pick up the pillows on the way out. Passports out for tax-free.",(5,"walk")),
      ("teamlab","3:30pm","Timed slot. Barefoot, knee-deep in projected koi. Book 3 weeks out.",(15,"subway")),
      ("shimokita","5:30pm","Shimokitazawa: a whole neighborhood of vintage shops, record stores and cafés. Two hours on foot, no plan.",(50,"train")),
      ("tnaka","8pm","The Tokyo steak: Omi-beef T-bone grilled over an open flame, 4.8 across 500 reviews, one of the top steak rooms in the world. ¥20–30k pp, reservation only (phone 2–5pm JST, or through the hotel). 15 min from Shimokita.",(15,"train")),
-     ("goldengai","10:45pm","Six alleys, 200 six-seat bars, 10 min from the hotel. Start the whisky at Bar Zoetrope. Only if there's gas left.",(25,"train")),
-     ("gracery","late","Walk home.",(8,"walk")),
+     ("goldengai","10:45pm","Six alleys, 200 six-seat bars. Start the whisky at Bar Zoetrope. 25 min from Nakameguro and 25 min home afterwards: only if there's real gas left. Otherwise Iroriya is 3 min from the hotel.",(25,"train")),
+     ("mitsui","late","Taxi home, 20 min.",(20,"taxi")),
    ], picks=[
      ("iyoshi","Asakusa: craft cola, 12:30–6:30, a 5-min detour from Kappabashi."),
      ("andra","Ueno: the viral cheeseburger dunked in a skillet of cheese. 11:30–2 lunch, 10 min from Kappabashi. Only if you skipped the market snacks."),
@@ -275,15 +278,15 @@ CITIES = [
      ("zoetrope","Shinjuku: 300 Japanese whiskies, 5 min from the hotel."),
    ]),
    dict(date="Tue Dec 1", title="Mt. Fuji day trip, then the sushi counter", stops=[
-     ("shinjuku","7:15am","Fuji Excursion train, 7:30 departure. Right side faces the mountain.",(8,"walk")),
+     ("shinjuku","7:15am","Marunouchi line from Ginza, 16 min, leave the hotel at 6:50. Fuji Excursion train, 7:30 departure. Right side faces the mountain.",(16,"subway")),
      ("kawaguchiko","9:20am","Arrive lakeside.",(110,"train")),
      ("tenjo","10am","An hour of real climbing to a viewpoint where Fuji fills the horizon. Ropeway down.",(15,"walk")),
      ("hoto","12:30pm","Hoto: fat-noodle miso stew.",(15,"walk")),
      ("oishi","2pm","Lakeshore reflection shot.",(25,"bus")),
      ("kawaguchiko","3:45pm","Train back by 4.",(25,"bus")),
-     ("shinjuku","6pm","Shower and change at the hotel.",(110,"train")),
-     ("kyubey","7:30pm","Omakase at the classic counter, since 1935. Pack tonight: big bags to the front desk in the morning.",(20,"subway")),
-     ("gracery","10pm","",(20,"subway")),
+     ("shinjuku","6pm","Marunouchi line back to Ginza, 16 min. Shower and change.",(110,"train")),
+     ("kyubey","7:30pm","Omakase at the classic counter, since 1935, a 3-min walk from the hotel. Pack tonight: big bags to the front desk in the morning.",(20,"subway")),
+     ("mitsui","10pm","Walk home.",(3,"walk")),
    ], picks=[
      ("jbs","Yoyogi: the best cheap cheeseburger in Tokyo, 11 seats, 5 min from Shinjuku Station. If you get back early and hungry."),
      ("littlenap","Yoyogi Park: cortado by the train tracks. Morning-of coffee if you're up early."),
@@ -293,7 +296,7 @@ CITIES = [
   hotel_note="Both nights at Motoyu Ishiya, a 200-year-old onsen ryokan in Fukatani, 25 min by taxi from the station (the inn also runs a shuttle: ask). Night 1 with the crab kaiseki in the room; night 2 room + breakfast only, dinner in town. Big bags forwarded Tokyo → Kyoto.",
   days=[
    dict(date="Wed Dec 2", title="Fish-market lunch, the garden, geisha lanes, gold leaf, samurai streets, out to the hot spring", stops=[
-     ("tokyosta","7:45am","Hokuriku Shinkansen direct, 8am. Left side for the mountains.",(25,"train")),
+     ("tokyosta","7:40am","Taxi from the hotel, 10 min. Hokuriku Shinkansen direct, 8am. Left side for the mountains.",(10,"taxi")),
      ("kanazawasta","10:30am","In by 10:30. Overnight bag into a station locker.",(150,"train")),
      ("ikiiki","11am","Omicho Market: the kaisendon counter (write your name on the sheet at the door). Peak snow crab, nodoguro, uni, sweet shrimp. Cash. Closes 1:30.",(15,"bus")),
      ("kenrokuen","12:30pm","Kenroku-en, one of Japan's three great gardens. Back in (your new notes call it a must). One hour: the winter yukitsuri rope cones are up on the pines, the pond, the oldest fountain in Japan. Then out.",(15,"walk")),
@@ -494,7 +497,7 @@ BENCH = [(c,[x for x in items if len(x)==2 and x[0] in P]) for c,items in BENCH]
 
 # intercity legs for the overview (from the itinerary)
 LEGS = [
- ("gracery","ishiya","Hokuriku Shinkansen (direct) + taxi","3h","$95 pp + ~$30 taxi"),
+ ("mitsui","ishiya","Taxi + Hokuriku Shinkansen (direct) + taxi","3h","$95 pp + ~$45 taxis"),
  ("ishiya","resol","Ryokan taxi 25 min + Thunderbird express","2h45","$50 pp + ~$30 taxi"),
  ("resol","crosshotel","Shinkansen","15 min","$15 pp"),
  ("crosshotel","andaz","Flight KIX → ICN","2h","~$150–250 pp"),
