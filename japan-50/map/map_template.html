@@ -115,6 +115,11 @@ svg.map .grid line{stroke:var(--grid);stroke-width:1}
 /* overview */
 .ov{display:grid;gap:22px}
 @media (min-width:900px){ .ov{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:start} }
+.picks{margin:6px 0 2px 0;padding:8px 10px;border:1px dashed var(--line);border-radius:8px;font-size:12.5px;line-height:1.45}
+.picks b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.picks .pk{display:block;padding:2px 0}
+.picks .pk a{font-weight:600}
+.picks .pk span{color:var(--muted)}
 .legs{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
 .legs li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 14px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
 .legs .how{color:var(--muted);font-size:13px}
@@ -234,6 +239,11 @@ function renderCity(c){
       li.addEventListener('click', e => { if (e.target.closest('a')) return; select(c, s.pin, hotel); });
       ol.appendChild(li);
     });
+    if (d.picks && d.picks.length){
+      const pk = document.createElement('div'); pk.className='picks';
+      pk.innerHTML = `<b>While you're here · nothing scheduled</b>` + d.picks.map(x => { const p = PINS[x.pin]; return `<span class="pk">☆ <a href="${p.url}" target="_blank" rel="noopener">${esc(p.name)}</a> <span>${esc(x.blurb)}</span></span>`; }).join('');
+      day.appendChild(pk);
+    }
     list.appendChild(day);
   });
 

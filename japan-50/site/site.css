@@ -102,6 +102,14 @@ section{padding-block:clamp(48px,7vw,88px)}
 .day li .why{display:block;color:var(--muted);font-size:.86rem;margin-top:2px}
 .stay{margin-top:14px;padding:12px 14px;border-radius:8px;background:var(--paper-2);font-size:.9rem}
 .stay b{font-weight:600}
+.here{margin-top:12px;padding:10px 12px;border:1px dashed var(--line);border-radius:8px;font-size:.84rem;background:transparent}
+.here>b{display:inline-block;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--vermilion);font-weight:600;margin-right:8px}
+.here .k{font-size:.74rem;color:var(--muted)}
+.here ul{margin:6px 0 0;padding:0;display:grid;gap:4px}
+.here li{list-style:none;padding-left:14px;position:relative;font-size:.84rem;color:var(--ink-2)}
+.here li::before{content:"☆";position:absolute;left:0;top:0;color:var(--vermilion);font-size:.8rem}
+.here li a{font-weight:600}
+.here li span{color:var(--muted)}
 .price{margin-top:12px;border-top:1px dashed var(--line);padding-top:10px;display:grid;gap:4px;font-size:.85rem}
 .price div{display:flex;justify-content:space-between;gap:12px}
 .price .n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--indigo)}
