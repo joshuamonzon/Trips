@@ -193,7 +193,7 @@ pin("komori","Gion Komori (warabi mochi)",35.0058422,135.7746072,"stop","ChIJDSr
 pin("yasakapagoda","Yasaka Pagoda (Hokan-ji)",34.9985591,135.7791783,"stop","ChIJIcT4YMUIAWARSTUi4EEky7E","Yasaka Pagoda")
 pin("mouriya","Mouriya Gion (Kobe beef)",35.0033503,135.7727499,"stop","ChIJ1U7cN8AIAWARhsp2Q0XDoFk","Mouriya")
 pin("itoh","Itoh Dining by Nobu (Gion)",35.0051389,135.77416,"stop","ChIJxbCtcOoIAWARfuiDAOw-zJk","Itoh Dining")
-pin("enraku","Yasaka-dori Enraku (private ozashiki)",34.9989147,135.7756299,"stop","ChIJgfk1fsYIAWAR9JXG1Z1X6uA","Enraku")
+pin("enraku","Yasaka-dori Enraku (private ozashiki, dropped: no geisha)",34.9989147,135.7756299,"stop","ChIJgfk1fsYIAWAR9JXG1Z1X6uA","Enraku")
 # Osaka
 pin("kokuryu","Kokuryu Osaka (Kobe-beef kaiseki, Namba 7F)",34.6673743,135.5014321,"stop","ChIJjc46RgDnAGARBnJalgG25Hk","Kokuryu")
 pin("wanaka","Takoyaki Wanaka Dotonbori",34.6687742,135.5027298,"stop","ChIJza-i6hHnAGAR07AQeEhDkh0","Wanaka")
@@ -373,12 +373,12 @@ CITIES = [
      ("mouriya","Gion: Kobe beef on the teppan in front of you; the lunch set is the value play. Lunch alt to Gion grazing."),
      ("itoh","Gion: Nobu's Kyoto room, wagyu + black cod miso. Dinner backup if Hyotei can't be had."),
    ]),
-   dict(date="Tue Dec 8 · Mom turns 50", title="The birthday: kimono and a photographer in the empty lanes, a three-star lunch, a private tea ceremony, Pontocho at blue hour, then her own maiko and geiko", stops=[
+   dict(date="Tue Dec 8 · Mom turns 50", title="The birthday: kimono and a photographer in the empty lanes, a three-star lunch, a private tea ceremony, Pontocho at blue hour, then Kobe beef in a private room", stops=[
      ("yasakapagoda","8:30am","Kimono dressed at 7:45 (book a shop that opens early for shoots), then a private photographer for 90 min: the pagoda lane, Ninenzaka, Gion, before anyone's there. ~$350. Both of you in kimono; Dad gets a haori.",(15,"taxi")),
      ("kikunoi","12:30pm","Three-star lunch kaiseki at half the dinner price. The room looks onto a garden in red maple. Two Michelin meals in 24 hours: lunch is the lighter one.",(15,"taxi")),
      ("giontea","2:30pm","Private tea ceremony in a Gion teahouse.",(8,"walk")),
      ("pontocho","4:30pm","The lantern alley at blue hour, a glass of something on the river side.",(15,"walk")),
-     ("enraku","6pm","THE DINNER. A private tatami room in a Gion ryotei: kaiseki, open bar, and a maiko AND a geiko with a live shamisen player (the upgrade: base is one maiko with recorded music). Dance, drinking games, conversation through an interpreter, 2–3 hours, cake arranged. ~$1,750 for two with the upgrades, no tipping. Closed Sun; Dec 8 is Tuesday. Request the date now; maiko availability is confirmed close to the day.",(15,"walk")),
+     ("mouriya","6:30pm","THE DINNER. Mouriya Gion, a private room on the 2nd floor: certified Kobe beef (sirloin and fillet, 150–180 g each) cooked on the teppan in front of you by the chef, with the foie gras course, soup, salad, dessert and the cake arranged. 4.8 across 1,700 reviews. ~$400 for two with wine. Reserve the private room by name. Honest note: Kyoto has no Michelin-starred steakhouse in the 2026 guide; the two starred-adjacent beef counters are Japanese-speakers-only or dormant, so this is the best steak room in Kyoto for the night.",(15,"walk")),
      ("resol","9:30pm","Or one more whisky at Bar K6. Fill out Korea's e-Arrival Card tonight.",(15,"walk")),
    ]),
   ]),
